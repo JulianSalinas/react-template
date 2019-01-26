@@ -3,6 +3,7 @@ import React, { Component } from "react";
 
 import styles from "./common-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { withTheme } from '@material-ui/core/styles';
 
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
@@ -13,6 +14,10 @@ import Typography from "@material-ui/core/Typography/Typography";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import FilledInput from "@material-ui/core/FilledInput/FilledInput";
 
+import { TwitterPicker } from 'react-color';
+import createMuiTheme from "@material-ui/core/es/styles/createMuiTheme";
+import Button from "@material-ui/core/Button/Button";
+
 
 const DrawerManagerLayout = props =>
     <Grid container spacing={16}>
@@ -22,17 +27,23 @@ const DrawerManagerLayout = props =>
                 <Grid container spacing={16}>
 
                     <Grid item xs={12}>
-                        <Typography variant={"h6"}>
+                        <Typography variant={"h5"}>
                             Current style {props.drawerType}
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item>
+                        <Button variant={"contained"} color={"secondary"}>
+                            Hello!
+                        </Button>
+                    </Grid>
+
+                    <Grid item>
                         <FormControl variant="filled" className={props.classes.formControl}>
                             <InputLabel>Drawer Type</InputLabel>
                             <Select
                                 value={props.drawerType}
-                                onChange={props.handleChange}
+                                onChange={props.handleTypeChanged}
                                 input={<FilledInput name="drawerType" />}>
                                 <MenuItem value={0}>Clipped</MenuItem>
                                 <MenuItem value={1}>Minion</MenuItem>
@@ -44,30 +55,61 @@ const DrawerManagerLayout = props =>
                         </FormControl>
                     </Grid>
 
+                    <Grid item>
+                        <TwitterPicker
+                            color={props.theme.palette.primary.main}
+                            onChange={props.handlePrimaryChanged}/>
+                    </Grid>
+
+                    <Grid item>
+                        <TwitterPicker
+                            color={props.theme.palette.secondary.main}
+                            onChange={props.handleSecondaryChanged}/>
+                    </Grid>
+
                 </Grid>
             </Paper>
         </Grid>
     </Grid>;
 
+
 class DrawerManager extends Component {
 
-    handleChange = event => {
-        this.props.changeStyle(event.target.value);
+    handleTypeChanged = event => {
+        this.props.changeType(event.target.value);
+    };
+
+    handlePrimaryChanged = (color, event) => {
+        this.applyTheme(color.hex, this.props.theme.palette.secondary.main);
+    };
+
+    handleSecondaryChanged = (color, event) => {
+        this.applyTheme(this.props.theme.palette.primary.main, color.hex );
+    };
+
+    applyTheme = (primary, secondary) => {
+        const theme = createMuiTheme({ palette: {
+            primary: { main: primary },
+            secondary: { main: secondary }
+        }});
+        this.props.changeTheme(theme);
     };
 
     render() {
         return <DrawerManagerLayout
-            handleChange={this.handleChange}
-            changeStyle={this.props.changeStyle}
-            drawerType={this.props.drawerType} {...this.props}/>;
+            drawerType={this.props.drawerType}
+            handleTypeChanged={this.handleTypeChanged}
+            handlePrimaryChanged={this.handlePrimaryChanged}
+            handleSecondaryChanged={this.handleSecondaryChanged}
+            {...this.props}/>;
     }
-
 }
 
 DrawerManager.propTypes = {
-    changeStyle:  PropTypes.func.isRequired,
+    changeType:  PropTypes.func.isRequired,
     drawerType:  PropTypes.number.isRequired,
+    changeTheme: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(DrawerManager);
+export default withStyles(styles)(withTheme()(DrawerManager));
 

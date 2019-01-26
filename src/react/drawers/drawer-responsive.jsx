@@ -14,13 +14,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Select from "@material-ui/core/Select/Select";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import DrawerManager from "../views/drawer-manager";
+import {DashboardContext} from "../dashboard/dashboard";
 
 const drawerWidth = 240;
 
@@ -70,6 +65,7 @@ class DrawerResponsive extends React.Component {
         const { classes, theme } = this.props;
 
         const drawer = (
+
             <div>
                 <div className={classes.toolbar} />
                 <Divider />
@@ -94,56 +90,60 @@ class DrawerResponsive extends React.Component {
         );
 
         return (
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppBar position="fixed" className={classes.appBar}>
+            <DashboardContext.Consumer>
+                {({ drawerType, drawerManager, currentUser }) => (
+                    <div className={classes.root}>
+                        <CssBaseline />
+                        <AppBar position="fixed" className={classes.appBar}>
 
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerToggle}
-                            className={classes.menuButton}
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                            <Toolbar>
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="Open drawer"
+                                    onClick={this.handleDrawerToggle}
+                                    className={classes.menuButton}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
 
 
-                    </Toolbar>
+                            </Toolbar>
 
-                </AppBar>
-                <nav className={classes.drawer}>
-                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                    <Hidden smUp implementation="css">
-                        <Drawer
-                            container={this.props.container}
-                            variant="temporary"
-                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                            open={this.state.mobileOpen}
-                            onClose={this.handleDrawerToggle}
-                            classes={{ paper: classes.drawerPaper }}>
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
-                    <Hidden xsDown implementation="css">
-                        <Drawer
-                            classes={{
-                                paper: classes.drawerPaper,
-                            }}
-                            variant="permanent"
-                            open
-                        >
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
-                </nav>
+                        </AppBar>
+                        <nav className={classes.drawer}>
+                            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                            <Hidden smUp implementation="css">
+                                <Drawer
+                                    container={this.props.container}
+                                    variant="temporary"
+                                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                                    open={this.state.mobileOpen}
+                                    onClose={this.handleDrawerToggle}
+                                    classes={{ paper: classes.drawerPaper }}>
+                                    {drawer}
+                                </Drawer>
+                            </Hidden>
+                            <Hidden xsDown implementation="css">
+                                <Drawer
+                                    classes={{
+                                        paper: classes.drawerPaper,
+                                    }}
+                                    variant="permanent"
+                                    open
+                                >
+                                    {drawer}
+                                </Drawer>
+                            </Hidden>
+                        </nav>
 
-                <main className={classes.content}>
-                    <div className={classes.toolbar} />
-                    {this.props.drawerManager}
-                </main>
+                        <main className={classes.content}>
+                            <div className={classes.toolbar} />
+                            {drawerManager}
+                        </main>
 
-            </div>
+                    </div>
+                )}
+            </DashboardContext.Consumer>
         );
     }
 }
