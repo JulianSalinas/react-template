@@ -11,8 +11,8 @@ const ClockFragment = props =>
 export default class Clock extends Component {
 
     state = {
-            time: getCurrentTimeString(),
-            date: getCurrentDateString()
+        time: getCurrentTimeString(),
+        date: getCurrentDateString()
     };
 
     updateTime = () => {

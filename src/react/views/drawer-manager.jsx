@@ -15,8 +15,8 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import FilledInput from "@material-ui/core/FilledInput/FilledInput";
 
 import { TwitterPicker } from 'react-color';
-import createMuiTheme from "@material-ui/core/es/styles/createMuiTheme";
 import Button from "@material-ui/core/Button/Button";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 
 const DrawerManagerLayout = props =>
@@ -45,12 +45,12 @@ const DrawerManagerLayout = props =>
                                 value={props.drawerType}
                                 onChange={props.handleTypeChanged}
                                 input={<FilledInput name="drawerType" />}>
-                                <MenuItem value={0}>Clipped</MenuItem>
-                                <MenuItem value={1}>Minion</MenuItem>
-                                <MenuItem value={2}>Permanent</MenuItem>
-                                <MenuItem value={3}>Persistent Left</MenuItem>
-                                <MenuItem value={4}>Persistent Right</MenuItem>
-                                <MenuItem value={5}>Responsive</MenuItem>
+                                <MenuItem value={"drawer-clipped"}>Clipped</MenuItem>
+                                <MenuItem value={"drawer-minion"}>Minion</MenuItem>
+                                <MenuItem value={"drawer-permanent"}>Permanent</MenuItem>
+                                <MenuItem value={"drawer-persistent-left"}>Persistent Left</MenuItem>
+                                <MenuItem value={"drawer-persistent-right"}>Persistent Right</MenuItem>
+                                <MenuItem value={"drawer-responsive"}>Responsive</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -76,14 +76,14 @@ const DrawerManagerLayout = props =>
 class DrawerManager extends Component {
 
     handleTypeChanged = event => {
-        this.props.changeType(event.target.value);
+        this.props.changeDrawerType(event.target.value);
     };
 
-    handlePrimaryChanged = (color, event) => {
+    handlePrimaryChanged = color => {
         this.applyTheme(color.hex, this.props.theme.palette.secondary.main);
     };
 
-    handleSecondaryChanged = (color, event) => {
+    handleSecondaryChanged = color => {
         this.applyTheme(this.props.theme.palette.primary.main, color.hex );
     };
 
@@ -106,9 +106,9 @@ class DrawerManager extends Component {
 }
 
 DrawerManager.propTypes = {
-    changeType:  PropTypes.func.isRequired,
-    drawerType:  PropTypes.number.isRequired,
-    changeTheme: PropTypes.func.isRequired
+    drawerType:  PropTypes.string.isRequired,
+    changeTheme: PropTypes.func.isRequired,
+    changeDrawerType:  PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(withTheme()(DrawerManager));
