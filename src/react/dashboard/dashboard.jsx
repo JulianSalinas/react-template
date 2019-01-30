@@ -4,7 +4,7 @@ import styles from "./dashboard-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import DashboardLayout from "./dashboard-layout"
-import DrawerManager from "../views/drawer-manager";
+import DrawerManager from "../views/view-manager";
 
 import defaultTheme from "./dashboard-theme"
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -29,16 +29,12 @@ class Dashboard extends Component {
     render() {
         return <DashboardLayout
             user={this.state.user}
+            changeTheme={this.changeTheme}
+            changeDrawerType={this.changeDrawerType}
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
-            drawerManager={this.renderDrawerManager()}/>;
+            drawerManager={<DrawerManager/>}/>;
     }
-
-    renderDrawerManager = () =>
-        <DrawerManager
-            drawerType={this.state.drawerType}
-            changeTheme={this.changeTheme}
-            changeDrawerType={this.changeDrawerType}/>
 
 }
 

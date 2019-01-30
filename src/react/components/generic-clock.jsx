@@ -4,7 +4,7 @@ import { getCurrentDateString, getCurrentTimeString } from "../../js/utils-time"
 
 
 const ClockFragment = props =>
-    <Typography variant={"h5"}>
+    <Typography variant={"h5"} color={"textSecondary"}>
         {props.date} {props.time}
     </Typography>;
 
