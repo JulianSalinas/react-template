@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { withTheme } from '@material-ui/core/styles';
 
 import Grid from "@material-ui/core/Grid/Grid";
+import Divider from '@material-ui/core/Divider';
 import Paper from "@material-ui/core/Paper/Paper";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
@@ -15,27 +16,21 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import FilledInput from "@material-ui/core/FilledInput/FilledInput";
 
 import { TwitterPicker } from 'react-color';
-import Button from "@material-ui/core/Button/Button";
+import defaultTheme from "../dashboard/dashboard-theme"
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+
+import Clock from "../components/generic-clock";
 
 
 const DrawerManagerLayout = props =>
-    <Grid container spacing={16}>
+    <Grid container spacing={32}>
 
         <Grid item xs={12}>
             <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={16}>
+                <Grid container spacing={32}>
 
                     <Grid item xs={12}>
-                        <Typography variant={"h5"}>
-                            Current style {props.drawerType}
-                        </Typography>
-                    </Grid>
-
-                    <Grid item>
-                        <Button variant={"contained"} color={"secondary"}>
-                            Hello!
-                        </Button>
+                        <Clock/>
                     </Grid>
 
                     <Grid item>
@@ -56,15 +51,38 @@ const DrawerManagerLayout = props =>
                     </Grid>
 
                     <Grid item>
-                        <TwitterPicker
-                            color={props.theme.palette.primary.main}
-                            onChange={props.handlePrimaryChanged}/>
+                        <FormControl variant="filled" className={props.classes.formControl}>
+                            <InputLabel>Palette</InputLabel>
+                            <Select
+                                value={props.theme.palette.type}
+                                onChange={props.togglePalette}
+                                input={<FilledInput name="paletteType" />}>
+                                <MenuItem value={"light"}>Light</MenuItem>
+                                <MenuItem value={"dark"}>Dark</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Divider variant={"fullWidth"}/>
                     </Grid>
 
                     <Grid item>
+                        <Typography variant={"body1"} color={"primary"} paragraph>
+                            Primary color
+                        </Typography>
+                        <TwitterPicker
+                            color={props.theme.palette.primary.main}
+                            onChange={color => props.handleColorChanged(color, "primary")}/>
+                    </Grid>
+
+                    <Grid item>
+                        <Typography variant={"body1"} color={"secondary"} paragraph>
+                            Secondary color
+                        </Typography>
                         <TwitterPicker
                             color={props.theme.palette.secondary.main}
-                            onChange={props.handleSecondaryChanged}/>
+                            onChange={color => props.handleColorChanged(color, "secondary")}/>
                     </Grid>
 
                 </Grid>
@@ -79,28 +97,31 @@ class DrawerManager extends Component {
         this.props.changeDrawerType(event.target.value);
     };
 
-    handlePrimaryChanged = color => {
-        this.applyTheme(color.hex, this.props.theme.palette.secondary.main);
+    togglePalette = () => {
+        const currentTheme = this.props.theme;
+        const newTheme = JSON.parse(JSON.stringify(defaultTheme));
+        newTheme.palette.primary = currentTheme.palette.primary;
+        newTheme.palette.secondary = currentTheme.palette.secondary;
+        newTheme.palette.type = currentTheme.palette.type === "light" ? "dark" : "light";
+        this.props.changeTheme(createMuiTheme(newTheme));
     };
 
-    handleSecondaryChanged = color => {
-        this.applyTheme(this.props.theme.palette.primary.main, color.hex );
-    };
-
-    applyTheme = (primary, secondary) => {
-        const theme = createMuiTheme({ palette: {
-            primary: { main: primary },
-            secondary: { main: secondary }
-        }});
-        this.props.changeTheme(theme);
+    handleColorChanged = (color, prop) => {
+        const currentTheme = this.props.theme;
+        const newTheme = JSON.parse(JSON.stringify(defaultTheme));
+        newTheme.palette.type = currentTheme.palette.type;
+        newTheme.palette[prop].main = color.hex;
+        const theOther = prop === "primary" ? "secondary" : "primary";
+        newTheme.palette[theOther].main = currentTheme.palette[theOther].main;
+        this.props.changeTheme(createMuiTheme(newTheme));
     };
 
     render() {
         return <DrawerManagerLayout
             drawerType={this.props.drawerType}
+            togglePalette={this.togglePalette}
             handleTypeChanged={this.handleTypeChanged}
-            handlePrimaryChanged={this.handlePrimaryChanged}
-            handleSecondaryChanged={this.handleSecondaryChanged}
+            handleColorChanged={this.handleColorChanged}
             {...this.props}/>;
     }
 }

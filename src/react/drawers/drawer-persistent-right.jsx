@@ -124,7 +124,7 @@ class DrawerPersistentRight extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    {/*{drawerManager}*/}
+                    {this.props.dashboard.drawerManager}
                 </main>
                 <Drawer
                     className={classes.drawer}

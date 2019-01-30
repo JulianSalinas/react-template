@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -18,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import withTheme from "@material-ui/core/styles/withTheme";
 
 const drawerWidth = 240;
 
@@ -164,16 +164,11 @@ class MiniDrawer extends React.Component {
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    {/*{drawerManager}*/}
+                    {this.props.dashboard.drawerManager}
                 </main>
             </div>
         );
     }
 }
 
-MiniDrawer.propTypes = {
-    classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true });
+export default withTheme()((withStyles(styles)(MiniDrawer)));

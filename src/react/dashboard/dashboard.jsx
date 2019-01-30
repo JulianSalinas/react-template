@@ -6,13 +6,16 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import DashboardLayout from "./dashboard-layout"
 import DrawerManager from "../views/drawer-manager";
 
+import defaultTheme from "./dashboard-theme"
+import { createMuiTheme } from '@material-ui/core/styles';
+
 
 class Dashboard extends Component {
 
     state = {
         user: this.props.user,
-        drawerType: "drawer-clipped",
-        theme: require("../utils/theme-default").default,
+        drawerType: "drawer-minion",
+        theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme)))
     };
 
     changeTheme = theme => {

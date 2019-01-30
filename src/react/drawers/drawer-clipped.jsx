@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,8 +13,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import { DashboardContext } from '../dashboard/dashboard'
-import withContext from "../dashboard/dashboard-context"
 import withTheme from "@material-ui/core/styles/withTheme";
 
 const drawerWidth = 240;
@@ -43,8 +40,6 @@ const styles = theme => ({
 
 function ClippedDrawer(props) {
     const { classes } = props;
-
-    console.log("DrawerType" , props.drawerType);
 
     return (
 
@@ -85,15 +80,11 @@ function ClippedDrawer(props) {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Typography variant={"h6"} style={{
-                    color: props.theme.palette.primary.main
-                }}>
-                    {props.dashboard.drawerManager}
-                </Typography>
+                {props.dashboard.drawerManager}
             </main>
         </div>
 
     );
 }
 
-export default withContext(withTheme()((withStyles(styles)(ClippedDrawer))));
+export default withTheme()((withStyles(styles)(ClippedDrawer)));

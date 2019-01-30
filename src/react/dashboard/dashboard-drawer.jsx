@@ -6,9 +6,8 @@ import DashboardTypes from "./dashboard-types"
 
 
 const DashboardDrawer = props => {
-    console.log(props.dashboard);
     const Drawer = require(`../drawers/${props.dashboard.drawerType}`).default;
-    return <Drawer/>;
+    return <Drawer {...props}/>;
 };
 
 DashboardDrawer.propsTypes = {

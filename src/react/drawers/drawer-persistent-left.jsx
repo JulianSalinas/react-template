@@ -157,7 +157,7 @@ class DrawerPersistentLeft extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    {/*{drawerManager}*/}
+                    {this.props.dashboard.drawerManager}
                 </main>
             </div>
         );
