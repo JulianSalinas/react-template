@@ -7,9 +7,6 @@ import { withTheme } from '@material-ui/core/styles';
 import Colors from "../../json/colors"
 import { TwitterPicker } from 'react-color';
 
-//  TODO: Bug, component gets update while unmounted
-// import Clock from "../components/generic-clock";
-
 import Grid from "@material-ui/core/Grid/Grid";
 import Divider from '@material-ui/core/Divider';
 import Paper from "@material-ui/core/Paper/Paper";
@@ -94,11 +91,12 @@ const ViewManager = props =>
                                 value={props.dashboard.drawerType}
                                 onChange={props.handleDrawerTypeChange}
                                 input={<FilledInput name="drawerType" />}>
-                                <MenuItem value={"drawer-clipped"}>Clipped</MenuItem>
-                                <MenuItem value={"drawer-minion"}>Minion</MenuItem>
-                                <MenuItem value={"drawer-permanent"}>Permanent</MenuItem>
-                                <MenuItem value={"drawer-persistent"}>Persistent</MenuItem>
-                                <MenuItem value={"drawer-responsive"}>Responsive</MenuItem>
+                                {
+                                    require("../../json/drawers").map(drawerName => {
+                                        const capitalize = string => string[0].toUpperCase() + string.slice(1);
+                                        return <MenuItem value={`drawer-${drawerName}`}>{capitalize(drawerName)}</MenuItem>
+                                    })
+                                }
                             </Select>
                         </FormControl>
                     </Grid>
