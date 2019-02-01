@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,33 +11,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import withDrawerContext from "./drawer-context";
 
-const drawerWidth = 240;
-
-const styles = theme => ({
-    root: {
-        display: 'flex',
-    },
-    appBar: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    toolbar: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing.unit * 3,
-    },
-});
-
-function PermanentDrawerLeft(props) {
+function PermanentDrawer(props) {
     const { classes } = props;
 
     return (
@@ -88,8 +62,4 @@ function PermanentDrawerLeft(props) {
     );
 }
 
-PermanentDrawerLeft.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PermanentDrawerLeft);
+export default withDrawerContext(PermanentDrawer);

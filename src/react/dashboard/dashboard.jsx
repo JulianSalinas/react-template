@@ -14,7 +14,8 @@ class Dashboard extends Component {
 
     state = {
         user: this.props.user,
-        drawerType: "drawer-minion",
+        drawerType: "drawer-clipped",
+        drawerWidth: 240,
         theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme)))
     };
 
@@ -26,13 +27,19 @@ class Dashboard extends Component {
         this.setState({ drawerType: drawerType })
     };
 
+    changeDrawerWidth = drawerWidth => {
+        this.setState({ drawerWidth: drawerWidth })
+    };
+
     render() {
         return <DashboardLayout
             user={this.state.user}
             changeTheme={this.changeTheme}
             changeDrawerType={this.changeDrawerType}
+            changeDrawerWidth={this.changeDrawerWidth}
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
+            drawerWidth={this.state.drawerWidth}
             drawerManager={<DrawerManager/>}/>;
     }
 

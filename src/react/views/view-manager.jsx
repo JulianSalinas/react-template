@@ -13,29 +13,44 @@ import DrawerManagerLayout from "./view-manager-layout";
 class ViewManager extends Component {
 
     state = {
-        autoContrast: true
+        autoContrast: true,
+        drawerWidth: this.props.dashboard.drawerWidth
     };
 
     toggleAutoContrast = event => {
         this.setState({ autoContrast: event.target.checked });
     };
 
-    handleTypeChanged = event => {
+    handleDrawerTypeChange = event => {
         this.props.dashboard.changeDrawerType(event.target.value);
     };
 
+    handleDrawerWidthChange = event => {
+        this.setState({ drawerWidth: parseInt(event.target.value, 10)})
+    };
+
+    applyDrawerWidth = () => {
+        this.props.dashboard.changeDrawerWidth(this.state.drawerWidth);
+    };
+
+    applyTheme = theme => {
+        this.props.dashboard.changeTheme(createMuiTheme(theme));
+    };
+
+    copyDefaultTheme = () => JSON.parse(JSON.stringify(defaultTheme));
+
     togglePalette = () => {
         const currentTheme = this.props.theme;
-        const newTheme = JSON.parse(JSON.stringify(defaultTheme));
+        const newTheme = this.copyDefaultTheme();
         newTheme.palette.primary = currentTheme.palette.primary;
         newTheme.palette.secondary = currentTheme.palette.secondary;
         newTheme.palette.type = currentTheme.palette.type === "light" ? "dark" : "light";
-        this.props.dashboard.changeTheme(createMuiTheme(newTheme));
+        this.applyTheme(newTheme);
     };
 
-    handleColorChanged = (color, prop) => {
+    handleColorChange = (color, prop) => {
         const currentTheme = this.props.theme;
-        const newTheme = JSON.parse(JSON.stringify(defaultTheme));
+        const newTheme = this.copyDefaultTheme();
 
         newTheme.palette.type = currentTheme.palette.type;
         newTheme.palette[prop].main = color.hex;
@@ -48,23 +63,29 @@ class ViewManager extends Component {
             newTheme.palette.secondary.contrastText = currentTheme.palette.secondary.contrastText;
         }
 
-        this.props.dashboard.changeTheme(createMuiTheme(newTheme));
+        this.applyTheme(newTheme);
     };
 
-    handleContrastTextChanged = (color, prop) => {
+    handleContrastTextChange = (color, prop) => {
         const currentTheme = this.props.theme;
         currentTheme.palette[prop].contrastText = color.hex;
-        this.props.dashboard.changeTheme(createMuiTheme(currentTheme));
+        this.applyTheme(currentTheme);
     };
 
     render() {
         return <DrawerManagerLayout
             autoContrast={this.state.autoContrast}
+
+            drawerWidth={this.state.drawerWidth}
+            applyDrawerWidth={this.applyDrawerWidth}
+            handleDrawerWidthChange={this.handleDrawerWidthChange}
+
             togglePalette={this.togglePalette}
             toggleAutoContrast={this.toggleAutoContrast}
-            handleTypeChanged={this.handleTypeChanged}
-            handleColorChanged={this.handleColorChanged}
-            handleContrastTextChanged={this.handleContrastTextChanged}
+
+            handleColorChange={this.handleColorChange}
+            handleDrawerTypeChange={this.handleDrawerTypeChange}
+            handleContrastTextChange={this.handleContrastTextChange}
             {...this.props}/>;
     }
 

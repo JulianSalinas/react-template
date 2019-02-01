@@ -6,7 +6,9 @@ import { withTheme } from '@material-ui/core/styles';
 
 import Colors from "../../json/colors"
 import { TwitterPicker } from 'react-color';
-import Clock from "../components/generic-clock";
+
+//  TODO: Bug, component gets update while unmounted
+// import Clock from "../components/generic-clock";
 
 import Grid from "@material-ui/core/Grid/Grid";
 import Divider from '@material-ui/core/Divider';
@@ -20,13 +22,14 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import FilledInput from "@material-ui/core/FilledInput/FilledInput";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Avatar from "@material-ui/core/Avatar/Avatar";
-
+import TextField from "@material-ui/core/TextField/TextField";
+import Button from "@material-ui/core/Button/Button";
 
 const ViewManager = props =>
 
     <Grid container spacing={32} alignItems={"stretch"}>
 
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper elevation={0} className={props.classes.paper}>
                 <Grid container spacing={32}>
 
@@ -58,7 +61,7 @@ const ViewManager = props =>
             </Paper>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper elevation={0} className={props.classes.paper}>
                 <Grid container spacing={32}>
 
@@ -66,7 +69,7 @@ const ViewManager = props =>
                         <Typography variant={"h4"} paragraph>
                             Datetime
                         </Typography>
-                        <Clock/>
+                        {/*<Clock/>*/}
                     </Grid>
 
                 </Grid>
@@ -88,13 +91,12 @@ const ViewManager = props =>
                             <InputLabel>Drawer Type</InputLabel>
                             <Select
                                 value={props.dashboard.drawerType}
-                                onChange={props.handleTypeChanged}
+                                onChange={props.handleDrawerTypeChange}
                                 input={<FilledInput name="drawerType" />}>
                                 <MenuItem value={"drawer-clipped"}>Clipped</MenuItem>
                                 <MenuItem value={"drawer-minion"}>Minion</MenuItem>
                                 <MenuItem value={"drawer-permanent"}>Permanent</MenuItem>
-                                <MenuItem value={"drawer-persistent-left"}>Persistent Left</MenuItem>
-                                <MenuItem value={"drawer-persistent-right"}>Persistent Right</MenuItem>
+                                <MenuItem value={"drawer-persistent"}>Persistent</MenuItem>
                                 <MenuItem value={"drawer-responsive"}>Responsive</MenuItem>
                             </Select>
                         </FormControl>
@@ -113,6 +115,22 @@ const ViewManager = props =>
                         </FormControl>
                     </Grid>
 
+                    <Grid item>
+                        <TextField
+                            id="filled-number"
+                            label="Drawer Width"
+                            value={props.drawerWidth}
+                            onChange={event => props.handleDrawerWidthChange(event)}
+                            type="number"
+                            variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                        <Button variant={"contained"} color={"secondary"} onClick={() => props.applyDrawerWidth()}>
+                            Apply width
+                        </Button>
+                    </Grid>
+
                     <Grid item xs={12}>
                         <Divider variant={"fullWidth"}/>
                     </Grid>
@@ -126,7 +144,7 @@ const ViewManager = props =>
                         <TwitterPicker
                             colors={Colors}
                             color={props.theme.palette.primary.main}
-                            onChange={color => props.handleColorChanged(color, "primary")}/>
+                            onChange={color => props.handleColorChange(color, "primary")}/>
 
                         <FormControlLabel
                             label="Autocontraste"
@@ -146,7 +164,7 @@ const ViewManager = props =>
                         <TwitterPicker
                             colors={Colors}
                             color={props.theme.palette.secondary.main}
-                            onChange={color => props.handleColorChanged(color, "secondary")}/>
+                            onChange={color => props.handleColorChange(color, "secondary")}/>
                     </Grid>
 
                     <Grid item>
@@ -156,7 +174,7 @@ const ViewManager = props =>
                         <TwitterPicker
                             colors={Colors}
                             color={props.theme.palette.primary.contrastText}
-                            onChange={color => props.handleContrastTextChanged(color, "primary")}/>
+                            onChange={color => props.handleContrastTextChange(color, "primary")}/>
                     </Grid>
 
                     <Grid item>
@@ -166,7 +184,7 @@ const ViewManager = props =>
                         <TwitterPicker
                             colors={Colors}
                             color={props.theme.palette.secondary.contrastText}
-                            onChange={color => props.handleContrastTextChanged(color, "secondary")}/>
+                            onChange={color => props.handleContrastTextChange(color, "secondary")}/>
                     </Grid>
 
                 </Grid>
