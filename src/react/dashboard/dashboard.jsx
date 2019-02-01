@@ -14,8 +14,9 @@ class Dashboard extends Component {
 
     state = {
         user: this.props.user,
-        drawerType: "drawer-clipped",
+        drawerType: "drawer-favorite",
         drawerWidth: 240,
+        drawerManager: <DrawerManager/>,
         theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme)))
     };
 
