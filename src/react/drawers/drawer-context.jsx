@@ -1,30 +1,33 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import withContext from "../dashboard/dashboard-context";
-
 
 const withDrawerContext = drawer => withContext(
 
     class DrawerWithContext extends Component {
 
-        state = { drawer: "Loading" };
+        state = {
+            component: null,
+            drawerWidth: this.props.dashboard.drawerWidth,
+        };
 
-        componentDidMount() {
-            const dashboard = this.props.dashboard;
-            const getStyles = require(`./${dashboard.drawerType}-styles`).default;
+        getStyles = require(`./${this.props.dashboard.drawerType}-styles`).default;
 
-            const options = {
-                drawerWidth: dashboard.drawerWidth
-                // Colocar drawer side u otras opciones
-            };
+        componentDidMount(){
+            const component = withStyles(this.getStyles(this.state), { withTheme: true })(drawer);
+            this.setState({ component: component});
+        }
 
-            const styles = getStyles(options);
-            const styledDrawer = withStyles(styles, { withTheme: true })(drawer);
-            this.setState({ drawer: styledDrawer });
+        static getDerivedStateFromProps(props, state){
+            state.drawerWidth = props.dashboard.drawerWidth;
+            const getStyles = require(`./${props.dashboard.drawerType}-styles`).default;
+            state.component = withStyles(getStyles(state), {withTheme: true})(drawer);
+            return state;
         }
 
         render(){
-            return <this.state.drawer {...this.props}/>;
+            console.log("Rendering width", this.state.drawerWidth);
+            return this.state.component === null ? <div/> : <this.state.component {...this.props}/>
         }
 
     }

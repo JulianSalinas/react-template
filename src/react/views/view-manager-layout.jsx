@@ -92,9 +92,9 @@ const ViewManager = props =>
                                 onChange={props.handleDrawerTypeChange}
                                 input={<FilledInput name="drawerType" />}>
                                 {
-                                    require("../../json/drawers").map(drawerName => {
+                                    require("../../json/drawers").map((drawerName, key) => {
                                         const capitalize = string => string[0].toUpperCase() + string.slice(1);
-                                        return <MenuItem value={`drawer-${drawerName}`}>{capitalize(drawerName)}</MenuItem>
+                                        return <MenuItem key={key} value={`drawer-${drawerName}`}>{capitalize(drawerName)}</MenuItem>
                                     })
                                 }
                             </Select>
