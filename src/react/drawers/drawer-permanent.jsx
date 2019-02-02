@@ -56,7 +56,7 @@ function PermanentDrawer(props) {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                {props.dashboard.drawerManager}
+                <props.dashboard.drawerManager/>
             </main>
         </div>
     );

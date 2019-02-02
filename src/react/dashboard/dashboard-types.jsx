@@ -11,9 +11,10 @@ export default {
         username: PropTypes.string.isRequired
     }),
 
-    drawerWidth: PropTypes.number,
     drawerType: PropTypes.string.isRequired,
-    drawerManager: PropTypes.object.isRequired,
+    drawerWidth: PropTypes.number.isRequired,
+    drawerManager: PropTypes.func.isRequired,
+    drawerAutoContrast: PropTypes.bool.isRequired,
 
     changeTheme: PropTypes.func.isRequired,
     changeDrawerType: PropTypes.func.isRequired,

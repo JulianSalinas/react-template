@@ -100,7 +100,7 @@ class DrawerPersistent extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    {this.props.dashboard.drawerManager}
+                    <this.props.dashboard.drawerManager/>
                 </main>
             </div>
         );

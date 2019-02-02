@@ -7,7 +7,7 @@ export default {
 
     palette: {
         type: "light",
-        primary: { main: "#006bff" },
+        primary: { main: "#3F51B5" },
         secondary: { main: "#EB144C" }
     }
 

@@ -13,12 +13,11 @@ import DrawerManagerLayout from "./view-manager-layout";
 class ViewManager extends Component {
 
     state = {
-        autoContrast: true,
         drawerWidth: this.props.dashboard.drawerWidth
     };
 
     toggleAutoContrast = event => {
-        this.setState({ autoContrast: event.target.checked });
+        this.props.dashboard.changeDrawerAutoContrast(event.target.checked);
     };
 
     handleDrawerTypeChange = event => {
@@ -58,7 +57,8 @@ class ViewManager extends Component {
         const theOther = prop === "primary" ? "secondary" : "primary";
         newTheme.palette[theOther].main = currentTheme.palette[theOther].main;
 
-        if (!this.state.autoContrast) {
+        console.log("Auto contrast is", this.props.dashboard.drawerAutoContrast ? "on" : "off");
+        if (!this.props.dashboard.drawerAutoContrast) {
             newTheme.palette.primary.contrastText = currentTheme.palette.primary.contrastText;
             newTheme.palette.secondary.contrastText = currentTheme.palette.secondary.contrastText;
         }
@@ -74,7 +74,6 @@ class ViewManager extends Component {
 
     render() {
         return <DrawerManagerLayout
-            autoContrast={this.state.autoContrast}
 
             drawerWidth={this.state.drawerWidth}
             applyDrawerWidth={this.applyDrawerWidth}

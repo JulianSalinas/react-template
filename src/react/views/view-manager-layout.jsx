@@ -149,7 +149,7 @@ const ViewManager = props =>
                             label="Autocontraste"
                             control={
                                 <Checkbox
-                                    checked={props.autoContrast}
+                                    checked={props.dashboard.drawerAutoContrast}
                                     onChange={event => props.toggleAutoContrast(event)}/>
                             }
                         />

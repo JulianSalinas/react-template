@@ -52,7 +52,7 @@ export default withDrawerContext(props =>
         </Drawer>
         <main className={props.classes.content}>
             <div className={props.classes.toolbar} />
-            {props.dashboard.drawerManager}
+            <props.dashboard.drawerManager/>
         </main>
     </div>
 

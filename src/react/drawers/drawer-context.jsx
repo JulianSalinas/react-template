@@ -26,7 +26,6 @@ const withDrawerContext = drawer => withContext(
         }
 
         render(){
-            console.log("Rendering width", this.state.drawerWidth);
             return this.state.component === null ? <div/> : <this.state.component {...this.props}/>
         }
 

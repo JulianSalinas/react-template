@@ -2,10 +2,9 @@ import React, { Component } from "react";
 
 import styles from "./dashboard-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-
 import DashboardLayout from "./dashboard-layout"
-import DrawerManager from "../views/view-manager";
 
+import defaults from "../drawers/drawer-defaults"
 import defaultTheme from "./dashboard-theme"
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -14,9 +13,10 @@ class Dashboard extends Component {
 
     state = {
         user: this.props.user,
-        drawerType: "drawer-favorite",
-        drawerWidth: 240,
-        drawerManager: <DrawerManager/>,
+        drawerType: defaults.drawerType,
+        drawerWidth: defaults.drawerWidth,
+        drawerManager: defaults.drawerManager,
+        drawerAutoContrast: defaults.drawerAutoContrast,
         theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme)))
     };
 
@@ -32,16 +32,22 @@ class Dashboard extends Component {
         this.setState({ drawerWidth: drawerWidth })
     };
 
+    changeDrawerAutoContrast = drawerAutoContrast => {
+        this.setState({ drawerAutoContrast: drawerAutoContrast})
+    };
+
     render() {
         return <DashboardLayout
             user={this.state.user}
-            changeTheme={this.changeTheme}
-            changeDrawerType={this.changeDrawerType}
-            changeDrawerWidth={this.changeDrawerWidth}
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
             drawerWidth={this.state.drawerWidth}
-            drawerManager={<DrawerManager/>}/>;
+            drawerManager={this.state.drawerManager}
+            drawerAutoContrast={this.state.drawerAutoContrast}
+            changeTheme={this.changeTheme}
+            changeDrawerType={this.changeDrawerType}
+            changeDrawerWidth={this.changeDrawerWidth}
+            changeDrawerAutoContrast={this.changeDrawerAutoContrast}/>;
     }
 
 }

@@ -73,7 +73,7 @@ class MinionDrawer extends React.Component {
                 </Drawer>
 
                 <main className={classes.content}>
-                    {this.props.dashboard.drawerManager}
+                    <this.props.dashboard.drawerManager/>
                 </main>
 
             </div>
