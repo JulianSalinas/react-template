@@ -20,9 +20,11 @@ const withDrawerContext = drawer => withContext(
         }
 
         static getDerivedStateFromProps(props, state){
-            state.drawerWidth = props.dashboard.drawerWidth;
-            const getStyles = require(`./${props.dashboard.drawerType}-styles`).default;
-            state.component = withStyles(getStyles(state), {withTheme: true})(drawer);
+            if (state.drawerWidth !== props.dashboard.drawerWidth){
+                state.drawerWidth = props.dashboard.drawerWidth;
+                const getStyles = require(`./${props.dashboard.drawerType}-styles`).default;
+                state.component = withStyles(getStyles(state), {withTheme: true})(drawer);
+            }
             return state;
         }
 
