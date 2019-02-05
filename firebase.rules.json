@@ -1,0 +1,28 @@
+{
+  "rules": {
+
+    ".read": true,
+    ".write": true,
+
+    "edepa5": {
+      "schedule": {
+        ".indexOn": ["date", "start"]
+      },
+      "chat":{
+        ".indexOn": "time"
+      },
+      "news":{
+        ".indexOn": "time"
+      },
+      "restaurants": {
+        ".indexOn": "name"
+      },
+      "lodging": {
+        ".indexOn": "name"
+      }
+
+    }
+
+  }
+
+}

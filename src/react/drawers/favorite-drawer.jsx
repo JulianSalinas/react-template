@@ -7,10 +7,6 @@ class FavoriteDrawer extends Component {
 
     state = { open: false };
 
-    componentDidMount(){
-        console.log("Favorite Drawer Mounted", this.state.open)
-    }
-
     toggleDrawerState = () => {
         this.setState({ open: !this.state.open });
     };
