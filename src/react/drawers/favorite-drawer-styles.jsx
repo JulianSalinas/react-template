@@ -60,4 +60,24 @@ export default options => theme => ({
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
     },
+    item: {
+        width: "auto",
+        display: "block",
+        position: "relative",
+        "&:hover": { backgroundColor: theme.palette.primary.light }
+    },
+    itemActive: {
+        width: "auto",
+        display: "block",
+        position: "relative",
+        backgroundColor: theme.palette.primary.dark,
+        "&:hover": { backgroundColor: theme.palette.primary.dark }
+    },
+    itemIcon: {
+        float: "left",
+        width: "24px",
+        height: "24px",
+        color: "inherit",
+        block: "inline-block"
+    },
 });

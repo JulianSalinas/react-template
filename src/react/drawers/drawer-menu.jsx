@@ -24,23 +24,20 @@ const DrawerMenuLink = props =>
         <ListItemText primary={props.name}/>
     </ListItem>;
 
-const DrawerMenuItem = props =>
-    <NavLink key={props.key}
-             to={props.path}>
-        <DrawerMenuLink {...props}/>
-    </NavLink>;
-
-const DrawerMenu = props => Routes.map((route, key) => route.redirect ? null :
-    <DrawerMenuItem
-        key={key}
-        path={route.path}
-        name={route.name}
-        icon={route.icon} {...props}/>
+const DrawerMenu = props => Routes.map((route, index) => route.redirect ? null :
+    <NavLink key={index}
+             to={route.path}
+             className={props.classes !== undefined ? props.classes.item : null}
+             activeClassName={props.classes !== undefined ? props.classes.itemActive : null}>
+        <DrawerMenuLink
+            name={route.name}
+            icon={route.icon} {...props}/>
+    </NavLink>
 );
 
-const DrawerMenuList = () =>
+const DrawerMenuList = props =>
     <List>
-        <DrawerMenu/>
+        <DrawerMenu {...props}/>
     </List>;
 
 export default DrawerMenuList

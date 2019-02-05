@@ -38,7 +38,7 @@ const FavoriteDrawerLayout = ({ classes, ...props }) =>
             </div>
 
             <Divider/>
-            <DrawerMenu/>
+            <DrawerMenu classes={classes}/>
 
         </Drawer>
 
