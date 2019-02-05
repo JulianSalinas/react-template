@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import withContext from "../dashboard/dashboard-context";
+
 
 const withDrawerContext = drawer => withContext(
 
@@ -26,7 +27,7 @@ const withDrawerContext = drawer => withContext(
         }
 
         render(){
-            return this.state.component === null ? <div/> : <this.state.component {...this.props}/>
+            return this.state.component === null ? <div/> : <this.state.component { ...this.props }/>;
         }
 
     }

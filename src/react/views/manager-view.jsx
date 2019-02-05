@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
-import styles from "./common-styles";
+import styles from "./view-styles";
 import { withTheme } from '@material-ui/core/styles';
 import withStyles from "@material-ui/core/styles/withStyles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 import defaultTheme from "../dashboard/dashboard-theme";
 import withContext from "../dashboard/dashboard-context";
-import DrawerManagerLayout from "./view-manager-layout";
+import DrawerManagerLayout from "./manager-view-layout";
 
 
-class ViewManager extends Component {
+class ManagerView extends Component {
 
     state = {
         drawerWidth: this.props.dashboard.drawerWidth
@@ -90,6 +90,6 @@ class ViewManager extends Component {
 
 }
 
-const ViewManagerThemed = withStyles(styles)(withTheme()(ViewManager));
+const ViewManagerThemed = withStyles(styles)(withTheme()(ManagerView));
 export default withContext(ViewManagerThemed);
 

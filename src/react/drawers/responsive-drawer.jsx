@@ -13,9 +13,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
+
+import DrawerMenu from "./drawer-menu"
+import DrawerSwitch from "./drawer-switch"
 import withDrawerContext from "./drawer-context";
 
-class DrawerResponsive extends React.Component {
+class ResponsiveDrawer extends React.Component {
     state = {
         drawerType: 0,
         mobileOpen: false,
@@ -33,23 +36,7 @@ class DrawerResponsive extends React.Component {
             <div>
                 <div className={classes.toolbar} />
                 <Divider />
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+                <DrawerMenu/>
             </div>
         );
 
@@ -100,7 +87,7 @@ class DrawerResponsive extends React.Component {
 
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <this.props.dashboard.drawerManager/>
+                    <DrawerSwitch/>
                 </main>
 
             </div>
@@ -108,4 +95,4 @@ class DrawerResponsive extends React.Component {
     }
 }
 
-export default withDrawerContext(DrawerResponsive);
+export default withDrawerContext(ResponsiveDrawer);

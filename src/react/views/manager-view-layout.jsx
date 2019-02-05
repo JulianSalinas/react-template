@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./common-styles";
+import styles from "./view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withTheme } from '@material-ui/core/styles';
 
@@ -94,7 +94,7 @@ const ViewManager = props =>
                                 {
                                     require("../../json/drawers").map((drawerName, key) => {
                                         const capitalize = string => string[0].toUpperCase() + string.slice(1);
-                                        return <MenuItem key={key} value={`drawer-${drawerName}`}>{capitalize(drawerName)}</MenuItem>
+                                        return <MenuItem key={key} value={`${drawerName}-drawer`}>{capitalize(drawerName)}</MenuItem>
                                     })
                                 }
                             </Select>

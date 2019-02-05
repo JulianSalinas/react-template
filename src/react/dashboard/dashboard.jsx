@@ -15,7 +15,6 @@ class Dashboard extends Component {
         user: this.props.user,
         drawerType: defaults.drawerType,
         drawerWidth: defaults.drawerWidth,
-        drawerManager: defaults.drawerManager,
         drawerAutoContrast: defaults.drawerAutoContrast,
         theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme)))
     };
@@ -42,7 +41,6 @@ class Dashboard extends Component {
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
             drawerWidth={this.state.drawerWidth}
-            drawerManager={this.state.drawerManager}
             drawerAutoContrast={this.state.drawerAutoContrast}
             changeTheme={this.changeTheme}
             changeDrawerType={this.changeDrawerType}

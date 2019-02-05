@@ -49,7 +49,7 @@ export default options => theme => ({
             width: theme.spacing.unit * 9 + 1,
         },
     },
-    toolbar: {
+    iconOpen: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',

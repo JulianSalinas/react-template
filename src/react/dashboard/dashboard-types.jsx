@@ -13,11 +13,11 @@ export default {
 
     drawerType: PropTypes.string.isRequired,
     drawerWidth: PropTypes.number.isRequired,
-    drawerManager: PropTypes.func.isRequired,
     drawerAutoContrast: PropTypes.bool.isRequired,
 
     changeTheme: PropTypes.func.isRequired,
     changeDrawerType: PropTypes.func.isRequired,
-    changeDrawerWidth: PropTypes.func.isRequired
+    changeDrawerWidth: PropTypes.func.isRequired,
+    changeDrawerAutoContrast: PropTypes.func.isRequired,
 
 };
