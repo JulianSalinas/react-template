@@ -1,8 +1,10 @@
-import GamesView from "../views/games-view"
-import ManagerView from "../views/manager-view"
-import WelcomeView from "../views/welcome-view"
+import GamesView from "../views/dummy-view/games-view"
+import EventsView from "../views/schedule-view/schedule-view"
+import ManagerView from "../views/manager-view/manager-view"
+import WelcomeView from "../views/dummy-view/welcome-view"
 
 import GamesIcon from "@material-ui/icons/Gamepad"
+import EventsIcon from "@material-ui/icons/Schedule"
 import ConfigIcon from "@material-ui/icons/Settings"
 import WelcomeIcon from "@material-ui/icons/TimelineRounded"
 
@@ -24,5 +26,11 @@ export default [
         name: "Configuración",
         icon: ConfigIcon,
         component: ManagerView
+    },
+    {
+        path: "/events",
+        name: "Eventos",
+        icon: EventsIcon,
+        component: EventsView
     }
 ];

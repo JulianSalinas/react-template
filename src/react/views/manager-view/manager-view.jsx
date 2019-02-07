@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-import styles from "./view-styles";
+import styles from "./manager-view-styles";
 import { withTheme } from '@material-ui/core/styles';
 import withStyles from "@material-ui/core/styles/withStyles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
-import defaultTheme from "../dashboard/dashboard-theme";
-import withContext from "../dashboard/dashboard-context";
+import defaultTheme from "../../dashboard/dashboard-theme";
+import withContext from "../../dashboard/dashboard-context";
 import DrawerManagerLayout from "./manager-view-layout";
 
 

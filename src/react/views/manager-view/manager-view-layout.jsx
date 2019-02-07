@@ -1,10 +1,10 @@
 import React from "react";
 
-import styles from "./view-styles";
+import styles from "./manager-view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withTheme } from '@material-ui/core/styles';
 
-import Colors from "../../json/colors"
+import Colors from "../../../json/colors"
 import { TwitterPicker } from 'react-color';
 
 import Grid from "@material-ui/core/Grid/Grid";
@@ -21,7 +21,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import Clock from "../components/generic-clock";
+import Clock from "../../components/generic-clock";
 
 const ViewManager = props =>
 
@@ -92,7 +92,7 @@ const ViewManager = props =>
                                 onChange={props.handleDrawerTypeChange}
                                 input={<FilledInput name="drawerType" />}>
                                 {
-                                    require("../../json/drawers").map((drawerName, key) => {
+                                    require("../../../json/drawers").map((drawerName, key) => {
                                         const capitalize = string => string[0].toUpperCase() + string.slice(1);
                                         return <MenuItem key={key} value={`${drawerName}-drawer`}>{capitalize(drawerName)}</MenuItem>
                                     })
