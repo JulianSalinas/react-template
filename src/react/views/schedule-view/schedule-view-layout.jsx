@@ -12,7 +12,8 @@ const EventsItem = props =>
     <Grid
         item xs={12} sm={6} md={4} lg={3}
         className={props.classes.event}
-        onClick={() => props.scheduleEventClicked(props.index)}>
+        onMouseEnter={() => props.scheduleEventClicked(props.index)}
+        onMouseLeave={() => props.scheduleEventClicked(props.index)}>
         <EventItem {...props}/>
     </Grid>;
 
@@ -20,7 +21,8 @@ const EventsList = props => props.events.map((event, index) => {
     return <EventsItem
         key={event.key}
         index={index}
-        event={event} {...props}/>
+        event={event}
+        isSelected={props.selected === event} {...props}/>
 });
 
 const EventsGrid = props =>

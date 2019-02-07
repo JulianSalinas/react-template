@@ -1,5 +1,5 @@
 export default theme => ({
     event: {
-        minHeight: 200,
+        minHeight: 200
     }
 });

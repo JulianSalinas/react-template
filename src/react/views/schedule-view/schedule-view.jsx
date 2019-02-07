@@ -13,7 +13,7 @@ class ScheduleView extends Component {
     };
 
     componentDidMount(){
-        database.ref("edepa6/schedule").limitToFirst(10).on("child_added", this.scheduleEventAdded);
+        database.ref("edepa6/schedule").limitToLast(10).on("child_added", this.scheduleEventAdded);
     }
 
     componentWillUnmount() {
@@ -21,8 +21,8 @@ class ScheduleView extends Component {
     }
 
     scheduleEventClicked = index => {
-        console.log("Schedule event clicked!", this.state.events[index]);
-        this.setState({ selected: this.state.events[index] });
+        const selected  = this.state.events[index];
+        this.setState({ selected: selected === this.state.selected ? null : selected });
     };
 
     scheduleEventAdded = snapshot => {
