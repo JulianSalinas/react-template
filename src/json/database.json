@@ -596,7 +596,7 @@
         "news" : {
             "-LKrWUZAJRfzPk6HGOui" : {
                 "content" : "Para los que no conocen la sede http://res.cloudinary.com/edepa/image/upload/v1534729423/Edepa/IMG-20180623-WA0000.jpg",
-                "preview" : {
+                "eventClosed": {
                     "url" : "http://res.cloudinary.com/edepa/image/upload/v1534729423/Edepa/IMG-20180623-WA0000.jpg"
                 },
                 "time" : 1535308596074,
@@ -605,7 +605,7 @@
             },
             "-LKrWwfzTegKaCw68z9q" : {
                 "content" : "Página Web para inscripciones y envíos de trabajos http://tecdigital.tec.ac.cr:8088/congresos/index.php/edepa/6_edepa",
-                "preview" : {
+                "eventClosed": {
                     "description" : "INFORMACION DEL CONGRESO >> Temática del evento >> Actividades >> Lineamientos para la presentación...",
                     "header" : "VI Encuentro sobre Didáctica de la Estadística, la Probabilidad y el Análisis de Datos",
                     "thumbnail" : "http://res.cloudinary.com/edepa/image/upload/v1/Logos/tecdigital.png",
@@ -617,7 +617,7 @@
             },
             "-LKrXdY4YN93RoGmn-ir" : {
                 "content" : "Ingresa mediante el siguiente enlace https://www.facebook.com/EDEPA-341307349313857/",
-                "preview" : {
+                "eventClosed": {
                     "description" : "EDEPA, Cartago (Costa Rica). 530 Me gusta. A realizarse del 5 al 9 de diciembre de 2016 en Costa Ri...",
                     "header" : "EDEPA",
                     "thumbnail" : "http://res.cloudinary.com/edepa/image/upload/v1/Logos/facebook.png",
@@ -629,7 +629,7 @@
             },
             "-LKrZEIPKv9ugauNauFz" : {
                 "content" : "https://www.youtube.com/watch?v=Eccj5tb3nZs&feature=youtu.be",
-                "preview" : {
+                "eventClosed": {
                     "description" : "El propósito central del evento es rescatar, a través de conferencias, talleres, ponencias, reporte...",
                     "header" : "EDEPA: Encuentro sobre Didáctica de la Estadística, la Probabilidad y el Análisis de Datos",
                     "thumbnail" : "http://res.cloudinary.com/edepa/image/upload/v1/Logos/youtube.png",
@@ -641,7 +641,7 @@
             },
             "-LKu3lMHYAtC_TRJGJ5w" : {
                 "content" : "https://www.google.com/maps/place/Tecnol%C3%B3gico+de+Costa+Rica+TEC/@9.857247,-83.9145017,17z/data=!3m1!4b1!4m5!3m4!1s0x8fa0dff29640d73b:0xc11e19b85da8947f!8m2!3d9.857247!4d-83.912313",
-                "preview" : {
+                "eventClosed": {
                     "description" : "★★★★★ · Universidad pública · Calle 15, Avenida 14., 1 km Sur de la Basílica de los Ángeles.",
                     "header" : "Tecnológico de Costa Rica",
                     "thumbnail" : "https://lh5.googleusercontent.com/p/AF1QipMFQ6XYjmf3yimVntMrm5bWYmJZ-C9gqQ5ipZOK=w256-h256-k-no-p",
@@ -653,7 +653,7 @@
             },
             "-LQlKZXBFzHwWkPf2CHt" : {
                 "content" : "En el siguiente enlace es posible descargar el mapa del TEC en formato PDF. https://firebasestorage.googleapis.com/v0/b/rommie-91186.appspot.com/o/edepa_map_document.pdf?alt=media&token=4115c00a-d2e9-4834-90a2-7c66d8c4fbff",
-                "preview" : {
+                "eventClosed": {
                     "description" : "Presiona para descargar",
                     "header" : "Mapa Actualizado",
                     "thumbnail" : "https://png.pngtree.com/svg/20161222/map_1077023.png",

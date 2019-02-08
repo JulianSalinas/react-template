@@ -6,22 +6,27 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
-import PlayCircle from "@material-ui/icons/PlayCircleFilledWhite"
+import AddPhotoAlternate from "@material-ui/icons/AddPhotoAlternate";
 
 
 const ImageOverlayContent = props =>
     <Grid item xs={12}>
-        <Grid container justify={"center"}>
-            <PlayCircle className={props.classes.playIcon}/>
+        <Grid container justify={"center"} alignItems={"center"} style={{ height: "100%"}}>
+            <Grid item>
+                <Grid container item xs={12} justify={"center"}>
+                    <AddPhotoAlternate className={props.classes.playIcon}/>
+                </Grid>
+                <Grid container item xs={12} justify={"center"}>
+                    <Typography variant={"button"} style={{ color: "#fff"}}>
+                        CAMBIAR
+                    </Typography>
+                </Grid>
+            </Grid>
         </Grid>
-        {/*<Typography variant={"inherit"} color={"inherit"} align={"center"}>*/}
-            {/*Descripción descriptiva*/}
-        {/*</Typography>*/}
     </Grid>;
 
 const ImageOverlay = props =>
     <Grid container
-          alignItems={"center"}
           className={`${props.classes.overlay} ${props.classes.content}`}>
         <ImageOverlayContent {...props}/>
     </Grid>;
@@ -33,20 +38,34 @@ const CompleteOverlay = props =>
     </div>;
 
 const ImageWithOverlayLayout = props =>
-    <div className={props.classes.container}>
-        <img className={props.classes.image} src={props.src}/>
+    <div className={props.classes.container}
+         onMouseEnter={props.toggleShowOverlay}
+         onMouseLeave={props.toggleShowOverlay}>
+        <img alt="img" className={props.classes.image} src={props.src}/>
         { props.showOverlay ? <CompleteOverlay {...props}/> : null }
     </div>;
 
 class ImageWithOverlay extends Component {
+
+    state = {
+        showOverlay: false,
+    };
+
+    toggleShowOverlay = () => {
+        this.setState({ showOverlay: !this.state.showOverlay })
+    };
+
     render() {
-        return <ImageWithOverlayLayout {...this.props}/>
+        return <ImageWithOverlayLayout
+            {...this.props}
+            showOverlay={this.state.showOverlay}
+            toggleShowOverlay={this.toggleShowOverlay}
+        />
     }
 }
 
 ImageWithOverlay.propTypes = {
     src: PropTypes.string.isRequired,
-    showOverlay: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(ImageWithOverlay);

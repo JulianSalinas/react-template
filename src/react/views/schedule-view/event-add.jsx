@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import EventTypes from "./event-types"
 import React, { Component } from "react";
 
 import classNames from "classnames";
@@ -7,63 +6,63 @@ import styles from "./schedule-view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import EventForm from "./event-form";
-import EventPreview from "./event-preview";
+import Icon from "@material-ui/core/Icon/Icon";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 
 
-const EventItemShape = props => props.isOpen ?
-    <EventForm {...props}/> :
-    <EventPreview {...props}/>;
+const AddEventButton = ({ classes }) =>
+    <div className={classes.addButton}>
+        <Icon className={classes.addIcon}>add</Icon>
+    </div>;
 
-const EventItemPaper = ({ classes, ...props }) =>
-    <Paper className={ classNames(classes.eventPaper, {
+const AddEventShape = props => props.isOpen ?
+    <EventForm {...props}/> :
+    <AddEventButton {...props}/>;
+
+const AddEventPaper = ({ classes, ...props }) =>
+    <Paper className={classNames(classes.eventPaper, {
         [classes.eventOpened]: props.isOpen,
         [classes.eventClosed]: !props.isOpen
     })} elevation={0}>
-        <EventItemShape classes={classes} {...props}/>
+        <AddEventShape classes={classes} {...props}/>
     </Paper>;
 
-const EventItemLayout = ({ classes, ...props }) =>
+const AddEventLayout = ({ classes, ...props }) =>
     <Grid
         item xs={12}
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
         lg={props.isOpen ? 9: 3}
-        onMouseEnter={props.setSelected}
-        onMouseLeave={props.setSelected}
+        onClick={props.isOpen ? null : props.toggleIsOpen}
         className={classes.formGrid}>
-        <EventItemPaper classes={classes} {...props}/>
+        <AddEventPaper classes={classes} {...props}/>
     </Grid>;
 
-class EventItem extends Component {
+class EventAdd extends Component {
 
-    state = { isOpen: false };
+    state = {
+        event: {},
+        isOpen: false
+    };
 
     static propsTypes ={
-        event: EventTypes,
-        index: PropTypes.number.isRequired,
         classes: PropTypes.object.isRequired,
-        isSelected: PropTypes.bool.isRequired,
-        setEventSelected: PropTypes.func.isRequired
     };
 
     toggleIsOpen = () => {
         this.setState({ isOpen: !this.state.isOpen })
     };
 
-    setSelected = () => {
-        this.props.setEventSelected(this.props.index)
-    };
-
     render () {
-        return <EventItemLayout
-            setSelected={this.setSelected}
+        return <AddEventLayout
+            event={this.state.event}
             toggleIsOpen={this.toggleIsOpen}
             isOpen={this.state.isOpen} {...this.props}/>;
     }
 
 }
 
-export default withStyles(styles)(EventItem);
+
+export default withStyles(styles)(EventAdd);
 

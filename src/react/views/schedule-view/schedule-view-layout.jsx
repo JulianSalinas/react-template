@@ -1,33 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types"
+import EventTypes from "./event-types"
 
+import EventAdd from "./event-add";
 import EventItem from "./event-item";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
 
-import styles from "./schedule-view-styles"
-import withStyles from "@material-ui/core/styles/withStyles";
 
-
-const EventsItem = props =>
-    <Grid
-        item xs={12} sm={6} md={4} lg={3}
-        className={props.classes.event}
-        onMouseEnter={() => props.scheduleEventClicked(props.index)}
-        onMouseLeave={() => props.scheduleEventClicked(props.index)}>
-        <EventItem {...props}/>
-    </Grid>;
-
-const EventsList = props => props.events.map((event, index) => {
-    return <EventsItem
+const EventList = props => props.events.map((event, index) => {
+    return <EventItem
         key={event.key}
         index={index}
         event={event}
         isSelected={props.selected === event} {...props}/>
 });
 
-const EventsGrid = props =>
+const EventGrid = props =>
     <Grid container spacing={16}>
-        <EventsList {...props}/>
+        <EventAdd {...props}/>
+        <EventList {...props}/>
     </Grid>;
 
 const ScheduleLayout = props =>
@@ -35,13 +27,14 @@ const ScheduleLayout = props =>
         <Typography variant={"h5"} paragraph>
             Eventos
         </Typography>
-        <Typography variant={"h6"} paragraph>
-            {
-                props.selected === null ? "No event selected" : props.selected.id
-            }
-        </Typography>
-        <EventsGrid {...props}/>
+        <EventGrid {...props}/>
     </div>;
 
-export default withStyles(styles)(ScheduleLayout);
+ScheduleLayout.propsTypes = {
+    selected: EventTypes,
+    events: PropTypes.array.isRequired,
+    setEventSelected: PropTypes.func.isRequired,
+};
+
+export default ScheduleLayout;
 

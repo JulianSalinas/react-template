@@ -9,37 +9,32 @@ class ScheduleView extends Component {
 
     state = {
         events: [],
-        selected: null
+        selected: null,
     };
 
     componentDidMount(){
-        database.ref("edepa6/schedule").limitToLast(10).on("child_added", this.scheduleEventAdded);
+        database.ref("edepa6/schedule").limitToLast(11).on("child_added", this.eventAdded);
     }
 
     componentWillUnmount() {
         database.ref("edepa6/schedule").off();
     }
 
-    scheduleEventClicked = index => {
+    eventAdded = snapshot => {
+        const event = { ...snapshot.val(), key: snapshot.key };
+        this.setState(prevState => ({ events: [...prevState.events, event] }));
+    };
+
+    setEventSelected = index => {
         const selected  = this.state.events[index];
         this.setState({ selected: selected === this.state.selected ? null : selected });
-    };
-
-    scheduleEventAdded = snapshot => {
-        this.setState(prevState => ({
-            events: [...prevState.events, { ...snapshot.val(), key: snapshot.key }]
-        }));
-    };
-
-    errorRetrievingScheduleEvent = error => {
-        console.log("Error", error.code);
     };
 
     render() {
         return <ScheduleViewLayout
             events={this.state.events}
             selected={this.state.selected}
-            scheduleEventClicked={this.scheduleEventClicked} />
+            setEventSelected={this.setEventSelected}/>
     }
 
 }
