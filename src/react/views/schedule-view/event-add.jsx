@@ -34,7 +34,7 @@ const AddEventLayout = ({ classes, ...props }) =>
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
         lg={props.isOpen ? 9: 3}
-        onClick={props.isOpen ? null : props.toggleIsOpen}
+        onClick={props.isOpen ? null : props.setOpen}
         className={classes.formGrid}>
         <AddEventPaper classes={classes} {...props}/>
     </Grid>;
@@ -48,17 +48,18 @@ class EventAdd extends Component {
 
     static propsTypes ={
         classes: PropTypes.object.isRequired,
+        isOpen: PropTypes.bool.isRequired,
+        setOpenEvent: PropTypes.func.isRequired,
     };
 
-    toggleIsOpen = () => {
-        this.setState({ isOpen: !this.state.isOpen })
+    setOpen = () => {
+        this.props.setOpenEvent(this.props.index)
     };
 
     render () {
         return <AddEventLayout
-            event={this.state.event}
-            toggleIsOpen={this.toggleIsOpen}
-            isOpen={this.state.isOpen} {...this.props}/>;
+            setOpen={this.setOpen}
+            event={this.state.event} {...this.props}/>;
     }
 
 }

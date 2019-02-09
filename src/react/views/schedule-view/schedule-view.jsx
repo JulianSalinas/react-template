@@ -9,15 +9,19 @@ class ScheduleView extends Component {
 
     state = {
         events: [],
-        selected: null,
+        openEvent: null,
+        selectedEvent: null,
+        reference: "edepa6/schedule"
     };
 
     componentDidMount(){
-        database.ref("edepa6/schedule").limitToLast(11).on("child_added", this.eventAdded);
+        const reference = this.state.reference;
+        database.ref(reference).limitToLast(11).on("child_added", this.eventAdded);
     }
 
     componentWillUnmount() {
-        database.ref("edepa6/schedule").off();
+        const reference = this.state.reference;
+        database.ref(reference).off();
     }
 
     eventAdded = snapshot => {
@@ -25,16 +29,23 @@ class ScheduleView extends Component {
         this.setState(prevState => ({ events: [...prevState.events, event] }));
     };
 
-    setEventSelected = index => {
-        const selected  = this.state.events[index];
-        this.setState({ selected: selected === this.state.selected ? null : selected });
+    setOpenEvent = eventIndex => {
+        const mustClose = eventIndex === this.state.openEvent;
+        this.setState({ openEvent: mustClose ? null : eventIndex });
+    };
+
+    setSelectedEvent = eventIndex => {
+        const mustUnselect = eventIndex === this.state.selected;
+        this.setState({ selectedEvent: mustUnselect ? null : eventIndex });
     };
 
     render() {
         return <ScheduleViewLayout
             events={this.state.events}
-            selected={this.state.selected}
-            setEventSelected={this.setEventSelected}/>
+            openEvent={this.state.openEvent}
+            selectedEvent={this.state.selectedEvent}
+            setOpenEvent={this.setOpenEvent}
+            setSelectedEvent={this.setSelectedEvent}/>
     }
 
 }

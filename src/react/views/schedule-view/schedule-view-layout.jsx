@@ -13,12 +13,13 @@ const EventList = props => props.events.map((event, index) => {
         key={event.key}
         index={index}
         event={event}
-        isSelected={props.selected === event} {...props}/>
+        isOpen={props.openEvent === index}
+        isSelected={props.selectedEvent === index} {...props}/>
 });
 
 const EventGrid = props =>
     <Grid container spacing={16}>
-        <EventAdd {...props}/>
+        <EventAdd index={-1} isOpen={props.openEvent === -1} {...props}/>
         <EventList {...props}/>
     </Grid>;
 
@@ -31,9 +32,11 @@ const ScheduleLayout = props =>
     </div>;
 
 ScheduleLayout.propsTypes = {
-    selected: EventTypes,
+    openEvent: EventTypes,
+    selectedEvent: EventTypes,
     events: PropTypes.array.isRequired,
-    setEventSelected: PropTypes.func.isRequired,
+    setOpenEvent: PropTypes.func.isRequired,
+    setSelectedEvent: PropTypes.func.isRequired,
 };
 
 export default ScheduleLayout;

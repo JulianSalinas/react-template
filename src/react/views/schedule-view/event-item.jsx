@@ -38,29 +38,28 @@ const EventItemLayout = ({ classes, ...props }) =>
 
 class EventItem extends Component {
 
-    state = { isOpen: false };
-
     static propsTypes ={
         event: EventTypes,
+        classes: PropTypes.object,
         index: PropTypes.number.isRequired,
-        classes: PropTypes.object.isRequired,
+        isOpen: PropTypes.bool.isRequired,
         isSelected: PropTypes.bool.isRequired,
-        setEventSelected: PropTypes.func.isRequired
+        setOpenEvent: PropTypes.func.isRequired,
+        setSelectedEvent: PropTypes.func.isRequired,
     };
 
-    toggleIsOpen = () => {
-        this.setState({ isOpen: !this.state.isOpen })
+    setOpen = () => {
+        this.props.setOpenEvent(this.props.index)
     };
 
     setSelected = () => {
-        this.props.setEventSelected(this.props.index)
+        this.props.setSelectedEvent(this.props.index)
     };
 
     render () {
         return <EventItemLayout
-            setSelected={this.setSelected}
-            toggleIsOpen={this.toggleIsOpen}
-            isOpen={this.state.isOpen} {...this.props}/>;
+            setOpen={this.setOpen}
+            setSelected={this.setSelected} {...this.props}/>;
     }
 
 }

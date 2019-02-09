@@ -81,7 +81,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                     <Button
                         variant={"outlined"}
                         className={classes.formSave}
-                        onClick={props.toggleIsOpen}>
+                        onClick={props.setOpen}>
                         Guardar
                     </Button>
                 </Grid>
@@ -89,7 +89,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                     <Button
                         variant={"outlined"}
                         className={classes.formCancel}
-                        onClick={props.toggleIsOpen}>
+                        onClick={props.setOpen}>
                         Cancelar
                     </Button>
                 </Grid>
@@ -105,8 +105,8 @@ class EventForm extends Component {
 
     static propsTypes = {
         event: EventTypes,
+        setOpen: PropTypes.func.isRequired,
         classes: PropTypes.object.isRequired,
-        toggleIsOpen: PropTypes.func.isRequired,
     };
 
     toggleAutoImage = () => {
@@ -120,7 +120,6 @@ class EventForm extends Component {
     }
 
 }
-
 
 export default withStyles(styles)(EventForm);
 

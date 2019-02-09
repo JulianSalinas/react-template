@@ -28,7 +28,7 @@ const EventPreview = ({ classes, ...props}) =>
             <IconButton className={classes.eventActionsIcon}>
                 <Icon>alarm</Icon>
             </IconButton>
-            <IconButton className={classes.eventActionsIcon} onClick={props.toggleIsOpen}>
+            <IconButton className={classes.eventActionsIcon} onClick={props.setOpen}>
                 <Icon>edit</Icon>
             </IconButton>
             <IconButton className={classes.eventActionsIcon}>
@@ -57,9 +57,9 @@ const EventPreview = ({ classes, ...props}) =>
 
 EventPreview.propsTypes = {
     event: EventTypes,
+    setOpen: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     isSelected: PropTypes.bool.isRequired,
-    toggleIsOpen: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(EventPreview);
