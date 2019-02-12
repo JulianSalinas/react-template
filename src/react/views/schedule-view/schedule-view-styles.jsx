@@ -15,10 +15,13 @@ export default theme => ({
         transition: "all 0.1s linear"
     },
     eventClosed: {
+        // transition: "all 8s linear",
         "&:hover": { transform: "scale(1.05)" }
     },
     eventOpened: {
-        padding: theme.spacing.unit * 4
+        height: 600,
+        // transition: "all 8s linear",
+        padding: theme.spacing.unit * 4,
     },
     eventPreview: {
         height: "100%",
@@ -41,9 +44,6 @@ export default theme => ({
     eventContent: {
         width: "100%",
         padding: theme.spacing.unit * 2
-    },
-    formGrid: {
-        transition: "all 0.2s linear",
     },
     formImage: {
         width: "100%",

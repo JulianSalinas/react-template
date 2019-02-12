@@ -33,10 +33,15 @@ const AddEventLayout = ({ classes, ...props }) =>
         item xs={12}
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
-        lg={props.isOpen ? 9: 3}
-        onClick={props.isOpen ? null : props.setOpen}
-        className={classes.formGrid}>
-        <AddEventPaper classes={classes} {...props}/>
+        lg={props.isOpen ? 12: 3}
+        onClick={props.setOpen}>
+        <Grid container>
+            <Grid
+                item xs={12}
+                lg={props.isOpen ? 9: 12}>
+                <AddEventPaper classes={classes} {...props}/>
+            </Grid>
+        </Grid>
     </Grid>;
 
 class EventAdd extends Component {

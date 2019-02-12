@@ -29,11 +29,16 @@ const EventItemLayout = ({ classes, ...props }) =>
         item xs={12}
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
-        lg={props.isOpen ? 9: 3}
+        lg={props.isOpen ? 12: 3}
         onMouseEnter={props.setSelected}
-        onMouseLeave={props.setSelected}
-        className={classes.formGrid}>
-        <EventItemPaper classes={classes} {...props}/>
+        onMouseLeave={props.setSelected}>
+        <Grid container>
+            <Grid
+                item xs={12}
+                lg={props.isOpen ? 9: 12}>
+                <EventItemPaper classes={classes} {...props}/>
+            </Grid>
+        </Grid>
     </Grid>;
 
 class EventItem extends Component {
