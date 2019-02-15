@@ -112,27 +112,13 @@ class EventForm extends Component {
         autoImage: true,
     };
 
-    static propsTypes = {
-        event: EventTypes,
-        index: PropTypes.number.isRequired,
-        classes: PropTypes.object.isRequired,
-        keepSynch: PropTypes.bool.isRequired,
-        toggleOpen: PropTypes.func.isRequired,
-        submitEvent: PropTypes.func.isRequired,
-        updateEvent: PropTypes.func.isRequired
-    };
-
     submitEvent = () => {
+        this.props.submitEvent();
         this.props.toggleOpen();
-        if (this.props.event.eventype === undefined){
-            this.props.event.eventype = "CONFERENCIA";
-        }
-        this.props.submitEvent(this.props.event);
     };
 
     updateEvent = prop => event => {
-        const index = this.props.index;
-        this.props.updateEvent(index, prop, event.target.value);
+        this.props.updateEvent(prop, event.target.value);
     };
 
     toggleAutoImage = () => {
@@ -148,6 +134,16 @@ class EventForm extends Component {
     }
 
 }
+
+EventForm.PropsTypes = {
+    event: EventTypes.isRequired,
+    index: PropTypes.number.isRequired,
+    classes: PropTypes.object.isRequired,
+    keepSynch: PropTypes.object.isRequired,
+    toggleOpen: PropTypes.func.isRequired,
+    updateEvent: PropTypes.func.isRequired,
+    submitEvent: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(EventForm);
 

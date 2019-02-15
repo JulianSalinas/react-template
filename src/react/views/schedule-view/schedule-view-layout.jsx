@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types"
-import EventTypes from "./event-types"
 
 import EventAdd from "./event-add";
 import EventItem from "./event-item";
@@ -9,24 +8,29 @@ import Typography from "@material-ui/core/Typography/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Switch from "@material-ui/core/Switch/Switch";
 
-
-const EventList = props => props.events.map((event, index) => {
-    return <EventItem
-        key={event.key}
+const EventList = props => Object.keys(props.events).map((key, index) => {
+    return props.events[key] !== undefined ? <EventItem
+        id={key}
+        key={key}
         index={index}
-        event={event}
-        isOpen={props.openEvent === index}
-        isSelected={props.selectedEvent === index} {...props}/>
+        event={props.events[key]}
+        isOpen={index === props.openItem}
+        isSelected={index === props.selectedItem} {...props}/> : <div key={key}/>
 });
 
 const EventGrid = props =>
     <Grid container spacing={16}>
         <EventAdd
             index={-1}
-            event={props.creatingEvent}
-            isOpen={props.openEvent === -1} {...props}/>
+            isOpen={-1 === props.openItem} {...props}/>
         <EventList {...props}/>
     </Grid>;
+
+const KeepSynchSwitch = props =>
+    <Switch
+        color="secondary"
+        checked={props.keepSynch}
+        onChange={props.toggleKeepSynch}/>;
 
 const ScheduleLayout = props =>
     <Grid container spacing={8}>
@@ -37,15 +41,8 @@ const ScheduleLayout = props =>
         </Grid>
         <Grid item xs={12}>
             <FormControlLabel
-                control={
-                    <Switch
-                        color="secondary"
-                        checked={props.keepSynch}
-                        onChange={props.toggleKeepSynch}
-                    />
-                }
                 label="Keep events synchronized"
-            />
+                control={ <KeepSynchSwitch {...props}/> }/>
         </Grid>
         <Grid item xs={12}>
             <EventGrid {...props}/>
@@ -53,14 +50,17 @@ const ScheduleLayout = props =>
     </Grid>;
 
 ScheduleLayout.propsTypes = {
-    openEvent: EventTypes,
-    selectedEvent: EventTypes,
-    creatingEvent: EventTypes,
-    events: PropTypes.array.isRequired,
+    events: PropTypes.object.isRequired,
+    reference: PropTypes.string.isRequired,
     keepSynch: PropTypes.bool.isRequired,
-    setOpenEvent: PropTypes.func.isRequired,
+    openItem: PropTypes.number.isRequired,
+    selectedItem: PropTypes.number.isRequired,
+    setOpenItem: PropTypes.func.isRequired,
+    setSelectedItem: PropTypes.func.isRequired,
     toggleKeepSynch: PropTypes.func.isRequired,
-    setSelectedEvent: PropTypes.func.isRequired,
+    updateEvent: PropTypes.func.isRequired,
+    removeEvent: PropTypes.func.isRequired,
+    submitEvent: PropTypes.func.isRequired,
 };
 
 export default ScheduleLayout;

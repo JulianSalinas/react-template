@@ -33,9 +33,7 @@ const EventItemLayout = ({ classes, ...props }) =>
         onMouseEnter={props.setSelected}
         onMouseLeave={props.setSelected}>
         <Grid container>
-            <Grid
-                item xs={12}
-                lg={props.isOpen ? 9: 12}>
+            <Grid item xs={12} lg={props.isOpen ? 9: 12}>
                 <EventItemPaper classes={classes} {...props}/>
             </Grid>
         </Grid>
@@ -43,31 +41,54 @@ const EventItemLayout = ({ classes, ...props }) =>
 
 class EventItem extends Component {
 
-    static propsTypes ={
-        event: EventTypes,
-        index: PropTypes.number.isRequired,
-        classes: PropTypes.object.isRequired,
-        isOpen: PropTypes.bool.isRequired,
-        isSelected: PropTypes.bool.isRequired,
-        setOpenEvent: PropTypes.func.isRequired,
-        setSelectedEvent: PropTypes.func.isRequired,
+    toggleOpen = () => {
+        this.props.setOpenItem(this.props.index)
     };
 
-    toggleOpen = () => {
-        this.props.setOpenEvent(this.props.index)
+    updateEvent = (prop, value) => {
+        const id = this.props.id;
+        this.props.updateEvent(id, prop, value);
+    };
+
+    removeEvent = () => {
+        const id = this.props.id;
+        this.props.removeEvent(id);
+    };
+
+    submitEvent = () => {
+        const id = this.props.id;
+        this.props.submitEvent(id, this.props.event);
     };
 
     setSelected = () => {
-        this.props.setSelectedEvent(this.props.index)
+        this.props.setSelectedItem(this.props.index)
     };
 
     render () {
         return <EventItemLayout
+            {...this.props}
             toggleOpen={this.toggleOpen}
-            setSelected={this.setSelected} {...this.props}/>;
+            updateEvent={this.updateEvent}
+            removeEvent={this.removeEvent}
+            submitEvent={this.submitEvent}
+            setSelected={this.setSelected}/>;
     }
 
 }
+
+EventItem.propsTypes = {
+    event: EventTypes.isRequired,
+    id: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool.isRequired,
+    classes: PropTypes.object.isRequired,
+    setOpenItem: PropTypes.func.isRequired,
+    setSelectedItem: PropTypes.func.isRequired,
+    updateEvent: PropTypes.func.isRequired,
+    removeEvent: PropTypes.func.isRequired,
+    submitEvent: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(EventItem);
 

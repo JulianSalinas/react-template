@@ -9,7 +9,6 @@ import EventForm from "./event-form";
 import Icon from "@material-ui/core/Icon/Icon";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
-import EventTypes from "./event-types";
 
 
 const AddEventButton = ({ classes }) =>
@@ -37,9 +36,7 @@ const AddEventLayout = ({ classes, ...props }) =>
         lg={props.isOpen ? 12: 3}
         onClick={props.isOpen ? null : props.toggleOpen}>
         <Grid container>
-            <Grid
-                item xs={12}
-                lg={props.isOpen ? 9: 12}>
+            <Grid item xs={12} lg={props.isOpen ? 9: 12}>
                 <AddEventPaper classes={classes} {...props}/>
             </Grid>
         </Grid>
@@ -47,24 +44,45 @@ const AddEventLayout = ({ classes, ...props }) =>
 
 class EventAdd extends Component {
 
-    static propsTypes = {
-        event: EventTypes,
-        index: PropTypes.number.isRequired,
-        classes: PropTypes.object.isRequired,
-        isOpen: PropTypes.bool.isRequired,
-        setOpenEvent: PropTypes.func.isRequired,
+    state = {
+        eventype: "CONFERENCIA"
     };
 
     toggleOpen = () => {
-        this.props.setOpenEvent(this.props.index)
+        this.props.setOpenItem(this.props.index)
+    };
+
+    updateEvent = (prop, value) => {
+        this.setState({ ...this.state, [prop]: value });
+    };
+
+    submitEvent = () => {
+        const id = this.props.id;
+        this.props.submitEvent(id, this.state);
+        Object.keys(this.state).forEach(key => { this.setState({ [key]: undefined }) });
+        this.setState({ eventype: "CONFERENCIA" });
     };
 
     render () {
-        return <AddEventLayout toggleOpen={this.toggleOpen} {...this.props}/>;
+        return <AddEventLayout
+            {...this.props}
+            event={this.state || {} }
+            updateEvent={this.updateEvent}
+            submitEvent={this.submitEvent}
+            toggleOpen={this.toggleOpen}/>;
     }
 
 }
 
+EventAdd.propsTypes = {
+    index: PropTypes.number.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    classes: PropTypes.object.isRequired,
+    setOpenItem: PropTypes.func.isRequired,
+    setSelectedItem: PropTypes.func.isRequired,
+    updateEvent: PropTypes.func.isRequired,
+    submitEvent: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(EventAdd);
 
