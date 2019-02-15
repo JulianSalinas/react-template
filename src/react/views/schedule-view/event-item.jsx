@@ -45,15 +45,15 @@ class EventItem extends Component {
 
     static propsTypes ={
         event: EventTypes,
-        classes: PropTypes.object,
         index: PropTypes.number.isRequired,
+        classes: PropTypes.object.isRequired,
         isOpen: PropTypes.bool.isRequired,
         isSelected: PropTypes.bool.isRequired,
         setOpenEvent: PropTypes.func.isRequired,
         setSelectedEvent: PropTypes.func.isRequired,
     };
 
-    setOpen = () => {
+    toggleOpen = () => {
         this.props.setOpenEvent(this.props.index)
     };
 
@@ -63,7 +63,7 @@ class EventItem extends Component {
 
     render () {
         return <EventItemLayout
-            setOpen={this.setOpen}
+            toggleOpen={this.toggleOpen}
             setSelected={this.setSelected} {...this.props}/>;
     }
 

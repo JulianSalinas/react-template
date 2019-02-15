@@ -24,6 +24,26 @@ const EventFormTitle = () =>
         </Typography>
     </Grid>;
 
+const EventSaveButton = props =>
+    <Grid item>
+        <Button
+            variant={"outlined"}
+            className={props.classes.formSave}
+            onClick={props.submitEvent}>
+            Guardar
+        </Button>
+    </Grid>;
+
+const EventCancelButton = props => !(props.index !== -1 && props.keepSynch) ?
+    <Grid item>
+        <Button
+            variant={"outlined"}
+            className={props.classes.formCancel}
+            onClick={props.toggleOpen}>
+            Cancelar
+        </Button>
+    </Grid> : <div/>;
+
 const EventFormLayout = ({ classes, ...props }) =>
     <Grid container spacing={16} alignItems={"stretch"}>
         <EventFormTitle/>
@@ -35,7 +55,8 @@ const EventFormLayout = ({ classes, ...props }) =>
                         id="event-id"
                         variant="filled"
                         label="ID Evento"
-                        value={props.event.id}
+                        value={props.event.id || ""}
+                        onChange={props.updateEvent("id")}
                         inputProps={{ className: classes.formInput}}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -43,7 +64,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                         <InputLabel>Tipo</InputLabel>
                         <Select
                             value={props.event.eventype !== undefined ? props.event.eventype: "CONFERENCIA"}
-                            onChange={props.togglePalette}
+                            onChange={props.updateEvent("eventype")}
                             input={<FilledInput name="eventype" />}>
                             <MenuItem value={"CONFERENCIA"}>Conferencia</MenuItem>
                             <MenuItem value={"TALLER"}>Taller</MenuItem>
@@ -59,6 +80,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                         label="Título"
                         value={props.event.title}
                         fullWidth multiline rows={3} rowsMax={6}
+                        onChange={props.updateEvent("title")}
                         inputProps={{ className: classes.formInput}}/>
                 </Grid>
                 <Grid item xs={12}>
@@ -68,6 +90,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                         label="Resumen"
                         value={props.event.briefSpanish}
                         fullWidth multiline rows={12} rowsMax={12}
+                        onChange={props.updateEvent("briefSpanish")}
                         inputProps={{ className: classes.formInput}}/>
                 </Grid>
             </Grid>
@@ -77,22 +100,8 @@ const EventFormLayout = ({ classes, ...props }) =>
         </Grid>
         <Grid item xs={12}>
             <Grid container spacing={16} justify={"flex-end"}>
-                <Grid item>
-                    <Button
-                        variant={"outlined"}
-                        className={classes.formSave}
-                        onClick={props.setOpen}>
-                        Guardar
-                    </Button>
-                </Grid>
-                <Grid item>
-                    <Button
-                        variant={"outlined"}
-                        className={classes.formCancel}
-                        onClick={props.setOpen}>
-                        Cancelar
-                    </Button>
-                </Grid>
+                <EventSaveButton classes={classes} {...props}/>
+                <EventCancelButton classes={classes} {...props}/>
             </Grid>
         </Grid>
     </Grid>;
@@ -100,13 +109,30 @@ const EventFormLayout = ({ classes, ...props }) =>
 class EventForm extends Component {
 
     state = {
-        autoImage: true
+        autoImage: true,
     };
 
     static propsTypes = {
         event: EventTypes,
-        setOpen: PropTypes.func.isRequired,
+        index: PropTypes.number.isRequired,
         classes: PropTypes.object.isRequired,
+        keepSynch: PropTypes.bool.isRequired,
+        toggleOpen: PropTypes.func.isRequired,
+        submitEvent: PropTypes.func.isRequired,
+        updateEvent: PropTypes.func.isRequired
+    };
+
+    submitEvent = () => {
+        this.props.toggleOpen();
+        if (this.props.event.eventype === undefined){
+            this.props.event.eventype = "CONFERENCIA";
+        }
+        this.props.submitEvent(this.props.event);
+    };
+
+    updateEvent = prop => event => {
+        const index = this.props.index;
+        this.props.updateEvent(index, prop, event.target.value);
     };
 
     toggleAutoImage = () => {
@@ -114,9 +140,11 @@ class EventForm extends Component {
     };
 
     render() {
-        return <EventFormLayout
-            autoImage={this.state.autoImage}
-            toggleAutoImage={this.toggleAutoImage} {...this.props}/>;
+        return <EventFormLayout {...this.props}
+                                autoImage={this.state.autoImage}
+                                submitEvent={this.submitEvent}
+                                updateEvent={this.updateEvent}
+                                toggleAutoImage={this.toggleAutoImage}/>;
     }
 
 }

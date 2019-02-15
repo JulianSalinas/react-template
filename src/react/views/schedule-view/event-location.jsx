@@ -14,14 +14,15 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 
 const EventLocationLayout = ({ classes, ...props }) =>
     <div>
-        <ImageWithOverlay src={props.image}/>
+        <ImageWithOverlay src={ props.image }/>
         <TextField
-            id="event-location"
+            fullWidth
             variant="filled"
             label="Ubicación"
-            fullWidth
-            value={props.event.location}
-            inputProps={{ className: classes.formInput}}/>
+            id="event-location"
+            onChange={props.updateEvent("location")}
+            inputProps={{ className: classes.formInput}}
+            value={props.event.location !== undefined ? props.event.location: ""}/>
         <FormControlLabel
             label="Colocar imagen automáticamente"
             control={
@@ -32,39 +33,43 @@ const EventLocationLayout = ({ classes, ...props }) =>
         />
     </div>;
 
+function getImageBasedInLocation(event){
+
+    if (event.location === undefined || event.location === null)
+        return require(`../../../assets/img-material.png`);
+
+    const normalized = latinise(event.location.toLowerCase());
+    let selected = null;
+
+    require("../../../json/locations").some(location => {
+        const patt = new RegExp(location.regex);
+        const test =  patt.exec(normalized);
+        if (test !== null) selected = location.image;
+        return test !== null;
+    });
+
+    return require(`../../../assets/${selected !== null ? `tec_${selected}.jpg` : `img-material.png`}`);
+
+}
+
 class EventLocation extends Component {
 
-    state = {
-        image: require("../../../assets/img-material.png")
-    };
+    state = { image: "../../../assets/img-material.png" };
 
     static propsTypes = {
         event: EventTypes,
+        updateEvent: PropTypes.func.isRequired,
         toggleAutoImage: PropTypes.func.isRequired
     };
 
-    componentDidMount() {
-        this.setImage(this.props.event.location);
+    static getDerivedStateFromProps(props, state){
+        if (props.autoImage) state.image = getImageBasedInLocation(props.event);
+        return state;
     }
 
-    setImage = string => {
-
-        const normalized = latinise(string.toLowerCase());
-        const locations = require("../../../json/locations");
-        let selected = null;
-
-        locations.some(location => {
-            const patt = new RegExp(location.regex);
-            const test =  patt.exec(normalized);
-            if (test !== null) selected = location.image;
-            return test !== null;
-        });
-
-        if (selected !== null) {
-            this.setState({ image: require(`../../../assets/tec_${selected}.jpg`) });
-        }
-
-    };
+    componentDidMount() {
+        this.setState({ image: getImageBasedInLocation(this.props.event) });
+    }
 
     render() {
         return <EventLocationLayout image={this.state.image} {...this.props}/>

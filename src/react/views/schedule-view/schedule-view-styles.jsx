@@ -15,12 +15,10 @@ export default theme => ({
         transition: "all 0.1s linear"
     },
     eventClosed: {
-        // transition: "all 8s linear",
         "&:hover": { transform: "scale(1.05)" }
     },
     eventOpened: {
-        height: 600,
-        // transition: "all 8s linear",
+        minHeight: 600,
         padding: theme.spacing.unit * 4,
     },
     eventPreview: {

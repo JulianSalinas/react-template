@@ -9,6 +9,7 @@ import EventForm from "./event-form";
 import Icon from "@material-ui/core/Icon/Icon";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
+import EventTypes from "./event-types";
 
 
 const AddEventButton = ({ classes }) =>
@@ -34,7 +35,7 @@ const AddEventLayout = ({ classes, ...props }) =>
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
         lg={props.isOpen ? 12: 3}
-        onClick={props.setOpen}>
+        onClick={props.isOpen ? null : props.toggleOpen}>
         <Grid container>
             <Grid
                 item xs={12}
@@ -46,25 +47,20 @@ const AddEventLayout = ({ classes, ...props }) =>
 
 class EventAdd extends Component {
 
-    state = {
-        event: {},
-        isOpen: false
-    };
-
-    static propsTypes ={
+    static propsTypes = {
+        event: EventTypes,
+        index: PropTypes.number.isRequired,
         classes: PropTypes.object.isRequired,
         isOpen: PropTypes.bool.isRequired,
         setOpenEvent: PropTypes.func.isRequired,
     };
 
-    setOpen = () => {
+    toggleOpen = () => {
         this.props.setOpenEvent(this.props.index)
     };
 
     render () {
-        return <AddEventLayout
-            setOpen={this.setOpen}
-            event={this.state.event} {...this.props}/>;
+        return <AddEventLayout toggleOpen={this.toggleOpen} {...this.props}/>;
     }
 
 }

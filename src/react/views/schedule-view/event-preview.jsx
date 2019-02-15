@@ -25,13 +25,10 @@ const EventPreview = ({ classes, ...props}) =>
             [classes.eventActionsClosed]: !props.isSelected,
         })} style={{ backgroundColor: getEventColor(props.event.eventype)}}>
 
-            <IconButton className={classes.eventActionsIcon}>
-                <Icon>alarm</Icon>
-            </IconButton>
-            <IconButton className={classes.eventActionsIcon} onClick={props.setOpen}>
+            <IconButton className={classes.eventActionsIcon} onClick={props.toggleOpen}>
                 <Icon>edit</Icon>
             </IconButton>
-            <IconButton className={classes.eventActionsIcon}>
+            <IconButton className={classes.eventActionsIcon} onClick={() => props.removeEvent(props.event)}>
                 <Icon>delete</Icon>
             </IconButton>
 
@@ -60,6 +57,7 @@ EventPreview.propsTypes = {
     setOpen: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     isSelected: PropTypes.bool.isRequired,
+    removeEvent: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(EventPreview);
