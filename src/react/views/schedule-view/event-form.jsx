@@ -6,6 +6,8 @@ import styles from "./schedule-view-styles"
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import EventLocation from "./event-location";
+import { DateTimePicker } from "material-ui-pickers";
+
 import Grid from "@material-ui/core/Grid/Grid";
 import Button from "@material-ui/core/Button/Button";
 import Select from "@material-ui/core/Select/Select";
@@ -47,6 +49,16 @@ const EventCancelButton = props => !(props.index !== -1 && props.keepSynch) ?
 const EventFormLayout = ({ classes, ...props }) =>
     <Grid container spacing={16} alignItems={"stretch"}>
         <EventFormTitle/>
+        <Grid item xs={12} md={4}>
+            <Grid container spacing={16}>
+                <Grid item xs={12}>
+                    <EventLocation {...props}/>
+                </Grid>
+                <Grid item xs={12}>
+                    {/* You can put a component here*/}
+                </Grid>
+            </Grid>
+        </Grid>
         <Grid item xs={12} md={8}>
             <Grid container spacing={16}>
                 <Grid item xs={12} sm={6}>
@@ -73,6 +85,32 @@ const EventFormLayout = ({ classes, ...props }) =>
                         </Select>
                     </FormControl>
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                    <DateTimePicker
+                        autoOk
+                        fullWidth
+                        label="Inicio"
+                        variant="filled"
+                        showTabs={false}
+                        autoSubmit={false}
+                        allowKeyboardControl
+                        format={'DD MMMM YYYY hh:mm A'}
+                        value={props.event.start !== undefined ? new Date(props.event.start) : new Date() }
+                        onChange={props.updateDate("start")}/>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <DateTimePicker
+                        autoOk
+                        fullWidth
+                        label="Fin"
+                        variant="filled"
+                        showTabs={false}
+                        autoSubmit={false}
+                        allowKeyboardControl
+                        format={'DD MMMM YYYY hh:mm A'}
+                        value={props.event.end !== undefined ? new Date(props.event.end) : new Date()}
+                        onChange={props.updateDate("end")}/>
+                </Grid>
                 <Grid item xs={12}>
                     <TextField
                         id="event-titulo"
@@ -85,18 +123,15 @@ const EventFormLayout = ({ classes, ...props }) =>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        id="event-description"
+                        id="event-brief"
                         variant="outlined"
                         label="Resumen"
                         value={props.event.briefSpanish}
-                        fullWidth multiline rows={12} rowsMax={12}
+                        fullWidth multiline rows={14} rowsMax={14}
                         onChange={props.updateEvent("briefSpanish")}
                         inputProps={{ className: classes.formInput}}/>
                 </Grid>
             </Grid>
-        </Grid>
-        <Grid item xs={12} md={4}>
-            <EventLocation {...props}/>
         </Grid>
         <Grid item xs={12}>
             <Grid container spacing={16} justify={"flex-end"}>
@@ -117,6 +152,10 @@ class EventForm extends Component {
         this.props.toggleOpen();
     };
 
+    updateDate = prop => date => {
+        this.props.updateEvent(prop, date.valueOf());
+    };
+
     updateEvent = prop => event => {
         this.props.updateEvent(prop, event.target.value);
     };
@@ -129,6 +168,7 @@ class EventForm extends Component {
         return <EventFormLayout {...this.props}
                                 autoImage={this.state.autoImage}
                                 submitEvent={this.submitEvent}
+                                updateDate={this.updateDate}
                                 updateEvent={this.updateEvent}
                                 toggleAutoImage={this.toggleAutoImage}/>;
     }

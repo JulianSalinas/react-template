@@ -45,7 +45,9 @@ const AddEventLayout = ({ classes, ...props }) =>
 class EventAdd extends Component {
 
     state = {
-        eventype: "CONFERENCIA"
+        eventype: "CONFERENCIA",
+        start: new Date(),
+        end: new Date()
     };
 
     toggleOpen = () => {

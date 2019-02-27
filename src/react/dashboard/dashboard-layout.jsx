@@ -4,16 +4,24 @@ import PropTypes from "prop-types";
 import styles from "./dashboard-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+import MomentUtils from "@date-io/moment";
 import DashboardTypes from "./dashboard-types"
 import DashboardDrawer from "./dashboard-drawer"
 import DashboardProvider from "./dashboard-provider"
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
+import { MuiPickersUtilsProvider } from "material-ui-pickers";
+
+import moment from "moment";
+import "moment/locale/es";
+moment.locale("es");
 
 
 const DashboardLayoutWithTheme = props =>
-    <MuiThemeProvider theme={props.drawerTheme}>
-        <DashboardDrawer/>
-    </MuiThemeProvider>;
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+        <MuiThemeProvider theme={props.drawerTheme}>
+            <DashboardDrawer/>
+        </MuiThemeProvider>
+    </MuiPickersUtilsProvider>;
 
 const DashboardLayout = props =>
     <DashboardProvider info={{...props}}>

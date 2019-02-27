@@ -8,7 +8,7 @@ import withContext from "../../dashboard/dashboard-context";
 class ScheduleItems extends Component {
 
     componentDidMount(){
-        this.props.reference.on("child_added", this.eventUpdated);
+        this.props.reference.limitToLast(3).on("child_added", this.eventUpdated);
         this.props.reference.on("child_changed", this.eventUpdated);
         this.props.reference.on("child_removed", this.eventRemoved);
     }
