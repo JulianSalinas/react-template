@@ -6,6 +6,7 @@ import styles from "./schedule-view-styles"
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import EventLocation from "./event-location";
+import EventAddPerson from "./event-add-person"
 import { DateTimePicker } from "material-ui-pickers";
 
 import Grid from "@material-ui/core/Grid/Grid";
@@ -17,7 +18,9 @@ import Typography from "@material-ui/core/Typography/Typography";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import FilledInput from "@material-ui/core/FilledInput/FilledInput";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-
+import Chip from "@material-ui/core/Chip/Chip";
+import Avatar from "@material-ui/core/Avatar/Avatar";
+import Divider from "@material-ui/core/Divider/Divider";
 
 const EventFormTitle = () =>
     <Grid item xs={12}>
@@ -53,9 +56,32 @@ const EventFormLayout = ({ classes, ...props }) =>
             <Grid container spacing={16}>
                 <Grid item xs={12}>
                     <EventLocation {...props}/>
+                    <Divider className={classes.divider} />
                 </Grid>
                 <Grid item xs={12}>
-                    {/* You can put a component here*/}
+                    <Typography variant={"body1"}>
+                        Expositores
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid container spacing={8}>
+                        {
+                            props.event.people === undefined ? null :
+                            Object.keys(props.event.people).map( key => {
+                                let completeName = props.dashboard.people[key].completeName;
+                                return (
+                                    <Grid item key={key}>
+                                        <Chip label={completeName}
+                                              avatar={<Avatar>{completeName[0]}</Avatar>}
+                                              onDelete={() => console.log("Emulating delete")}/>
+                                    </Grid>
+                                )
+                            })
+                        }
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <EventAddPerson/>
                 </Grid>
             </Grid>
         </Grid>

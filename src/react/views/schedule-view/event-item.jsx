@@ -42,6 +42,7 @@ const EventItemLayout = ({ classes, ...props }) =>
 class EventItem extends Component {
 
     toggleOpen = () => {
+        if (this.props.isOpen) this.setSelected();
         this.props.setOpenItem(this.props.index)
     };
 

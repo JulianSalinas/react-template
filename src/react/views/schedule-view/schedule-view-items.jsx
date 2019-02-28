@@ -8,7 +8,7 @@ import withContext from "../../dashboard/dashboard-context";
 class ScheduleItems extends Component {
 
     componentDidMount(){
-        this.props.reference.limitToLast(3).on("child_added", this.eventUpdated);
+        this.props.reference.on("child_added", this.eventUpdated);
         this.props.reference.on("child_changed", this.eventUpdated);
         this.props.reference.on("child_removed", this.eventRemoved);
     }
@@ -18,7 +18,9 @@ class ScheduleItems extends Component {
     }
 
     eventUpdated = snapshot => {
-        this.setState({[snapshot.key]: snapshot.val()});
+        let event = snapshot.val();
+        if (event.people === undefined) event.people = {};
+        this.setState({[snapshot.key]: event });
     };
 
     eventRemoved = snapshot => {

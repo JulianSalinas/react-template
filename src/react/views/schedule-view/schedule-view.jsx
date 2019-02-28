@@ -9,7 +9,7 @@ class ScheduleView extends Component {
 
     state = {
         keepSynch: true,
-        openItem: null,
+        openItem: 0,
         selectedItem: null,
         reference: database.ref("edepa6/schedule")
     };
@@ -20,7 +20,7 @@ class ScheduleView extends Component {
     };
 
     setSelectedItem = index => {
-        const mustUnselect = index === this.state.selected;
+        const mustUnselect = index === this.state.selectedItem;
         this.setState({ selectedItem: mustUnselect ? null : index });
     };
 

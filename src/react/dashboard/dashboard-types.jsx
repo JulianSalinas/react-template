@@ -11,6 +11,8 @@ export default {
         username: PropTypes.string.isRequired
     }),
 
+    people: PropTypes.object.isRequired,
+
     drawerType: PropTypes.string.isRequired,
     drawerWidth: PropTypes.number.isRequired,
     drawerAutoContrast: PropTypes.bool.isRequired,

@@ -4,9 +4,10 @@ import PropTypes from "prop-types"
 import EventAdd from "./event-add";
 import EventItem from "./event-item";
 import Grid from "@material-ui/core/Grid/Grid";
+import Switch from "@material-ui/core/Switch/Switch";
 import Typography from "@material-ui/core/Typography/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-import Switch from "@material-ui/core/Switch/Switch";
+import ScheduleSearch from "./schedule-search"
 
 const EventList = props => Object.keys(props.events).map((key, index) => {
     return props.events[key] !== undefined ? <EventItem
@@ -33,16 +34,15 @@ const KeepSynchSwitch = props =>
         onChange={props.toggleKeepSynch}/>;
 
 const ScheduleLayout = props =>
-    <Grid container spacing={8}>
+    <Grid container spacing={16}>
         <Grid item xs={12}>
             <Typography variant={"h5"}>
                 Eventos
             </Typography>
-        </Grid>
-        <Grid item xs={12}>
             <FormControlLabel
                 label="Keep events synchronized"
                 control={ <KeepSynchSwitch {...props}/> }/>
+            <ScheduleSearch/>
         </Grid>
         <Grid item xs={12}>
             <EventGrid {...props}/>
