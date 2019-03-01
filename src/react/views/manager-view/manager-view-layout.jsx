@@ -21,7 +21,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import Clock from "../../components/generic-clock";
+import Clock from "../../components/generic-clock/generic-clock";
 
 const ViewManager = props =>
 

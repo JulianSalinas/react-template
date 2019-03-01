@@ -3,11 +3,13 @@ import PropTypes from "prop-types"
 
 import EventAdd from "./event-add";
 import EventItem from "./event-item";
+import ScheduleSearch from "./schedule-view-search";
+
 import Grid from "@material-ui/core/Grid/Grid";
 import Switch from "@material-ui/core/Switch/Switch";
 import Typography from "@material-ui/core/Typography/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-import ScheduleSearch from "./schedule-search"
+
 
 const EventList = props => Object.keys(props.events).map((key, index) => {
     return props.events[key] !== undefined ? <EventItem

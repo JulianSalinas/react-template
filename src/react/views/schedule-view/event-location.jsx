@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
-import EventTypes from "./event-types"
+import EventTypes from "../../../types/event-types"
 import React, { Component } from "react";
-import latinise from "../../../js/latinise";
+import latinise from "../../../utils/latinise";
 
 import styles from "./schedule-view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
-import ImageWithOverlay from "../../components/image-with-overlay";
+import ImageWithOverlay from "../../components/image-with-overlay/image-with-overlay";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 
 

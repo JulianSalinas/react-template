@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types"
-import EventTypes from "./event-types"
+import EventTypes from "../../../types/event-types"
 
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 
 import classNames from "classnames";
 import styles from "./schedule-view-styles"
-import { formatTitle } from "../../../js/utils-strings";
+import { formatTitle } from "../../../utils/utils-strings";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 

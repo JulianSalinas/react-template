@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 
 import ScheduleViewLayout from "./schedule-view-layout";
-import withContext from "../../dashboard/dashboard-context";
+import withContext from "../dashboard-view/dashboard-context";
 
 
 class ScheduleItems extends Component {

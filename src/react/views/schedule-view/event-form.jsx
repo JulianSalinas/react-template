@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import EventTypes from "./event-types"
+import EventTypes from "../../../types/event-types"
 import React, { Component } from "react";
 
 import styles from "./schedule-view-styles"
@@ -81,7 +81,7 @@ const EventFormLayout = ({ classes, ...props }) =>
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <EventAddPerson/>
+                    <EventAddPerson {...props}/>
                 </Grid>
             </Grid>
         </Grid>

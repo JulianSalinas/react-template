@@ -11,10 +11,10 @@ export default theme => ({
     eventPaper: {
         height: "100%",
         minHeight: 210,
-        overflow: "hidden",
         transition: "all 0.1s linear"
     },
     eventClosed: {
+        overflow: "hidden",
         "&:hover": { transform: "scale(1.05)" }
     },
     eventOpened: {
@@ -60,5 +60,67 @@ export default theme => ({
     },
     formInput: {
         borderColor: theme.palette.secondary.main,
+    },
+    searchBar: {
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center'
+    },
+    searchInput: {
+        marginLeft: 8,
+        flex: 1,
+    },
+    searchPadding: {
+        padding: 8,
+    },
+    searchDivider: {
+        width: 1,
+        margin: 4,
+        height: 28,
+    },
+    addPersoncontainer: {
+        flexGrow: 1,
+        position: 'relative',
+    },
+    addPersonpaper: {
+        position: 'absolute',
+        zIndex: 1,
+        marginTop: theme.spacing.unit,
+        left: 0,
+        right: 0,
+    },
+    addPersonchip: {
+        margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+    },
+    addPersoninputRoot: {
+        flexWrap: 'wrap',
+    },
+    addPersoninputInput: {
+        width: 'auto',
+        flexGrow: 1,
+    },
+    addPersonroot: {
+        padding: "2px 4px",
+        display: "flex",
+        alignItems: "center",
+        borderWidth: 2,
+        borderRadius: 20,
+        borderStyle: "dotted",
+        borderColor: "lightgrey",
+    },
+    addPersoninput: {
+        marginLeft: 8,
+        flex: 1,
+    },
+    addPersoniconButton: {
+        padding: 8,
+        marginRight: 4,
+        cursor: "pointer",
+        color: theme.palette.secondary.dark,
+    },
+    addPersondivider: {
+        width: 1,
+        height: 28,
+        margin: 4,
     }
 });

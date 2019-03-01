@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './css/material.css';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './app';
-import { BrowserRouter } from 'react-router-dom';
-import registerServiceWorker from './service-worker';
+import "./css/material.css";
+import App from "./react/views/dashboard-view/dashboard";
+
+import { BrowserRouter } from "react-router-dom";
+import registerServiceWorker from "./service-worker";
 
 const renderPage = () =>
     <BrowserRouter>
         <App/>
     </BrowserRouter>;
 
-ReactDOM.render(renderPage(), document.getElementById('root'));
+ReactDOM.render(renderPage(), document.getElementById("root"));
 registerServiceWorker();

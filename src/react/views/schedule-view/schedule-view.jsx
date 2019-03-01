@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { database } from "../../../js/firebase";
+import { database } from "../../../model/firebase-database";
 import ScheduleViewItems from "./schedule-view-items";
-import withContext from "../../dashboard/dashboard-context";
+import withContext from "../dashboard-view/dashboard-context";
 
 
 class ScheduleView extends Component {

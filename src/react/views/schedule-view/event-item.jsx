@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import EventTypes from "./event-types"
+import EventTypes from "../../../types/event-types"
 import React, { Component } from "react";
 
 import classNames from "classnames";
