@@ -22,13 +22,6 @@ import Chip from "@material-ui/core/Chip/Chip";
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import Divider from "@material-ui/core/Divider/Divider";
 
-const EventFormTitle = () =>
-    <Grid item xs={12}>
-        <Typography variant={"h6"}>
-            Agregar nuevo evento
-        </Typography>
-    </Grid>;
-
 const EventSaveButton = props =>
     <Grid item>
         <Button
@@ -51,7 +44,6 @@ const EventCancelButton = props => !(props.index !== -1 && props.keepSynch) ?
 
 const EventFormLayout = ({ classes, ...props }) =>
     <Grid container spacing={16} alignItems={"stretch"}>
-        <EventFormTitle/>
         <Grid item xs={12} md={4}>
             <Grid container spacing={16}>
                 <Grid item xs={12}>
@@ -63,23 +55,25 @@ const EventFormLayout = ({ classes, ...props }) =>
                         Expositores
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <Grid container spacing={8}>
-                        {
-                            props.event.people === undefined ? null :
-                            Object.keys(props.event.people).map( key => {
-                                let completeName = props.dashboard.people[key].completeName;
-                                return (
-                                    <Grid item key={key}>
-                                        <Chip label={completeName}
-                                              avatar={<Avatar>{completeName[0]}</Avatar>}
-                                              onDelete={() => console.log("Emulating delete")}/>
-                                    </Grid>
-                                )
-                            })
-                        }
-                    </Grid>
-                </Grid>
+                {
+                    props.event.people !== undefined ?
+                        <Grid item xs={12}>
+                            <Grid container spacing={8}>
+                                {
+                                    Object.keys(props.event.people).map( key => {
+                                        let completeName = props.database.people[key].completeName;
+                                        return (
+                                            <Grid item key={key}>
+                                                <Chip label={completeName}
+                                                      avatar={<Avatar>{completeName[0]}</Avatar>}
+                                                      onDelete={() => console.log("Emulating delete")}/>
+                                            </Grid>
+                                        )
+                                    })
+                                }
+                            </Grid>
+                        </Grid> : null
+                }
                 <Grid item xs={12}>
                     <EventAddPerson {...props}/>
                 </Grid>

@@ -1,22 +1,20 @@
 import PropTypes from "prop-types"
 import { Children, Component } from "react";
-
 import DashboardTypes from "../../../types/dashboard-types"
 
 
-class DashboardProvider extends Component {
+export default class DashboardProvider extends Component {
+
+    static childContextTypes = {
+        dashboard: PropTypes.shape(DashboardTypes)
+    };
 
     getChildContext() {
-        return { dashboard: this.props.info }
+        return { dashboard: this.props.dashboard }
     }
 
     render() {
         return Children.only(this.props.children)
     }
+
 }
-
-DashboardProvider.childContextTypes = {
-    dashboard: PropTypes.shape(DashboardTypes)
-};
-
-export default DashboardProvider;

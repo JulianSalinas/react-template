@@ -1,14 +1,15 @@
 import GamesView from "../games-view/games-view"
 import PeopleView from "../people-view/people-view"
-import EventsView from "../schedule-view/schedule-view"
 import ManagerView from "../manager-view/manager-view"
 import WelcomeView from "../welcome-view/welcome-view"
+import ScheduleView from "../schedule-view/schedule-view"
 
 import GamesIcon from "@material-ui/icons/Gamepad"
 import PeopleIcon from "@material-ui/icons/People"
-import EventsIcon from "@material-ui/icons/Schedule"
 import ConfigIcon from "@material-ui/icons/Settings"
+import ScheduleIcon from "@material-ui/icons/Schedule"
 import WelcomeIcon from "@material-ui/icons/TimelineRounded"
+
 
 export default [
     {
@@ -36,9 +37,9 @@ export default [
         component: ManagerView
     },
     {
-        path: "/events",
-        name: "Eventos",
-        icon: EventsIcon,
-        component: EventsView
+        path: "/schedule",
+        name: "Cronograma",
+        icon: ScheduleIcon,
+        component: ScheduleView
     }
 ];

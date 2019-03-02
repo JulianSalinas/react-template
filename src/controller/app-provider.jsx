@@ -1,72 +1,20 @@
-import React, { Component } from "react";
-
-import styles from "./dashboard-view-styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import DashboardLayout from "./dashboard-view-layout"
-
-import defaults from "../drawers/drawer-common/drawer-defaults"
-import defaultTheme from "./dashboard-view-theme"
-
-import { database } from "../../model/firebase-database";
-import { createMuiTheme } from '@material-ui/core/styles';
+import PropTypes from "prop-types"
+import { Children, Component } from "react";
+import DatabaseTypes from "../types/database-types"
 
 
-class PeopleController extends Component {
+export default class AppProvider extends Component {
 
-    state = {
-        people: {},
-        user: this.props.user,
-        drawerType: defaults.drawerType,
-        drawerWidth: defaults.drawerWidth,
-        drawerAutoContrast: defaults.drawerAutoContrast,
-        theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme))),
+    static childContextTypes = {
+        database: PropTypes.shape(DatabaseTypes)
     };
 
-    componentDidMount(){
-        database.ref("edepa6/people").on("child_added", this.personUpdated);
+    getChildContext() {
+        return { database: this.props.database }
     }
-
-    componentWillUnmount() {
-        database.ref("edepa6/people").off();
-    }
-
-    personUpdated = snapshot => {
-        let people = this.state.people;
-        people[snapshot.key] = snapshot.val();
-        this.setState({ people: people});
-    };
-
-    changeTheme = theme => {
-        this.setState({ theme: theme })
-    };
-
-    changeDrawerType = drawerType => {
-        this.setState({ drawerType: drawerType })
-    };
-
-    changeDrawerWidth = drawerWidth => {
-        this.setState({ drawerWidth: drawerWidth })
-    };
-
-    changeDrawerAutoContrast = drawerAutoContrast => {
-        this.setState({ drawerAutoContrast: drawerAutoContrast})
-    };
 
     render() {
-        return <DashboardLayout
-            user={this.state.user}
-            people={this.state.people}
-            drawerTheme={this.state.theme}
-            drawerType={this.state.drawerType}
-            drawerWidth={this.state.drawerWidth}
-            drawerAutoContrast={this.state.drawerAutoContrast}
-            changeTheme={this.changeTheme}
-            changeDrawerType={this.changeDrawerType}
-            changeDrawerWidth={this.changeDrawerWidth}
-            changeDrawerAutoContrast={this.changeDrawerAutoContrast}/>;
+        return Children.only(this.props.children)
     }
 
 }
-
-
-export default withStyles(styles)(PeopleController);

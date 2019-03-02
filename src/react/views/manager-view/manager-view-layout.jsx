@@ -2,7 +2,6 @@ import React from "react";
 
 import styles from "./manager-view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { withTheme } from '@material-ui/core/styles';
 
 import Colors from "../../../json/colors"
 import { TwitterPicker } from 'react-color';
@@ -25,11 +24,11 @@ import Clock from "../../components/generic-clock/generic-clock";
 
 const ViewManager = props =>
 
-    <Grid container spacing={32} alignItems={"stretch"}>
+    <Grid container spacing={16} alignItems={"stretch"}>
 
         <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={32}>
+                <Grid container spacing={16}>
 
                     <Grid item xs={12}>
 
@@ -40,15 +39,15 @@ const ViewManager = props =>
                         <Grid container spacing={16} alignItems={"center"}>
 
                             <Grid item>
-                                <Avatar alt="name" src={props.dashboard.user.photoUrl} className={props.classes.bigAvatar} />
+                                <Avatar alt="name" src={props.database.user.photoUrl} className={props.classes.bigAvatar} />
                             </Grid>
 
                             <Grid item>
                                 <Typography variant={"body1"}>
-                                    {props.dashboard.user.username}
+                                    {props.database.user.username}
                                 </Typography>
                                 <Typography variant={"body2"}>
-                                    {props.dashboard.user.email}
+                                    {props.database.user.email}
                                 </Typography>
                             </Grid>
 
@@ -61,7 +60,7 @@ const ViewManager = props =>
 
         <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={32}>
+                <Grid container spacing={16}>
 
                     <Grid item xs={12}>
                         <Typography variant={"h4"} paragraph>
@@ -76,10 +75,10 @@ const ViewManager = props =>
 
         <Grid item xs={12}>
             <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={32}>
+                <Grid container spacing={16}>
 
                     <Grid item xs={12}>
-                        <Typography variant={"h4"} paragraph>
+                        <Typography variant={"h4"}>
                             Control Panel
                         </Typography>
                     </Grid>
@@ -131,7 +130,7 @@ const ViewManager = props =>
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Divider variant={"fullWidth"}/>
+                        <Divider variant={"fullWidth"} style={{ margin: "8px 0px" }}/>
                     </Grid>
 
                     <Grid item>
@@ -191,5 +190,5 @@ const ViewManager = props =>
         </Grid>
     </Grid>;
 
-export default withTheme()(withStyles(styles)(ViewManager))
+export default withStyles(styles)(ViewManager);
 

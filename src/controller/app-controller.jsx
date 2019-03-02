@@ -1,72 +1,81 @@
 import React, { Component } from "react";
 
-import styles from "./dashboard-view-styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import DashboardLayout from "./dashboard-view-layout"
-
-import defaults from "../drawers/drawer-common/drawer-defaults"
-import defaultTheme from "./dashboard-view-theme"
-
-import { database } from "../../model/firebase-database";
-import { createMuiTheme } from '@material-ui/core/styles';
+import AppRouter from "./app-router";
+import AppProvider from "./app-provider";
+import FirebaseDatabse from "../model/firebase-database";
 
 
-class PeopleController extends Component {
+export default class AppController extends Component {
 
     state = {
         people: {},
-        user: this.props.user,
-        drawerType: defaults.drawerType,
-        drawerWidth: defaults.drawerWidth,
-        drawerAutoContrast: defaults.drawerAutoContrast,
-        theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme))),
+        events: {},
+        user: require("../json/localuser")
     };
 
+    constructor(props){
+        super(props);
+        this.database = new FirebaseDatabse();
+    }
+
     componentDidMount(){
-        database.ref("edepa6/people").on("child_added", this.personUpdated);
+        this.database.synchPeople(this.readPerson);
+        this.database.synchEvents(this.readEvent);
     }
 
     componentWillUnmount() {
-        database.ref("edepa6/people").off();
+        this.database.closeConnection();
     }
 
-    personUpdated = snapshot => {
-        let people = this.state.people;
-        people[snapshot.key] = snapshot.val();
+    createEvent = event => {
+        this.database.createEvent(event);
+    };
+
+    readEvent = (key, event, action) => {
+        const events = this.state.events;
+        action === FirebaseDatabse.DELETE ?
+            delete events[key]:
+            events[key] = event;
+        this.setState({ events: events});
+    };
+
+    updateEvent = (key, event, synch) => {
+        if (synch)
+            this.database.updateEvent(key, event);
+        else {
+            const events = this.state.events;
+            events[key] = event;
+            this.setState({ events: events })
+        }
+    };
+
+    deleteEvent = key => {
+        this.database.deleteEvent(key);
+    };
+
+    readPerson = (key, person, action) => {
+        const people = this.state.people;
+        action === FirebaseDatabse.DELETE ?
+            delete people[key]:
+            people[key] = person;
         this.setState({ people: people});
     };
 
-    changeTheme = theme => {
-        this.setState({ theme: theme })
-    };
-
-    changeDrawerType = drawerType => {
-        this.setState({ drawerType: drawerType })
-    };
-
-    changeDrawerWidth = drawerWidth => {
-        this.setState({ drawerWidth: drawerWidth })
-    };
-
-    changeDrawerAutoContrast = drawerAutoContrast => {
-        this.setState({ drawerAutoContrast: drawerAutoContrast})
+    getDatabase = () => {
+        return {
+            ...this.state,
+            createEvent: this.createEvent,
+            updateEvent: this.updateEvent,
+            deleteEvent: this.deleteEvent
+        };
     };
 
     render() {
-        return <DashboardLayout
-            user={this.state.user}
-            people={this.state.people}
-            drawerTheme={this.state.theme}
-            drawerType={this.state.drawerType}
-            drawerWidth={this.state.drawerWidth}
-            drawerAutoContrast={this.state.drawerAutoContrast}
-            changeTheme={this.changeTheme}
-            changeDrawerType={this.changeDrawerType}
-            changeDrawerWidth={this.changeDrawerWidth}
-            changeDrawerAutoContrast={this.changeDrawerAutoContrast}/>;
+        return (
+            <AppProvider database={this.getDatabase()}>
+                <AppRouter/>
+            </AppProvider>
+        );
     }
 
 }
-
-
-export default withStyles(styles)(PeopleController);

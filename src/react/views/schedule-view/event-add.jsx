@@ -45,9 +45,10 @@ const AddEventLayout = ({ classes, ...props }) =>
 class EventAdd extends Component {
 
     state = {
-        eventype: "CONFERENCIA",
+        end: new Date(),
         start: new Date(),
-        end: new Date()
+        eventype: "CONFERENCIA",
+        location: "Centro de las Artes"
     };
 
     toggleOpen = () => {
@@ -59,19 +60,16 @@ class EventAdd extends Component {
     };
 
     submitEvent = () => {
-        const id = this.props.id;
-        this.props.submitEvent(id, this.state);
-        Object.keys(this.state).forEach(key => { this.setState({ [key]: undefined }) });
-        this.setState({ eventype: "CONFERENCIA" });
+        this.props.database.createEvent(this.state);
     };
 
     render () {
         return <AddEventLayout
             {...this.props}
-            event={this.state || {} }
+            event={this.state}
+            toggleOpen={this.toggleOpen}
             updateEvent={this.updateEvent}
-            submitEvent={this.submitEvent}
-            toggleOpen={this.toggleOpen}/>;
+            submitEvent={this.submitEvent}/>;
     }
 
 }
@@ -79,11 +77,7 @@ class EventAdd extends Component {
 EventAdd.propsTypes = {
     index: PropTypes.number.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired,
     setOpenItem: PropTypes.func.isRequired,
-    setSelectedItem: PropTypes.func.isRequired,
-    updateEvent: PropTypes.func.isRequired,
-    submitEvent: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(EventAdd);

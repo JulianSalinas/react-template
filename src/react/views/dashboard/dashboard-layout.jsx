@@ -24,7 +24,7 @@ const DashboardLayoutWithTheme = props =>
     </MuiPickersUtilsProvider>;
 
 const DashboardLayout = props =>
-    <DashboardProvider info={{...props}}>
+    <DashboardProvider dashboard={{...props}}>
         <DashboardLayoutWithTheme {...props}/>
     </DashboardProvider>;
 

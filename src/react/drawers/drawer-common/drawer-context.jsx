@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import withContext from "../../views/dashboard-view/dashboard-context";
+import withContext from "../../views/dashboard/dashboard-context";
 
 
 const withDrawerContext = drawer => withContext(

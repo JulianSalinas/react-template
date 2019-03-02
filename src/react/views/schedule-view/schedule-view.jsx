@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 
-import { database } from "../../../model/firebase-database";
-import ScheduleViewItems from "./schedule-view-items";
-import withContext from "../dashboard-view/dashboard-context";
+import withAppContext from "../../../controller/app-context";
+import ScheduleViewLayout from "./schedule-view-layout";
 
 
 class ScheduleView extends Component {
 
     state = {
-        keepSynch: true,
-        openItem: 0,
-        selectedItem: null,
-        reference: database.ref("edepa6/schedule")
+        openItem: null,
+        keepSynch: true
     };
 
     setOpenItem = index => {
@@ -19,27 +16,21 @@ class ScheduleView extends Component {
         this.setState({ openItem: mustClose ? null : index });
     };
 
-    setSelectedItem = index => {
-        const mustUnselect = index === this.state.selectedItem;
-        this.setState({ selectedItem: mustUnselect ? null : index });
-    };
-
-    toogleKeepSynch = () => {
+    toggleKeepSynch = () => {
         this.setState({ keepSynch: !this.state.keepSynch });
     };
 
     render() {
-        return <ScheduleViewItems
-            reference={this.state.reference}
-            keepSynch={this.state.keepSynch}
+        return <ScheduleViewLayout
+            {...this.props}
             openItem={this.state.openItem}
-            selectedItem={this.state.selectedItem}
+            keepSynch={this.state.keepSynch}
             setOpenItem={this.setOpenItem}
-            setSelectedItem={this.setSelectedItem}
-            toggleKeepSynch={this.toogleKeepSynch}/>
+            toggleKeepSynch={this.toggleKeepSynch}
+        />;
     }
 
 }
 
-export default withContext(ScheduleView);
+export default withAppContext(ScheduleView);
 

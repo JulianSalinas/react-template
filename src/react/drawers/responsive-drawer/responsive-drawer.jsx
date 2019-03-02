@@ -8,8 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import DrawerMenu from "../drawer-common/drawer-menu"
-import DrawerSwitch from "../drawer-common/drawer-switch"
+import DrawerMenu from "../../views/dashboard/dashboard-menu"
+import DashboardSwitch from "../../views/dashboard/dashboard-router"
 import withDrawerContext from "../drawer-common/drawer-context";
 
 class ResponsiveDrawer extends React.Component {
@@ -81,7 +81,7 @@ class ResponsiveDrawer extends React.Component {
 
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <DrawerSwitch/>
+                    <DashboardSwitch/>
                 </main>
 
             </div>

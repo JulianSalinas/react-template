@@ -1,6 +1,6 @@
 import React from "react"
-import DrawerMenu from "../drawer-common/drawer-menu"
-import DrawerSwitch from "../drawer-common/drawer-switch"
+import DrawerMenu from "../../views/dashboard/dashboard-menu"
+import DashboardSwitch from "../../views/dashboard/dashboard-router"
 
 import classNames from "classnames"
 import Drawer from "@material-ui/core/Drawer"
@@ -43,7 +43,7 @@ const FavoriteDrawerLayout = ({ classes, ...props }) =>
         </Drawer>
 
         <main className={classes.content}>
-            <DrawerSwitch/>
+            <DashboardSwitch/>
         </main>
 
     </div>;

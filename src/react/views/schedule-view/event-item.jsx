@@ -30,8 +30,8 @@ const EventItemLayout = ({ classes, ...props }) =>
         sm={props.isOpen ? 12: 6}
         md={props.isOpen ? 12: 4}
         lg={props.isOpen ? 12: 3}
-        onMouseEnter={props.setSelected}
-        onMouseLeave={props.setSelected}>
+        onMouseEnter={props.setSelected(true)}
+        onMouseLeave={props.setSelected(false)}>
         <Grid container>
             <Grid item xs={12} lg={props.isOpen ? 9: 12}>
                 <EventItemPaper classes={classes} {...props}/>
@@ -41,28 +41,34 @@ const EventItemLayout = ({ classes, ...props }) =>
 
 class EventItem extends Component {
 
+    state = {
+        isSelected: false
+    };
+
     toggleOpen = () => {
         if (this.props.isOpen) this.setSelected();
         this.props.setOpenItem(this.props.index)
     };
 
     updateEvent = (prop, value) => {
-        const id = this.props.id;
-        this.props.updateEvent(id, prop, value);
+        const event = this.props.event;
+        const eventKey = this.props.eventKey;
+        event[prop] = value;
+        this.props.database.updateEvent(eventKey, event, this.props.keepSynch);
     };
 
-    removeEvent = () => {
-        const id = this.props.id;
-        this.props.removeEvent(id);
+    deleteEvent = () => {
+        const eventKey = this.props.eventKey;
+        this.props.database.deleteEvent(eventKey);
     };
 
     submitEvent = () => {
-        const id = this.props.id;
-        this.props.submitEvent(id, this.props.event);
+        const eventKey = this.props.eventKey;
+        this.props.database.updateEvent(eventKey, this.props.event);
     };
 
-    setSelected = () => {
-        this.props.setSelectedItem(this.props.index)
+    setSelected = isSelected => () => {
+        this.setState({ isSelected: isSelected });
     };
 
     render () {
@@ -70,25 +76,21 @@ class EventItem extends Component {
             {...this.props}
             toggleOpen={this.toggleOpen}
             updateEvent={this.updateEvent}
-            removeEvent={this.removeEvent}
+            deleteEvent={this.deleteEvent}
             submitEvent={this.submitEvent}
-            setSelected={this.setSelected}/>;
+            setSelected={this.setSelected}
+            isSelected={this.state.isSelected}/>;
     }
 
 }
 
 EventItem.propsTypes = {
     event: EventTypes.isRequired,
-    id: PropTypes.string.isRequired,
+    eventKey: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    isSelected: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired,
     setOpenItem: PropTypes.func.isRequired,
-    setSelectedItem: PropTypes.func.isRequired,
-    updateEvent: PropTypes.func.isRequired,
-    removeEvent: PropTypes.func.isRequired,
-    submitEvent: PropTypes.func.isRequired,
+    keepSynch: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(EventItem);

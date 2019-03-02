@@ -1,10 +1,6 @@
 import PropTypes from "prop-types";
-import UserTypes from "./user-types"
 
 export default {
-
-    user: UserTypes,
-    people: PropTypes.object.isRequired,
 
     drawerType: PropTypes.string.isRequired,
     drawerWidth: PropTypes.number.isRequired,

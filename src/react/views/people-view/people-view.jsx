@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import withContext from "../dashboard-view/dashboard-context";
+import withAppContext from "../../../controller/app-context";
 import Typography from "@material-ui/core/Typography/Typography";
 
 
@@ -9,10 +9,10 @@ class PeopleView extends Component {
         return (
             <div>
                 {
-                    Object.keys(this.props.dashboard.people).map((key, index) => {
+                    Object.keys(this.props.database.people).map((key, index) => {
                         return (
                             <Typography key={key} variant={"body1"}>
-                                {this.props.dashboard.people[key].completeName}
+                                {this.props.database.people[key].completeName}
                             </Typography>
                         )
                     })
@@ -23,5 +23,5 @@ class PeopleView extends Component {
 
 }
 
-export default withContext(PeopleView);
+export default withAppContext(PeopleView);
 

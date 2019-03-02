@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import withDrawerContext from "../drawer-common/drawer-context";
 
-import DrawerMenu from "../drawer-common/drawer-menu"
-import DrawerSwitch from "../drawer-common/drawer-switch"
+import DrawerMenu from "../../views/dashboard/dashboard-menu"
+import DashboardSwitch from "../../views/dashboard/dashboard-router"
 
 function PermanentDrawer(props) {
     const { classes } = props;
@@ -37,7 +37,7 @@ function PermanentDrawer(props) {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <DrawerSwitch/>
+                <DashboardSwitch/>
             </main>
         </div>
     );

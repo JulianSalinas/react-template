@@ -11,8 +11,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import DrawerMenu from "../drawer-common/drawer-menu"
-import DrawerSwitch from "../drawer-common/drawer-switch"
+import DrawerMenu from "../../views/dashboard/dashboard-menu"
+import DashboardSwitch from "../../views/dashboard/dashboard-router"
 import withDrawerContext from "../drawer-common/drawer-context";
 
 
@@ -80,7 +80,7 @@ class PersistentDrawer extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    <DrawerSwitch/>
+                    <DashboardSwitch/>
                 </main>
             </div>
         );

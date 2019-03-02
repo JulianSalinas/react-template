@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Downshift from "downshift";
 import Paper from "@material-ui/core/Paper/Paper";
@@ -28,26 +27,26 @@ function EventAddPerson(props) {
                   highlightedIndex
             }) => (
 
-                <div className={classes.addPersoncontainer}>
+                <div className={classes.addPerson}>
 
-                    <div className={classes.addPersonroot}>
+                    <div className={classes.addPersonBorder}>
                         <InputBase
                             {...getInputProps()}
-                            className={classes.addPersoninput}
-                            placeholder="¿A quién quieres agregar?" />
-                        <Divider className={classes.addPersondivider} />
-                        <Typography className={classes.addPersoniconButton} variant={"caption"}>
+                            className={classes.searchInput}
+                            placeholder="¿A quién agregar?" />
+                        <Divider className={classes.searchDivider} />
+                        <Typography className={classes.addPersonIconButton} variant={"caption"}>
                             AGREGAR
                         </Typography>
                     </div>
 
                     {
                         isOpen ?
-                            <Paper className={classes.addPersonpaper} square>
+                            <Paper className={classes.addPersonPaper} square>
                                 {
-                                    Object.keys(props.dashboard.people).map((key, index) => {
+                                    Object.keys(props.database.people).map((key, index) => {
 
-                                        let person = props.dashboard.people[key];
+                                        let person = props.database.people[key];
                                         let name = person.completeName;
 
                                         const input = latinise(inputValue.toLowerCase());
@@ -73,9 +72,5 @@ function EventAddPerson(props) {
         </Downshift>
     );
 }
-
-EventAddPerson.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(EventAddPerson);

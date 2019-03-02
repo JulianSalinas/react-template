@@ -11,15 +11,14 @@ import Typography from "@material-ui/core/Typography/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 
 
-const EventList = props => Object.keys(props.events).map((key, index) => {
-    return props.events[key] !== undefined ? <EventItem
-        id={key}
+const EventList = props => Object.keys(props.database.events).map((key, index) =>
+    <EventItem
         key={key}
         index={index}
-        event={props.events[key]}
-        isOpen={index === props.openItem}
-        isSelected={index === props.selectedItem} {...props}/> : <div key={key}/>
-});
+        eventKey={key}
+        event={props.database.events[key]}
+        isOpen={index === props.openItem} {...props}/>
+);
 
 const EventGrid = props =>
     <Grid container spacing={16}>
@@ -52,17 +51,10 @@ const ScheduleLayout = props =>
     </Grid>;
 
 ScheduleLayout.propsTypes = {
-    events: PropTypes.object.isRequired,
-    reference: PropTypes.string.isRequired,
-    keepSynch: PropTypes.bool.isRequired,
     openItem: PropTypes.number.isRequired,
-    selectedItem: PropTypes.number.isRequired,
+    keepSynch: PropTypes.bool.isRequired,
     setOpenItem: PropTypes.func.isRequired,
-    setSelectedItem: PropTypes.func.isRequired,
     toggleKeepSynch: PropTypes.func.isRequired,
-    updateEvent: PropTypes.func.isRequired,
-    removeEvent: PropTypes.func.isRequired,
-    submitEvent: PropTypes.func.isRequired,
 };
 
 export default ScheduleLayout;

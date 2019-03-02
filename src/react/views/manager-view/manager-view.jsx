@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-
-import styles from "./manager-view-styles";
-import { withTheme } from '@material-ui/core/styles';
-import withStyles from "@material-ui/core/styles/withStyles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-
-import defaultTheme from "../dashboard-view/dashboard-theme";
-import withContext from "../dashboard-view/dashboard-context";
+import DefaultTheme from "../dashboard/dashboard-theme";
 import DrawerManagerLayout from "./manager-view-layout";
+
+import { withTheme } from '@material-ui/core/styles';
+import withAppContext from "../../../controller/app-context"
+import withDashboardContext from "../dashboard/dashboard-context";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 
 class ManagerView extends Component {
@@ -36,7 +34,7 @@ class ManagerView extends Component {
         this.props.dashboard.changeTheme(createMuiTheme(theme));
     };
 
-    copyDefaultTheme = () => JSON.parse(JSON.stringify(defaultTheme));
+    copyDefaultTheme = () => JSON.parse(JSON.stringify(DefaultTheme));
 
     togglePalette = () => {
         const currentTheme = this.props.theme;
@@ -57,7 +55,6 @@ class ManagerView extends Component {
         const theOther = prop === "primary" ? "secondary" : "primary";
         newTheme.palette[theOther].main = currentTheme.palette[theOther].main;
 
-        console.log("Auto contrast is", this.props.dashboard.drawerAutoContrast ? "on" : "off");
         if (!this.props.dashboard.drawerAutoContrast) {
             newTheme.palette.primary.contrastText = currentTheme.palette.primary.contrastText;
             newTheme.palette.secondary.contrastText = currentTheme.palette.secondary.contrastText;
@@ -74,22 +71,18 @@ class ManagerView extends Component {
 
     render() {
         return <DrawerManagerLayout
-
+            {...this.props}
             drawerWidth={this.state.drawerWidth}
             applyDrawerWidth={this.applyDrawerWidth}
-            handleDrawerWidthChange={this.handleDrawerWidthChange}
-
             togglePalette={this.togglePalette}
             toggleAutoContrast={this.toggleAutoContrast}
-
             handleColorChange={this.handleColorChange}
             handleDrawerTypeChange={this.handleDrawerTypeChange}
-            handleContrastTextChange={this.handleContrastTextChange}
-            {...this.props}/>;
+            handleDrawerWidthChange={this.handleDrawerWidthChange}
+            handleContrastTextChange={this.handleContrastTextChange}/>;
     }
 
 }
 
-const ViewManagerThemed = withStyles(styles)(withTheme()(ManagerView));
-export default withContext(ViewManagerThemed);
+export default withTheme()(withAppContext(withDashboardContext(ManagerView)));
 

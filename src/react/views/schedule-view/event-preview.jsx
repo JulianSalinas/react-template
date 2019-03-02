@@ -28,7 +28,7 @@ const EventPreview = ({ classes, ...props}) =>
             <IconButton className={classes.eventActionsIcon} onClick={props.toggleOpen}>
                 <Icon>edit</Icon>
             </IconButton>
-            <IconButton className={classes.eventActionsIcon} onClick={props.removeEvent}>
+            <IconButton className={classes.eventActionsIcon} onClick={props.deleteEvent}>
                 <Icon>delete</Icon>
             </IconButton>
 

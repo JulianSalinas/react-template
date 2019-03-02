@@ -39,8 +39,8 @@ const CompleteOverlay = props =>
 
 const ImageWithOverlayLayout = props =>
     <div className={props.classes.container}
-         onMouseEnter={props.toggleShowOverlay}
-         onMouseLeave={props.toggleShowOverlay}>
+         onMouseEnter={props.toggleShowOverlay(true)}
+         onMouseLeave={props.toggleShowOverlay(false)}>
         <img alt="img" className={props.classes.image} src={props.src}/>
         { props.showOverlay ? <CompleteOverlay {...props}/> : null }
     </div>;
@@ -51,8 +51,8 @@ class ImageWithOverlay extends Component {
         showOverlay: false,
     };
 
-    toggleShowOverlay = () => {
-        this.setState({ showOverlay: !this.state.showOverlay })
+    toggleShowOverlay = showOverlay => () => {
+        this.setState({ showOverlay: showOverlay })
     };
 
     render() {

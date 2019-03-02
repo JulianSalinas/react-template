@@ -11,10 +11,11 @@ export default theme => ({
     eventPaper: {
         height: "100%",
         minHeight: 210,
-        transition: "all 0.1s linear"
+        transition: "all 0.1s ease-in-out"
     },
     eventClosed: {
         overflow: "hidden",
+        transitionDelay: "0.1s",
         "&:hover": { transform: "scale(1.05)" }
     },
     eventOpened: {
@@ -27,7 +28,7 @@ export default theme => ({
     },
     eventActions: {
         overflow: "hidden",
-        transition: "all 0.1s linear"
+        transition: "all 0.1s ease-in-out"
     },
     eventActionsClosed: {
         width: theme.spacing.unit,
@@ -62,13 +63,14 @@ export default theme => ({
         borderColor: theme.palette.secondary.main,
     },
     searchBar: {
-        padding: '2px 4px',
-        display: 'flex',
-        alignItems: 'center'
+        display: "flex",
+        padding: "2px 4px",
+        alignItems: "center"
     },
     searchInput: {
-        marginLeft: 8,
         flex: 1,
+        marginLeft: 8,
+        marginRight: 8,
     },
     searchPadding: {
         padding: 8,
@@ -78,49 +80,29 @@ export default theme => ({
         margin: 4,
         height: 28,
     },
-    addPersoncontainer: {
+    addPerson: {
         flexGrow: 1,
-        position: 'relative',
+        position: "relative"
     },
-    addPersonpaper: {
-        position: 'absolute',
-        zIndex: 1,
-        marginTop: theme.spacing.unit,
+    addPersonPaper: {
         left: 0,
         right: 0,
+        zIndex: 1,
+        position: "absolute"
     },
-    addPersonchip: {
-        margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-    },
-    addPersoninputRoot: {
-        flexWrap: 'wrap',
-    },
-    addPersoninputInput: {
-        width: 'auto',
-        flexGrow: 1,
-    },
-    addPersonroot: {
-        padding: "2px 4px",
+    addPersonBorder: {
         display: "flex",
+        padding: "2px 4px",
         alignItems: "center",
         borderWidth: 2,
         borderRadius: 20,
         borderStyle: "dotted",
         borderColor: "lightgrey",
     },
-    addPersoninput: {
-        marginLeft: 8,
-        flex: 1,
-    },
-    addPersoniconButton: {
+    addPersonIconButton: {
         padding: 8,
         marginRight: 4,
         cursor: "pointer",
         color: theme.palette.secondary.dark,
-    },
-    addPersondivider: {
-        width: 1,
-        height: 28,
-        margin: 4,
     }
 });

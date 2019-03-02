@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import DashboardTypes from "../../../types/dashboard-types"
 
 
-const withContext = Component => {
+export default Component => {
 
     const GetContext = (props, context) =>
         <Component { ...props } { ...context } />;
@@ -14,5 +14,3 @@ const withContext = Component => {
 
     return GetContext;
 };
-
-export default withContext;

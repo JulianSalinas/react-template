@@ -5,8 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-import DrawerMenu from "../drawer-common/drawer-menu"
-import DrawerSwitch from "../drawer-common/drawer-switch"
+import DrawerMenu from "../../views/dashboard/dashboard-menu"
+import DashboardSwitch from "../../views/dashboard/dashboard-router"
 
 import withDrawerContext from "../drawer-common/drawer-context";
 export default withDrawerContext(props =>
@@ -32,7 +32,7 @@ export default withDrawerContext(props =>
         </Drawer>
         <main className={props.classes.content}>
             <div className={props.classes.toolbar} />
-            <DrawerSwitch/>
+            <DashboardSwitch/>
         </main>
     </div>
 
