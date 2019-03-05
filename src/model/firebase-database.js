@@ -45,7 +45,7 @@ export default class FirebaseDatabase {
     synchPeople(receive){
         const reference = this.database.child("people");
         const callback = action => this.createSynchCallback(action, receive);
-        reference.on("child_added", callback(FirebaseDatabase.READ));
+        reference.orderByChild("completeName").on("child_added", callback(FirebaseDatabase.READ));
         reference.on("child_changed", callback(FirebaseDatabase.UPDATE));
         reference.on("child_removed", callback(FirebaseDatabase.DELETE));
     }

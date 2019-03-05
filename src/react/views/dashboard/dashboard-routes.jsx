@@ -31,15 +31,15 @@ export default [
         component: PeopleView
     },
     {
-        path: "/manager",
-        name: "Configuración",
-        icon: ConfigIcon,
-        component: ManagerView
-    },
-    {
         path: "/schedule",
         name: "Cronograma",
         icon: ScheduleIcon,
         component: ScheduleView
+    },
+    {
+        path: "/manager",
+        name: "Configuración",
+        icon: ConfigIcon,
+        component: ManagerView
     }
 ];
