@@ -1,6 +1,6 @@
 export default theme => ({
     container: {
-        height: "200px",
+        height: "300px",
         overflow: "hidden",
         position: "relative",
         borderRadius: 2
@@ -17,6 +17,9 @@ export default theme => ({
         width: "100%",
         height: "100%",
         position: "absolute",
+        transitionProperty: "all",
+        transitionDuration: ".5s",
+        transitionTimingFunction: "cubic-bezier(0, 1, 0.5, 1)"
     },
     background: {
         opacity: 0.3,

@@ -1,6 +1,6 @@
 // Generated from latin_map.pl Sun Jun 20 20:17:18 2010
-var Latinise = {};
-Latinise.latin_map = {
+var UtilsLatinise = {};
+UtilsLatinise.latin_map = {
 'Á': 'A', // LATIN CAPITAL LETTER A WITH ACUTE
 'Ă': 'A', // LATIN CAPITAL LETTER A WITH BREVE
 'Ắ': 'A', // LATIN CAPITAL LETTER A WITH BREVE AND ACUTE
@@ -993,6 +993,6 @@ Latinise.latin_map = {
 };
 
 export default function latinise(string) {
-	return string.replace(/[^A-Za-z0-9]/g, function(x) { return Latinise.latin_map[x] || x; });
+	return string.replace(/[^A-Za-z0-9]/g, function(x) { return UtilsLatinise.latin_map[x] || x; });
 }
 

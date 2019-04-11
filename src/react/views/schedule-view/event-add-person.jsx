@@ -7,7 +7,7 @@ import Divider from "@material-ui/core/Divider/Divider";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import Typography from "@material-ui/core/Typography/Typography";
 
-import latinise from "../../../utils/latinise";
+import latinise from "../../../utils/utils-latinise";
 import styles from "./schedule-view-styles";
 import { withStyles } from "@material-ui/core/styles";
 

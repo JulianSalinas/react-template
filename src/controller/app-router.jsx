@@ -10,7 +10,7 @@ const NotFound = () =>
 
 export default () =>
     <Switch>
-        <Redirect exact path={"/"} to={"/dashboard/manager"}/>
+        <Redirect exact path={"/"} to={"/dashboard/welcome"}/>
         <Route path={"/dashboard"} component={Dashboard}/>
         <Route component={NotFound}/>
     </Switch>;

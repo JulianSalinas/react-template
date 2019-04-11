@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import EventTypes from "../../../types/event-types"
 import React, { Component } from "react";
-import latinise from "../../../utils/latinise";
+import latinise from "../../../utils/utils-latinise";
 
 import styles from "./schedule-view-styles";
 import withStyles from "@material-ui/core/styles/withStyles";
