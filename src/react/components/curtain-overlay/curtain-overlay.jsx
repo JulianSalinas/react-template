@@ -13,7 +13,8 @@ export default class CurtainOverlay extends Component {
     static defaultProps = {
         height: 300,
         width: "100%",
-        effect: 'down'
+        effect: "down",
+        duration: 0.3
     };
 
     static propTypes = {
@@ -21,7 +22,8 @@ export default class CurtainOverlay extends Component {
         height: PropTypes.any,
         window: PropTypes.node.isRequired,
         curtain: PropTypes.node.isRequired,
-        effect: PropTypes.oneOf(['up', 'down', 'right', 'left'])
+        effect: PropTypes.oneOf(["up", "down", "right", "left"]),
+        duration: PropTypes.number,
     };
 
     constructor(props){
@@ -44,7 +46,7 @@ export default class CurtainOverlay extends Component {
     };
 
     isVertical = effect => {
-        return effect === 'up' || effect === 'down';
+        return effect === "up" || effect === "down";
     };
 
     getTransform = () => {
@@ -52,9 +54,9 @@ export default class CurtainOverlay extends Component {
         const width = this.state.width;
         const height = this.state.height;
         const vertical = this.isVertical(effect);
-        const dimension = vertical ? 'Y' : 'X';
+        const dimension = vertical ? "Y" : "X";
         const distance = vertical ? height : width;
-        const direction = effect === "down" || effect === 'right' ? -1 : 1;
+        const direction = effect === "down" || effect === "right" ? -1 : 1;
         return this.state.isOpen ? `translate${dimension}(${distance * direction}px)` : ""
     };
 
@@ -66,10 +68,10 @@ export default class CurtainOverlay extends Component {
         };
 
         const map = {
-            up: 'bottom',
-            down: 'top',
-            left: 'right',
-            right: 'left'
+            up: "bottom",
+            down: "top",
+            left: "right",
+            right: "left"
         };
 
         const { effect } = this.props;
@@ -79,7 +81,7 @@ export default class CurtainOverlay extends Component {
 
         style.width = vertical ? width : width * 2;
         style.height = vertical ? height * 2: height;
-        style.flexDirection = vertical ? 'column' : 'row';
+        style.flexDirection = vertical ? "column" : "row";
         style[map[effect]] = 0;
 
         return style;
@@ -95,12 +97,12 @@ export default class CurtainOverlay extends Component {
         <div key={1} style={{
             flex: 1,
             position: "relative",
-            transition: "0.3s ease" ,
+            transition: `${this.props.duration}s ease` ,
             transform: this.getTransform()
         }}> { component } </div>;
 
     renderOverlay = ({ effect, window, curtain }) =>
-        effect === 'up' || effect === 'left' ?
+        effect === "up" || effect === "left" ?
             [this.renderCurtain(curtain), this.renderWindow(window)]:
             [this.renderWindow(window), this.renderCurtain(curtain)];
 

@@ -44,16 +44,16 @@ export default class CurtainExample extends Component {
         return (
             <Grid container spacing={16}>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images.img0}/>} curtain={<Curtain/>} effect={"down"}/>
+                    <CurtainOverlay window={<Window image={images.img0}/>} curtain={<Curtain/>} effect={"down"} duration={5}/>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images.img1}/>} curtain={<Curtain/>} effect={"up"}/>
+                    <CurtainOverlay window={<Window image={images.img1}/>} curtain={<Curtain/>} effect={"up"} duration={2}/>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images.img2}/>} curtain={<Curtain/>} effect={"right"}/>
+                    <CurtainOverlay window={<Window image={images.img2}/>} curtain={<Curtain/>} effect={"right"} duration={0.1}/>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images.img3}/>} curtain={<Curtain/>} effect={"left"}/>
+                    <CurtainOverlay window={<Window image={images.img3}/>} curtain={<Curtain/>} effect={"left"} duration={0.5}/>
                 </Grid>
             </Grid>
         );
