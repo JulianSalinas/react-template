@@ -33,7 +33,11 @@ export default class CurtainOverlay extends Component {
 
     componentDidMount(){
         this.setDimensions();
-        window.addEventListener("resize", this.setDimensions);
+        window.addEventListener("resize", this.setDimensions, false);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("resize", this.setDimensions, false)
     }
 
     setDimensions = () => this.setState({

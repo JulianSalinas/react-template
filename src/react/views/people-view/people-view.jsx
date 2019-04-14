@@ -13,18 +13,9 @@ import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import Icon from "@material-ui/core/Icon/Icon";
 
+import { hashCode } from "../../../utils/utils-hash";
 const materialColors = require("../../../json/material");
 
-function hashCode(key){
-    let hash = 0, i, chr;
-    if (key.length === 0) return hash;
-    for (i = 0; i < key.length; i++) {
-        chr   = key.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0;
-    }
-    return hash;
-}
 
 function randomColor(key){
     const value = Math.abs(hashCode(key));
@@ -76,7 +67,7 @@ const PersonItemLayout = ({ classes, ...props }) =>
                                         </Grid>
                             }
                         </Grid>
-                        <Grid container justify={"flex-end"} alignItems={"center"} xs={2}>
+                        <Grid container justify={"flex-end"} alignItems={"center"} item xs={2}>
                             <IconButton onClick={() => console.log("more options")}>
                                 <Icon>more_vert</Icon>
                             </IconButton>
