@@ -11,10 +11,11 @@ export default class CurtainOverlay extends Component {
     };
 
     static defaultProps = {
-        height: 300,
+        height: 200,
         width: "100%",
         effect: "down",
-        duration: 0.3
+        duration: 0.3,
+        borderRadius: 0,
     };
 
     static propTypes = {
@@ -24,6 +25,7 @@ export default class CurtainOverlay extends Component {
         curtain: PropTypes.node.isRequired,
         effect: PropTypes.oneOf(["up", "down", "right", "left"]),
         duration: PropTypes.number,
+        borderRadius: PropTypes.number
     };
 
     constructor(props){
@@ -117,7 +119,8 @@ export default class CurtainOverlay extends Component {
             overflow: "hidden",
             position: "relative",
             width: this.props.width,
-            height: this.props.height
+            height: this.props.height,
+            borderRadius: this.props.borderRadius
         };
 
         return (

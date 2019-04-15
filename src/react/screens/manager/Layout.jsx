@@ -26,171 +26,177 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 
 const ViewManager = props =>
 
-    <Grid container spacing={16} alignItems={"stretch"}>
+    <div style={{
+        padding: 16,
+        overflowX: "hidden"
+    }}>
 
-        <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={16}>
+        <Grid container spacing={16} alignItems={"stretch"}>
 
-                    <Grid item xs={12}>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+                <Paper elevation={0} className={props.classes.paper}>
+                    <Grid container spacing={16}>
 
-                        <Typography variant={"h4"} paragraph>
-                            Information
-                        </Typography>
+                        <Grid item xs={12}>
 
-                        <Grid container spacing={16} alignItems={"center"}>
+                            <Typography variant={"h4"} paragraph>
+                                Information
+                            </Typography>
 
-                            <Grid item>
-                                <Avatar alt="name" src={props.store.user.photoUrl} className={props.classes.bigAvatar} />
-                            </Grid>
+                            <Grid container spacing={16} alignItems={"center"}>
 
-                            <Grid item>
-                                <Typography variant={"body1"}>
-                                    {props.store.user.username}
-                                </Typography>
-                                <Typography variant={"body2"}>
-                                    {props.store.user.email}
-                                </Typography>
+                                <Grid item>
+                                    <Avatar alt="name" src={props.store.user.photoUrl} className={props.classes.bigAvatar} />
+                                </Grid>
+
+                                <Grid item>
+                                    <Typography variant={"body1"}>
+                                        {props.store.user.username}
+                                    </Typography>
+                                    <Typography variant={"body2"}>
+                                        {props.store.user.email}
+                                    </Typography>
+                                </Grid>
+
                             </Grid>
 
                         </Grid>
+                    </Grid>
+                </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+                <Paper elevation={0} className={props.classes.paper}>
+                    <Grid container spacing={16}>
+
+                        <Grid item xs={12}>
+                            <Typography variant={"h4"} paragraph>
+                                Datetime
+                            </Typography>
+                            <Clock/>
+                        </Grid>
 
                     </Grid>
-                </Grid>
-            </Paper>
-        </Grid>
+                </Paper>
+            </Grid>
 
-        <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={16}>
+            <Grid item xs={12}>
+                <Paper elevation={0} className={props.classes.paper}>
+                    <Grid container spacing={16}>
 
-                    <Grid item xs={12}>
-                        <Typography variant={"h4"} paragraph>
-                            Datetime
-                        </Typography>
-                        <Clock/>
-                    </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant={"h4"}>
+                                Control Panel
+                            </Typography>
+                        </Grid>
 
-                </Grid>
-            </Paper>
-        </Grid>
+                        <Grid item>
+                            <FormControl variant="filled" className={props.classes.formControl}>
+                                <InputLabel>Drawer Type</InputLabel>
+                                <Select
+                                    value={props.dashboard.drawerType}
+                                    onChange={props.handleDrawerTypeChange}
+                                    input={<FilledInput name="drawerType" />}>
+                                    {
+                                        Drawers.map((drawerName, key) => {
+                                            const capitalize = string => string[0].toUpperCase() + string.slice(1);
+                                            return <MenuItem key={key} value={drawerName}>{capitalize(drawerName)}</MenuItem>
+                                        })
+                                    }
+                                </Select>
+                            </FormControl>
+                        </Grid>
 
-        <Grid item xs={12}>
-            <Paper elevation={0} className={props.classes.paper}>
-                <Grid container spacing={16}>
+                        <Grid item>
+                            <FormControl variant="filled" className={props.classes.formControl}>
+                                <InputLabel>Palette</InputLabel>
+                                <Select
+                                    value={props.theme.palette.type}
+                                    onChange={props.togglePalette}
+                                    input={<FilledInput name="paletteType" />}>
+                                    <MenuItem value={"light"}>Light</MenuItem>
+                                    <MenuItem value={"dark"}>Dark</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography variant={"h4"}>
-                            Control Panel
-                        </Typography>
-                    </Grid>
+                        <Grid item>
+                            <TextField
+                                id="filled-number"
+                                label="Drawer Width"
+                                value={props.drawerWidth}
+                                onChange={event => props.handleDrawerWidthChange(event)}
+                                type="number"
+                                variant="filled"/>
+                        </Grid>
 
-                    <Grid item>
-                        <FormControl variant="filled" className={props.classes.formControl}>
-                            <InputLabel>Drawer Type</InputLabel>
-                            <Select
-                                value={props.dashboard.drawerType}
-                                onChange={props.handleDrawerTypeChange}
-                                input={<FilledInput name="drawerType" />}>
-                                {
-                                    Drawers.map((drawerName, key) => {
-                                        const capitalize = string => string[0].toUpperCase() + string.slice(1);
-                                        return <MenuItem key={key} value={drawerName}>{capitalize(drawerName)}</MenuItem>
-                                    })
+                        <Grid item>
+                            <Button variant={"contained"} color={"secondary"} onClick={() => props.applyDrawerWidth()}>
+                                Apply width
+                            </Button>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Divider variant={"fullWidth"} style={{ margin: "8px 0px" }}/>
+                        </Grid>
+
+                        <Grid item>
+
+                            <Typography variant={"body1"} color={"textSecondary"} paragraph>
+                                Primary color
+                            </Typography>
+
+                            <TwitterPicker
+                                colors={Colors}
+                                color={props.theme.palette.primary.main}
+                                onChange={color => props.handleColorChange(color, "primary")}/>
+
+                            <FormControlLabel
+                                label="Autocontraste"
+                                control={
+                                    <Checkbox
+                                        checked={props.dashboard.drawerAutoContrast}
+                                        onChange={event => props.toggleAutoContrast(event)}/>
                                 }
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                            />
 
-                    <Grid item>
-                        <FormControl variant="filled" className={props.classes.formControl}>
-                            <InputLabel>Palette</InputLabel>
-                            <Select
-                                value={props.theme.palette.type}
-                                onChange={props.togglePalette}
-                                input={<FilledInput name="paletteType" />}>
-                                <MenuItem value={"light"}>Light</MenuItem>
-                                <MenuItem value={"dark"}>Dark</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                        </Grid>
 
-                    <Grid item>
-                        <TextField
-                            id="filled-number"
-                            label="Drawer Width"
-                            value={props.drawerWidth}
-                            onChange={event => props.handleDrawerWidthChange(event)}
-                            type="number"
-                            variant="filled"/>
-                    </Grid>
+                        <Grid item>
+                            <Typography variant={"body1"} color={"textSecondary"} paragraph>
+                                Secondary color
+                            </Typography>
+                            <TwitterPicker
+                                colors={Colors}
+                                color={props.theme.palette.secondary.main}
+                                onChange={color => props.handleColorChange(color, "secondary")}/>
+                        </Grid>
 
-                    <Grid item>
-                        <Button variant={"contained"} color={"secondary"} onClick={() => props.applyDrawerWidth()}>
-                            Apply width
-                        </Button>
-                    </Grid>
+                        <Grid item>
+                            <Typography variant={"body1"} color={"textSecondary"} paragraph>
+                                Primary Contrast Text
+                            </Typography>
+                            <TwitterPicker
+                                colors={Colors}
+                                color={props.theme.palette.primary.contrastText}
+                                onChange={color => props.handleContrastTextChange(color, "primary")}/>
+                        </Grid>
 
-                    <Grid item xs={12}>
-                        <Divider variant={"fullWidth"} style={{ margin: "8px 0px" }}/>
-                    </Grid>
-
-                    <Grid item>
-
-                        <Typography variant={"body1"} color={"textSecondary"} paragraph>
-                            Primary color
-                        </Typography>
-
-                        <TwitterPicker
-                            colors={Colors}
-                            color={props.theme.palette.primary.main}
-                            onChange={color => props.handleColorChange(color, "primary")}/>
-
-                        <FormControlLabel
-                            label="Autocontraste"
-                            control={
-                                <Checkbox
-                                    checked={props.dashboard.drawerAutoContrast}
-                                    onChange={event => props.toggleAutoContrast(event)}/>
-                            }
-                        />
+                        <Grid item>
+                            <Typography variant={"body1"} color={"textSecondary"} paragraph>
+                                Secondary Contrast Text
+                            </Typography>
+                            <TwitterPicker
+                                colors={Colors}
+                                color={props.theme.palette.secondary.contrastText}
+                                onChange={color => props.handleContrastTextChange(color, "secondary")}/>
+                        </Grid>
 
                     </Grid>
-
-                    <Grid item>
-                        <Typography variant={"body1"} color={"textSecondary"} paragraph>
-                            Secondary color
-                        </Typography>
-                        <TwitterPicker
-                            colors={Colors}
-                            color={props.theme.palette.secondary.main}
-                            onChange={color => props.handleColorChange(color, "secondary")}/>
-                    </Grid>
-
-                    <Grid item>
-                        <Typography variant={"body1"} color={"textSecondary"} paragraph>
-                            Primary Contrast Text
-                        </Typography>
-                        <TwitterPicker
-                            colors={Colors}
-                            color={props.theme.palette.primary.contrastText}
-                            onChange={color => props.handleContrastTextChange(color, "primary")}/>
-                    </Grid>
-
-                    <Grid item>
-                        <Typography variant={"body1"} color={"textSecondary"} paragraph>
-                            Secondary Contrast Text
-                        </Typography>
-                        <TwitterPicker
-                            colors={Colors}
-                            color={props.theme.palette.secondary.contrastText}
-                            onChange={color => props.handleContrastTextChange(color, "secondary")}/>
-                    </Grid>
-
-                </Grid>
-            </Paper>
+                </Paper>
+            </Grid>
         </Grid>
-    </Grid>;
+    </div>;
 
 export default withStyles(styles)(ViewManager);
 

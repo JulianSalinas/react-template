@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 import Switch from "@material-ui/core/Switch/Switch";
 import Typography from "@material-ui/core/Typography/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-
+import { withTheme } from '@material-ui/core/styles';
 
 const EventList = props => Object.keys(props.store.events).map((key, index) =>
     <EventItem
@@ -30,25 +30,44 @@ const EventGrid = props =>
 
 const KeepSynchSwitch = props =>
     <Switch
-        color="secondary"
+        color={"primary"}
         checked={props.keepSynch}
         onChange={props.toggleKeepSynch}/>;
 
-const ScheduleLayout = props =>
-    <Grid container spacing={16}>
-        <Grid item xs={12}>
-            <Typography variant={"h5"}>
-                Eventos
-            </Typography>
-            <FormControlLabel
-                label="Keep events synchronized"
-                control={ <KeepSynchSwitch {...props}/> }/>
-            <ScheduleSearch/>
+const KeepSynchText = props =>
+    <div>
+        Keep events synchronized ({props.keepSynch ? "Activado" : "Desactivado"})
+    </div>;
+
+const ScheduleLayout = ({ theme, ...props }) =>
+    <div style={{
+        overflowX: "hidden"
+    }}>
+        <div style={{
+            height: 240,
+            padding: 16,
+            backgroundColor: "#EEE",
+        }}/>
+        <Grid container spacing={16} style={{
+            paddingLeft: 16,
+            paddingRight: 16,
+            transform: "translateY(-224px)",
+        }}>
+            <Grid item xs={12}>
+                <Typography variant={"h5"}>
+                    Eventos
+                </Typography>
+                <FormControlLabel
+                    label={ <KeepSynchText {...props}/> }
+                    control={ <KeepSynchSwitch {...props}/> }
+                />
+                <ScheduleSearch/>
+            </Grid>
+            <Grid item xs={12}>
+                <EventGrid {...props}/>
+            </Grid>
         </Grid>
-        <Grid item xs={12}>
-            <EventGrid {...props}/>
-        </Grid>
-    </Grid>;
+    </div>;
 
 ScheduleLayout.propsTypes = {
     openItem: PropTypes.number.isRequired,
@@ -57,5 +76,5 @@ ScheduleLayout.propsTypes = {
     toggleKeepSynch: PropTypes.func.isRequired,
 };
 
-export default ScheduleLayout;
+export default withTheme()(ScheduleLayout);
 

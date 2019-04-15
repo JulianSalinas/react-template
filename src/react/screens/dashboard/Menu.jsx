@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { NavLink, withRouter } from "react-router-dom"
-import Routes from "./Routes"
+import Routes from "./Routes";
+import { NavLink, withRouter } from "react-router-dom";
 
 import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import Typography from "@material-ui/core/Typography/Typography";
 
 
 const DashboardMenuIcon = props =>
@@ -15,14 +15,16 @@ const DashboardMenuIcon = props =>
         <props.icon/>;
 
 const DashboardMenuIconItem = props =>
-    <ListItemIcon>
+    <ListItemIcon className={props.classes !== undefined ? props.classes.itemIcon : null}>
         <DashboardMenuIcon icon={props.icon}/>
     </ListItemIcon>;
 
 const DashboardMenuLink = props =>
     <ListItem>
         <DashboardMenuIconItem {...props}/>
-        <ListItemText primary={props.name}/>
+        <Typography className={props.classes !== undefined ? props.classes.itemText : null}>
+            { props.name }
+        </Typography>
     </ListItem>;
 
 const Menu = props => Routes.map((route, index) => route.redirect ? null :

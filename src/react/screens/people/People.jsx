@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 import Icon from "@material-ui/core/Icon/Icon";
 
 import { hashColor } from "../../../utils/Colors";
-const materialColors = require("../../../constants/colors/Material");
+import materialColors from "../../../constants/colors/Material";
 
 
 function randomColor(key){
@@ -118,16 +118,21 @@ class People extends Component {
 
     render() {
         return (
-            <Grid container spacing={16}>
-                <Grid item xs={12}>
-                    <Typography variant={"h5"}>
-                        Expositores
-                    </Typography>
+            <div style={{
+                padding: 16,
+                overflowX: "hidden"
+            }}>
+                <Grid container spacing={16}>
+                    <Grid item xs={12}>
+                        <Typography variant={"h5"}>
+                            Expositores
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <PeopleGrid {...this.props}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <PeopleGrid {...this.props}/>
-                </Grid>
-            </Grid>
+            </div>
         );
     }
 

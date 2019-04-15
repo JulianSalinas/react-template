@@ -60,7 +60,8 @@ export default theme => ({
         width: "100%"
     },
     formInput: {
-        borderColor: theme.palette.secondary.main,
+        padding: 16,
+        outline: "none"
     },
     searchBar: {
         display: "flex",

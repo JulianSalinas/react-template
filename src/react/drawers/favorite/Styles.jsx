@@ -58,13 +58,18 @@ export default options => theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
     },
     item: {
         width: "auto",
         display: "block",
         position: "relative",
         "&:hover": { backgroundColor: theme.palette.primary.light }
+    },
+    itemText: {
+        color: "inherit",
+        lineHeight: "26px",
+        fontWeight: 500,
+        marginLeft: 16
     },
     itemActive: {
         width: "auto",

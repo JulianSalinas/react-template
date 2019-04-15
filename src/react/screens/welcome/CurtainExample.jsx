@@ -41,20 +41,53 @@ export default class CurtainExample extends Component {
 
     render() {
         return (
-            <Grid container spacing={16}>
-                <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images[0]}/>} curtain={<Curtain/>} effect={"down"} duration={5}/>
+            <div>
+                <div style={{
+                    height: 150,
+                    backgroundColor: "#2871D5",
+                }}/>
+                <Grid container spacing={16} style={{
+                    paddingLeft: 16,
+                    paddingRight: 16,
+                    transform: "translateY(-100px)",
+                }}>
+                    <Grid item xs={12} sm={6} lg={3}>
+                        <CurtainOverlay
+                            duration={0.1}
+                            effect={"left"}
+                            curtain={<Curtain/>}
+                            window={<Window image={images[0]}/>}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={3}>
+                        <CurtainOverlay
+                            duration={0.2}
+                            effect={"right"}
+                            curtain={<Curtain/>}
+                            borderRadius={5}
+                            window={<Window image={images[1]}/>}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={3}>
+                        <CurtainOverlay
+                            duration={0.3}
+                            effect={"up"}
+                            curtain={<Curtain/>}
+                            borderRadius={8}
+                            window={<Window image={images[2]}/>}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={3}>
+                        <CurtainOverlay
+                            duration={1}
+                            effect={"down"}
+                            curtain={<Curtain/>}
+                            borderRadius={25}
+                            window={<Window image={images[3]}/>}
+                        />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images[1]}/>} curtain={<Curtain/>} effect={"up"} duration={2}/>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images[2]}/>} curtain={<Curtain/>} effect={"right"} duration={0.1}/>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <CurtainOverlay window={<Window image={images[3]}/>} curtain={<Curtain/>} effect={"left"} duration={0.5}/>
-                </Grid>
-            </Grid>
+            </div>
         );
     }
 

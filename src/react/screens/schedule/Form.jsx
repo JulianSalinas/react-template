@@ -139,7 +139,8 @@ const EventFormLayout = ({ classes, ...props }) =>
                         value={props.event.title}
                         fullWidth multiline rows={3} rowsMax={6}
                         onChange={props.updateEvent("title")}
-                        inputProps={{ className: classes.formInput}}/>
+                        inputProps={{ className: classes.formInput}}
+                    />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
@@ -149,7 +150,8 @@ const EventFormLayout = ({ classes, ...props }) =>
                         value={props.event.briefSpanish}
                         fullWidth multiline rows={14} rowsMax={14}
                         onChange={props.updateEvent("briefSpanish")}
-                        inputProps={{ className: classes.formInput}}/>
+                        inputProps={{ className: classes.formInput}}
+                    />
                 </Grid>
             </Grid>
         </Grid>

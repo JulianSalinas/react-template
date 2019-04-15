@@ -10,11 +10,51 @@ import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
+import Button from "@material-ui/core/Button/Button";
+import CurtainOverlay from "../../components/curtain-overlay/CurtainOverlay";
 
+const Window = props =>
+    <img alt="img" style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center"
+    }} src={props.image}/>;
+
+Window.propTypes = {
+    image: PropTypes.string
+};
+
+const Curtain = () =>
+    <div style={{
+        opacity: 0.7,
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#212121"
+    }}>
+        <Button
+            style={{
+                color: "#FFF",
+                borderColor: "#FFF"
+            }}
+            variant={"outlined"}
+            onClick={() => console.log("Clicked")}>
+            Cambiar
+        </Button>
+    </div>;
 
 const EventLocationLayout = ({ classes, ...props }) =>
     <div>
-        {/*<ImageWithOverlay src={ props.image }/>*/}
+        <CurtainOverlay
+            height={200}
+            effect={"down"}
+            duration={0.4}
+            curtain={<Curtain/>}
+            window={<Window image={props.image}/>}
+        />
+
         <TextField
             fullWidth
             variant="filled"
@@ -24,7 +64,7 @@ const EventLocationLayout = ({ classes, ...props }) =>
             inputProps={{ className: classes.formInput}}
             value={props.event.location !== undefined ? props.event.location: ""}/>
         <FormControlLabel
-            label="Colocar imagen automáticamente"
+            label="Imagen Automática"
             control={
                 <Checkbox
                     checked={props.autoImage}
