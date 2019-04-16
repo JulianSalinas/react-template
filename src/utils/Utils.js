@@ -2,6 +2,10 @@ export function capitalize(string) {
     return string.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 }
 
+export function firstToUpper(string){
+    return string[0].toUpperCase() + string.slice(1);
+}
+
 export function normalize(title){
     const truncateAt = 200;
     const length = title.length;

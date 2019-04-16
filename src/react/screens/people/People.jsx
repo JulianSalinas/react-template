@@ -8,18 +8,14 @@ import Paper from "@material-ui/core/Paper/Paper";
 import {withStyles} from "@material-ui/core";
 import styles from "./Styles";
 import Avatar from "@material-ui/core/Avatar/Avatar";
-import { normalize } from "../../../utils/Utils";
+import {firstToUpper, normalize} from "../../../utils/Utils";
 import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import Icon from "@material-ui/core/Icon/Icon";
 
 import { hashColor } from "../../../utils/Colors";
-import materialColors from "../../../constants/colors/Material";
+import withDashboardContext from "../dashboard/Context";
 
-
-function randomColor(key){
-    return hashColor(key, materialColors);
-}
 
 const PersonItemLayout = ({ classes, ...props }) =>
     <Grid
@@ -31,7 +27,7 @@ const PersonItemLayout = ({ classes, ...props }) =>
                 <Grid item>
                     <Avatar
                         className={classes.bigAvatar}
-                        style={{ backgroundColor: randomColor(props.person.completeName) }}>
+                        style={{ backgroundColor: props.getAvatarColor(props.person.completeName) }}>
                         {props.person.completeName[0]}
                     </Avatar>
                 </Grid>
@@ -116,6 +112,18 @@ const PeopleGrid = props =>
 
 class People extends Component {
 
+    state = { colorSet: [] };
+
+    componentDidMount(){
+        const name = firstToUpper(this.props.dashboard.colorSet);
+        const colorSet = require(`../../../constants/colors/${name}`).default;
+        this.setState({ colorSet: colorSet });
+    }
+
+    getAvatarColor = key => {
+        return hashColor(key, this.state.colorSet);
+    };
+
     render() {
         return (
             <div style={{
@@ -129,7 +137,7 @@ class People extends Component {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <PeopleGrid {...this.props}/>
+                        <PeopleGrid {...this.props} getAvatarColor={this.getAvatarColor}/>
                     </Grid>
                 </Grid>
             </div>
@@ -137,5 +145,6 @@ class People extends Component {
     }
 
 }
-export default withStyles(styles)(withAppContext(People));
+
+export default withStyles(styles)(withAppContext(withDashboardContext(People)));
 

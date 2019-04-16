@@ -2,9 +2,12 @@ import React from "react";
 
 import styles from "./Styles";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { firstToUpper } from "../../../utils/Utils";
 
 import { TwitterPicker } from "react-color";
-import Colors from "../../../constants/colors/Colors";
+import Flat from "../../../constants/colors/Flat";
+import Colors from "../../../constants/lists/Colors";
+
 import Drawers from "../../../constants/lists/Drawers";
 import Clock from "../../components/clock/GenericClock";
 
@@ -98,10 +101,9 @@ const ViewManager = props =>
                                     onChange={props.handleDrawerTypeChange}
                                     input={<FilledInput name="drawerType" />}>
                                     {
-                                        Drawers.map((drawerName, key) => {
-                                            const capitalize = string => string[0].toUpperCase() + string.slice(1);
-                                            return <MenuItem key={key} value={drawerName}>{capitalize(drawerName)}</MenuItem>
-                                        })
+                                        Drawers.map((drawerName, key) =>
+                                            <MenuItem key={key} value={drawerName}>{firstToUpper(drawerName)}</MenuItem>
+                                        )
                                     }
                                 </Select>
                             </FormControl>
@@ -109,13 +111,30 @@ const ViewManager = props =>
 
                         <Grid item>
                             <FormControl variant="filled" className={props.classes.formControl}>
-                                <InputLabel>Palette</InputLabel>
+                                <InputLabel>Mode</InputLabel>
                                 <Select
                                     value={props.theme.palette.type}
-                                    onChange={props.togglePalette}
+                                    onChange={props.toggleMode}
                                     input={<FilledInput name="paletteType" />}>
                                     <MenuItem value={"light"}>Light</MenuItem>
                                     <MenuItem value={"dark"}>Dark</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item>
+                            <FormControl variant="filled" className={props.classes.formControl}>
+                                <InputLabel>Color Set</InputLabel>
+                                <Select
+                                    value={props.dashboard.colorSet}
+                                    onChange={props.handleColorSetChange}
+                                    input={<FilledInput name="paletteType" />}>
+                                    {
+                                        Colors.map((colorSet, key) => {
+                                            const capitalize = string => string[0].toUpperCase() + string.slice(1);
+                                            return <MenuItem key={key} value={colorSet}>{capitalize(colorSet)}</MenuItem>
+                                        })
+                                    }
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -147,7 +166,7 @@ const ViewManager = props =>
                             </Typography>
 
                             <TwitterPicker
-                                colors={Colors}
+                                colors={props.getColorSet()}
                                 color={props.theme.palette.primary.main}
                                 onChange={color => props.handleColorChange(color, "primary")}/>
 
@@ -167,7 +186,7 @@ const ViewManager = props =>
                                 Secondary color
                             </Typography>
                             <TwitterPicker
-                                colors={Colors}
+                                colors={props.getColorSet()}
                                 color={props.theme.palette.secondary.main}
                                 onChange={color => props.handleColorChange(color, "secondary")}/>
                         </Grid>
@@ -177,7 +196,7 @@ const ViewManager = props =>
                                 Primary Contrast Text
                             </Typography>
                             <TwitterPicker
-                                colors={Colors}
+                                colors={props.getColorSet()}
                                 color={props.theme.palette.primary.contrastText}
                                 onChange={color => props.handleContrastTextChange(color, "primary")}/>
                         </Grid>
@@ -187,7 +206,7 @@ const ViewManager = props =>
                                 Secondary Contrast Text
                             </Typography>
                             <TwitterPicker
-                                colors={Colors}
+                                colors={props.getColorSet()}
                                 color={props.theme.palette.secondary.contrastText}
                                 onChange={color => props.handleContrastTextChange(color, "secondary")}/>
                         </Grid>

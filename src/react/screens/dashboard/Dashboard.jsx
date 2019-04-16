@@ -13,6 +13,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 class Dashboard extends Component {
 
     state = {
+        colorSet: defaults.colorSet,
         drawerType: defaults.drawerType,
         drawerWidth: defaults.drawerWidth,
         drawerAutoContrast: defaults.drawerAutoContrast,
@@ -21,6 +22,10 @@ class Dashboard extends Component {
 
     changeTheme = theme => {
         this.setState({ theme: theme })
+    };
+
+    changeColorSet = colorSet => {
+        this.setState({ colorSet: colorSet });
     };
 
     changeDrawerType = drawerType => {
@@ -37,11 +42,13 @@ class Dashboard extends Component {
 
     render() {
         return <DashboardLayout
+            colorSet={this.state.colorSet}
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
             drawerWidth={this.state.drawerWidth}
             drawerAutoContrast={this.state.drawerAutoContrast}
             changeTheme={this.changeTheme}
+            changeColorSet={this.changeColorSet}
             changeDrawerType={this.changeDrawerType}
             changeDrawerWidth={this.changeDrawerWidth}
             changeDrawerAutoContrast={this.changeDrawerAutoContrast}/>;

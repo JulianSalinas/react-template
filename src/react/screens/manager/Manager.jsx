@@ -6,6 +6,7 @@ import { withTheme } from '@material-ui/core/styles';
 import withAppContext from "../../../app/AppContext"
 import withDashboardContext from "../dashboard/Context";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import { firstToUpper } from "../../../utils/Utils";
 
 
 class Manager extends Component {
@@ -16,6 +17,10 @@ class Manager extends Component {
 
     toggleAutoContrast = event => {
         this.props.dashboard.changeDrawerAutoContrast(event.target.checked);
+    };
+
+    handleColorSetChange = event => {
+        this.props.dashboard.changeColorSet(event.target.value);
     };
 
     handleDrawerTypeChange = event => {
@@ -36,7 +41,7 @@ class Manager extends Component {
 
     copyDefaultTheme = () => JSON.parse(JSON.stringify(DefaultTheme));
 
-    togglePalette = () => {
+    toggleMode = () => {
         const currentTheme = this.props.theme;
         const newTheme = this.copyDefaultTheme();
         newTheme.palette.primary = currentTheme.palette.primary;
@@ -69,14 +74,21 @@ class Manager extends Component {
         this.applyTheme(currentTheme);
     };
 
+    getColorSet = () => {
+        const name = firstToUpper(this.props.dashboard.colorSet);
+        return require(`../../../constants/colors/${name}`).default;
+    };
+
     render() {
         return <DrawerManagerLayout
             {...this.props}
+            getColorSet={this.getColorSet}
             drawerWidth={this.state.drawerWidth}
             applyDrawerWidth={this.applyDrawerWidth}
-            togglePalette={this.togglePalette}
+            toggleMode={this.toggleMode}
             toggleAutoContrast={this.toggleAutoContrast}
             handleColorChange={this.handleColorChange}
+            handleColorSetChange={this.handleColorSetChange}
             handleDrawerTypeChange={this.handleDrawerTypeChange}
             handleDrawerWidthChange={this.handleDrawerWidthChange}
             handleContrastTextChange={this.handleContrastTextChange}/>;
