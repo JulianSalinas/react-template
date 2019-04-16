@@ -132,9 +132,7 @@ class GamesLayout extends Component {
                                             return (
                                                 <Draggable key={card.id}>
                                                     <div {...card.props}>
-                                                        <Typography variant={"body1"} style={{
-                                                            color: "#FFF"
-                                                        }}>
+                                                        <Typography variant={"body1"}>
                                                             { card.data }
                                                         </Typography>
                                                     </div>

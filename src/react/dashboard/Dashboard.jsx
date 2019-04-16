@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "./Styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import DashboardLayout from "./Layout";
-
+import Layout from "./Layout";
 import options from "../../constants/main/Options";
 import defaultTheme from "../../constants/main/Theme";
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -40,7 +37,7 @@ class Dashboard extends Component {
     };
 
     render() {
-        return <DashboardLayout
+        return <Layout
             colorSet={this.state.colorSet}
             drawerTheme={this.state.theme}
             drawerType={this.state.drawerType}
@@ -56,4 +53,4 @@ class Dashboard extends Component {
 }
 
 
-export default withStyles(styles)(Dashboard);
+export default Dashboard;

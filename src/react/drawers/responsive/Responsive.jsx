@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Layout from "./Layout";
 import withDrawerContext from "../Context";
 import withAppContext from "../../../app/AppContext";
-import withDashboardContext from "../../dashboard/Context";
 
 
 class Responsive extends Component {

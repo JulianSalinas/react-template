@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GamesLayout from "./Layout";
 import withContext from "../../dashboard/Context";
-import './demo.css';
+// import './demo.css';
 
 class Games extends Component {
 

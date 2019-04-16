@@ -1,18 +1,14 @@
-import React from "react"
-import DrawerMenu from "../../dashboard/Menu"
-import DashboardSwitch from "../../dashboard/Router"
+import React from "react";
+import DrawerMenu from "../DrawerMenu";
+import DashboardRouter from "../../dashboard/Router";
 
-import classNames from "classnames"
-import Drawer from "@material-ui/core/Drawer"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import Toolbar from "@material-ui/core/Toolbar/Toolbar";
-import MenuIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import Typography from "@material-ui/core/Typography/Typography";
-import AppBar from "@material-ui/core/AppBar/AppBar";
+import classNames from "classnames";
+import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 
 const Layout = ({ classes, ...props }) =>
@@ -24,19 +20,19 @@ const Layout = ({ classes, ...props }) =>
             open={props.open}
             variant={"permanent"}
 
-            className={classNames(classes.drawer, {
+            className={classNames(classes.drawerPaper, {
                 [classes.drawerOpen]: props.open,
                 [classes.drawerClose]: !props.open,
             })}
 
             classes={{
-                paper: classNames(classes.drawer, {
+                paper: classNames(classes.drawerPaper, {
                     [classes.drawerOpen]: props.open,
                     [classes.drawerClose]: !props.open,
                 }),
             }}>
 
-            <div className={classes.iconOpen}>
+            <div className={classes.menuButton}>
                 <IconButton onClick={props.toggleDrawerState}>
                     {props.open ? <ChevronLeftIcon/> : <ChevronRightIcon/> }
                 </IconButton>
@@ -48,7 +44,7 @@ const Layout = ({ classes, ...props }) =>
         </Drawer>
 
         <main className={classes.content}>
-            <DashboardSwitch/>
+            <DashboardRouter/>
         </main>
 
     </div>;

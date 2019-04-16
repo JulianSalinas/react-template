@@ -1,18 +1,18 @@
 import React from "react";
+import DrawerMenu from "../DrawerMenu";
+import DashboardRouter from "../../dashboard/Router";
 
 import AppBar from "@material-ui/core/AppBar";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
+import Avatar from "@material-ui/core/Avatar/Avatar";
 import IconButton from "@material-ui/core/IconButton";
+import Divider from "@material-ui/core/Divider/Divider";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import withDrawerContext from "../Context";
-import DrawerMenu from "../../dashboard/Menu"
-import DashboardSwitch from "../../dashboard/Router"
-import Avatar from "@material-ui/core/Avatar/Avatar";
-import Divider from "@material-ui/core/Divider/Divider";
 import Images from "../../../constants/lists/Images";
 
 
@@ -25,7 +25,7 @@ const Layout = ({ classes, theme, ...props}) =>
             <Toolbar>
                 <IconButton
                     color={"inherit"}
-                    aria-label={"Open drawer"}
+                    aria-label={"Open drawerPaper"}
                     className={classes.menuButton}
                     onClick={props.toggleDrawerState}>
                     <MenuIcon/>
@@ -33,7 +33,7 @@ const Layout = ({ classes, theme, ...props}) =>
             </Toolbar>
         </AppBar>
 
-        <nav className={classes.nav}>
+        <nav className={classes.navigation}>
 
             <Hidden mdUp implementation={"css"}>
                 <Drawer
@@ -41,7 +41,7 @@ const Layout = ({ classes, theme, ...props}) =>
                     variant={"temporary"}
                     open={props.open}
                     onClose={props.toggleDrawerState}
-                    classes={{ paper: classes.drawer }}>
+                    classes={{ paper: classes.drawerPaper }}>
                     <div style={{
                         height: 170,
                         display: "flex",
@@ -61,7 +61,7 @@ const Layout = ({ classes, theme, ...props}) =>
             <Hidden smDown implementation={"css"}>
                 <Drawer
                     variant={"permanent"}
-                    classes={{ paper: classes.drawer }}>
+                    classes={{ paper: classes.drawerPaper }}>
                     <div style={{
                         height: 170,
                         display: "flex",
@@ -82,7 +82,7 @@ const Layout = ({ classes, theme, ...props}) =>
 
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <DashboardSwitch/>
+            <DashboardRouter/>
         </main>
 
         <div className={classes.footer}/>

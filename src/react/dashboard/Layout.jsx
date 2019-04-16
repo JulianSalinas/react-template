@@ -1,13 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./Styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-
+import Drawer from "./Drawer";
+import Provider from "./Provider";
 import MomentUtils from "@date-io/moment";
-import DashboardTypes from "./Types"
-import DashboardDrawer from "./Drawer"
-import Provider from "./Provider"
+import DashboardTypes from "../../constants/types/DashboardTypes";
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import { MuiPickersUtilsProvider } from "material-ui-pickers";
 
@@ -16,16 +13,16 @@ import "moment/locale/es";
 moment.locale("es");
 
 
-const DashboardLayoutWithTheme = props =>
+const ThemedLayout = props =>
     <MuiPickersUtilsProvider utils={MomentUtils}>
         <MuiThemeProvider theme={props.drawerTheme}>
-            <DashboardDrawer/>
+            <Drawer/>
         </MuiThemeProvider>
     </MuiPickersUtilsProvider>;
 
 const Layout = props =>
     <Provider dashboard={{...props}}>
-        <DashboardLayoutWithTheme {...props}/>
+        <ThemedLayout {...props}/>
     </Provider>;
 
 Layout.propTypes = {
@@ -33,4 +30,4 @@ Layout.propTypes = {
     drawerTheme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Layout);
+export default Layout;

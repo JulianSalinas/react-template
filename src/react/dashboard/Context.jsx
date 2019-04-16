@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DashboardTypes from "./Types"
+import DashboardTypes from "../../constants/types/DashboardTypes"
 
 
 export default Component => {

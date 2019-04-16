@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import { Children, Component } from "react";
-import DashboardTypes from "./Types"
+import DashboardTypes from "../../constants/types/DashboardTypes"
 
 
 export default class Provider extends Component {
