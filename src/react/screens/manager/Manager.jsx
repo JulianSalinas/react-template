@@ -4,7 +4,7 @@ import DrawerManagerLayout from "./Layout";
 
 import { withTheme } from '@material-ui/core/styles';
 import withAppContext from "../../../app/AppContext"
-import withDashboardContext from "../dashboard/Context";
+import withDashboardContext from "../../dashboard/Context";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { firstToUpper } from "../../../utils/Utils";
 

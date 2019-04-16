@@ -3,15 +3,15 @@ import React, { Component } from "react";
 import AppRouter from "./AppRouter";
 import AppProvider from "./AppProvider";
 import AppDatabase from "../model/AppDatabase";
-import LocalUser from "../constants/main/Phantom";
+import StubUser from "../constants/main/Phantom";
 
 
-class App extends Component {
+export default class App extends Component {
 
     state = {
         people: {},
         events: {},
-        user: LocalUser
+        user: StubUser
     };
 
     constructor(props){
@@ -20,15 +20,15 @@ class App extends Component {
     }
 
     componentDidMount(){
-        this.database.synchPeople(this.readPerson);
-        this.database.synchEvents(this.readEvent);
+        this.database.synchPeople(this.synchPerson);
+        this.database.synchEvents(this.synchEvent);
     }
 
     componentWillUnmount() {
         this.database.closeConnection();
     }
 
-    readEvent = (key, event, action) => {
+    synchEvent = (key, event, action) => {
         const events = this.state.events;
         action === AppDatabase.DELETE ?
             delete events[key]:
@@ -54,12 +54,12 @@ class App extends Component {
         this.database.deleteEvent(key);
     };
 
-    readPerson = (key, person, action) => {
+    synchPerson = (key, person, action) => {
         const people = this.state.people;
         action === AppDatabase.DELETE ?
             delete people[key]:
             people[key] = person;
-        this.setState({ people: people});
+        this.setState({ people: people });
     };
 
     getStore = () => {
@@ -80,5 +80,3 @@ class App extends Component {
     }
 
 }
-
-export default App;

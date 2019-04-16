@@ -1,10 +1,10 @@
 export default options => theme => ({
     root: {
-        display: 'flex',
+        display: "flex",
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
+        transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
@@ -12,7 +12,7 @@ export default options => theme => ({
     appBarShift: {
         marginLeft: options.drawerWidth,
         width: `calc(100% - ${options.drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
+        transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
@@ -22,38 +22,38 @@ export default options => theme => ({
         marginRight: 36,
     },
     hide: {
-        display: 'none',
+        display: "none",
     },
     drawer: {
-        width: options.drawerWidth,
         flexShrink: 0,
-        whiteSpace: 'nowrap',
+        whiteSpace: "nowrap",
+        width: options.drawerWidth,
         backgroundColor: theme.palette.primary.main,
-        '& *': { color: theme.palette.primary.contrastText }
+        "& *": { color: theme.palette.primary.contrastText }
     },
     drawerOpen: {
         width: options.drawerWidth,
-        transition: theme.transitions.create('width', {
+        transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
     drawerClose: {
-        transition: theme.transitions.create('width', {
+        transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        overflowX: 'hidden',
+        overflowX: "hidden",
         width: theme.spacing.unit * 7 + 1,
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up("sm")]: {
             width: theme.spacing.unit * 9 + 1,
         },
     },
     iconOpen: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: '0 8px',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: "0 8px",
         ...theme.mixins.toolbar,
     },
     content: {

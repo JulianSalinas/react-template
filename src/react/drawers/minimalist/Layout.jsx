@@ -1,6 +1,6 @@
 import React from "react"
-import DrawerMenu from "../../screens/dashboard/Menu"
-import DashboardSwitch from "../../screens/dashboard/Router"
+import DrawerMenu from "../../dashboard/Menu"
+import DashboardSwitch from "../../dashboard/Router"
 
 import classNames from "classnames"
 import Drawer from "@material-ui/core/Drawer"
@@ -9,15 +9,20 @@ import IconButton from "@material-ui/core/IconButton"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import MenuIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Typography from "@material-ui/core/Typography/Typography";
+import AppBar from "@material-ui/core/AppBar/AppBar";
 
 
 const Layout = ({ classes, ...props }) =>
-    <div className={classes.root}>
 
-        <CssBaseline />
+    <div className={classes.root}>
+        <CssBaseline/>
+
         <Drawer
             open={props.open}
-            variant="permanent"
+            variant={"permanent"}
 
             className={classNames(classes.drawer, {
                 [classes.drawerOpen]: props.open,

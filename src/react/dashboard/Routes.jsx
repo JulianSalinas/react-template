@@ -1,8 +1,8 @@
-import GamesView from "../games/Games"
-import PeopleView from "../people/People"
-import ManagerView from "../manager/Manager"
-import WelcomeView from "../welcome/Welcome"
-import ScheduleView from "../schedule/Schedule"
+import GamesView from "../screens/games/Games"
+import PeopleView from "../screens/people/People"
+import ManagerView from "../screens/manager/Manager"
+import WelcomeView from "../screens/welcome/Welcome"
+import ScheduleView from "../screens/schedule/Schedule"
 
 import GamesIcon from "@material-ui/icons/Gamepad"
 import PeopleIcon from "@material-ui/icons/People"

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import withContext from "../dashboard/Context";
 import CurtainExample from "./CurtainExample";
+import withContext from "../../dashboard/Context";
 
 
 class Welcome extends Component {

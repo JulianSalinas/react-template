@@ -95,13 +95,17 @@ export default class CurtainOverlay extends Component {
     };
 
     renderWindow = component =>
-        <div key={0} style={{ flex: 1 }}>
+        <div key={0} style={{
+            flex: 1,
+            height: this.props.height
+        }}>
             { component }
         </div>;
 
     renderCurtain = component =>
         <div key={1} style={{
             flex: 1,
+            height: this.props.height,
             position: "relative",
             transition: `${this.props.duration}s ease` ,
             transform: this.getTransform()

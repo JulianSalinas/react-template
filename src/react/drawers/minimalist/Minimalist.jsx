@@ -2,11 +2,9 @@ import React, { Component } from "react";
 
 import Layout from "./Layout";
 import withDrawerContext from "../Context";
-import withAppContext from "../../../app/AppContext";
-import withDashboardContext from "../../dashboard/Context";
 
 
-class Responsive extends Component {
+class Minimalist extends Component {
 
     state = { open: false };
 
@@ -17,10 +15,9 @@ class Responsive extends Component {
     render() {
         return <Layout
             open={this.state.open}
-            user={this.props.store.user}
             toggleDrawerState={this.toggleDrawerState} {...this.props}/>;
     }
 
 }
 
-export default withAppContext(withDrawerContext(Responsive));
+export default withDrawerContext(Minimalist);

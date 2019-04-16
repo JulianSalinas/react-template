@@ -1,6 +1,7 @@
-import React, { Component } from "react"
-import withDrawerContext from "../common/Context"
-import Layout from "./Layout"
+import React, { Component } from "react";
+
+import Layout from "./Layout";
+import withDrawerContext from "../Context";
 
 
 class Favorite extends Component {

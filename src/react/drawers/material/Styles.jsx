@@ -1,33 +1,23 @@
+import { lighten } from "@material-ui/core/styles/colorManipulator";
+
 export default options => theme => ({
     root: {
         display: 'flex',
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        marginLeft: options.drawerWidth,
-        width: `calc(100% - ${options.drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
     },
     menuButton: {
-        marginLeft: 12,
-        marginRight: 36,
+        marginLeft: theme.spacing.unit * 2,
+        marginRight: theme.spacing.unit * 2
     },
     hide: {
         display: 'none',
     },
     drawer: {
-        width: options.drawerWidth,
         flexShrink: 0,
-        whiteSpace: 'nowrap',
+        // whiteSpace: 'nowrap',
+        width: options.drawerWidth,
     },
     drawerOpen: {
         width: options.drawerWidth,
@@ -55,7 +45,34 @@ export default options => theme => ({
         ...theme.mixins.toolbar,
     },
     content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
+        flexGrow: 1
+    },
+    item: {
+        width: "auto",
+        display: "block",
+        position: "relative",
+        color: "#5f6368",
+        "&:hover": { backgroundColor: "#F5F5F5" }
+    },
+    itemActive: {
+        width: "auto",
+        display: "block",
+        position: "relative",
+        color: theme.palette.primary.dark,
+        backgroundColor: lighten(theme.palette.primary.light, 0.9),
+        "&:hover": { backgroundColor: lighten(theme.palette.primary.light, 0.9) }
+    },
+    itemText: {
+        color: "inherit",
+        lineHeight: "26px",
+        fontWeight: 500,
+        marginLeft: 16
+    },
+    itemIcon: {
+        float: "left",
+        width: "24px",
+        height: "24px",
+        color: "inherit",
+        block: "inline-block"
     },
 });

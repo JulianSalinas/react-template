@@ -2,21 +2,20 @@ import React, { Component } from "react";
 
 import styles from "./Styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-import DashboardLayout from "./Layout"
+import DashboardLayout from "./Layout";
 
-import defaults from "../../drawers/common/Defaults"
-import defaultTheme from "../../../constants/main/Theme"
-
+import options from "../../constants/main/Options";
+import defaultTheme from "../../constants/main/Theme";
 import { createMuiTheme } from '@material-ui/core/styles';
 
 
 class Dashboard extends Component {
 
     state = {
-        colorSet: defaults.colorSet,
-        drawerType: defaults.drawerType,
-        drawerWidth: defaults.drawerWidth,
-        drawerAutoContrast: defaults.drawerAutoContrast,
+        colorSet: options.colorSet,
+        drawerType: options.drawerType,
+        drawerWidth: options.drawerWidth,
+        drawerAutoContrast: options.drawerAutoContrast,
         theme: createMuiTheme(JSON.parse(JSON.stringify(defaultTheme))),
     };
 

@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 import Icon from "@material-ui/core/Icon/Icon";
 
 import { hashColor } from "../../../utils/Colors";
-import withDashboardContext from "../dashboard/Context";
+import withDashboardContext from "../../dashboard/Context";
 
 
 const PersonItemLayout = ({ classes, ...props }) =>

@@ -8,11 +8,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import withDrawerContext from "../common/Context";
-import DrawerMenu from "../../screens/dashboard/Menu"
-import DashboardSwitch from "../../screens/dashboard/Router"
+import withDrawerContext from "../Context";
+import DrawerMenu from "../../dashboard/Menu"
+import DashboardSwitch from "../../dashboard/Router"
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import Divider from "@material-ui/core/Divider/Divider";
+import Images from "../../../constants/lists/Images";
 
 
 const Layout = ({ classes, theme, ...props}) =>
@@ -41,6 +42,18 @@ const Layout = ({ classes, theme, ...props}) =>
                     open={props.open}
                     onClose={props.toggleDrawerState}
                     classes={{ paper: classes.drawer }}>
+                    <div style={{
+                        height: 170,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}>
+                        <Avatar src={Images[1]} style={{
+                            width: 125,
+                            height: 125,
+                        }}/>
+                    </div>
+                    <Divider variant={"fullWidth"} style={{ margin: "8px 16px" }}/>
                     <DrawerMenu classes={classes}/>
                 </Drawer>
             </Hidden>
@@ -50,14 +63,14 @@ const Layout = ({ classes, theme, ...props}) =>
                     variant={"permanent"}
                     classes={{ paper: classes.drawer }}>
                     <div style={{
-                        height: 150,
+                        height: 170,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                     }}>
-                        <Avatar src={props.user.photoUrl} style={{
-                            height: 100,
-                            width: 100,
+                        <Avatar src={Images[1]} style={{
+                            width: 125,
+                            height: 125,
                         }}/>
                     </div>
                     <Divider variant={"fullWidth"} style={{ margin: "8px 16px" }}/>
