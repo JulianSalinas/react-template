@@ -52,7 +52,7 @@ class GamesLayout extends Component {
                 props: {
                     orientation: "horizontal"
                 },
-                children: generateItems(4, i => ({
+                children: generateItems(3, i => ({
                     id: `column${i}`,
                     type: "container",
                     name: columnNames[i],
@@ -82,7 +82,9 @@ class GamesLayout extends Component {
 
     render() {
         return (
-            <div className="card-scene">
+            <div className="card-scene" style={{
+                overflowX: "hidden"
+            }}>
                 <Container
                     orientation="horizontal"
                     onDrop={this.onColumnDrop}

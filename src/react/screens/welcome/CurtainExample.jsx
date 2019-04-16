@@ -41,10 +41,12 @@ export default class CurtainExample extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{
+                overflowX: "hidden"
+            }}>
                 <div style={{
-                    height: 150,
-                    backgroundColor: "#2871D5",
+                    height: 200,
+                    backgroundColor: "#673AB7",
                 }}/>
                 <Grid container spacing={16} style={{
                     paddingLeft: 16,

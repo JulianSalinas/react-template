@@ -1,3 +1,5 @@
+import { lighten } from "@material-ui/core/styles/colorManipulator";
+
 export default options => theme => ({
     root: {
         display: "flex",
@@ -43,7 +45,6 @@ export default options => theme => ({
         display: "block",
         position: "relative",
         marginRight: 16,
-        // color: "#FFF",
         color: "#5f6368",
         borderTopRightRadius: 24,
         borderBottomRightRadius: 24,
@@ -54,11 +55,11 @@ export default options => theme => ({
         display: "block",
         position: "relative",
         marginRight: 16,
-        color: "#1967d2",
-        backgroundColor: "#E8F0FE",
         borderTopRightRadius: 24,
         borderBottomRightRadius: 24,
-        "&:hover": { backgroundColor: "#E8F0FE" }
+        color: theme.palette.primary.dark,
+        backgroundColor: lighten(theme.palette.primary.light, 0.9),
+        "&:hover": { backgroundColor: lighten(theme.palette.primary.light, 0.9) }
     },
     itemText: {
         color: "inherit",

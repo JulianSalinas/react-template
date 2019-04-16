@@ -60,7 +60,6 @@ export default theme => ({
         width: "100%"
     },
     formInput: {
-        padding: 16,
         outline: "none"
     },
     searchBar: {

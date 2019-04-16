@@ -46,7 +46,7 @@ const ScheduleLayout = ({ theme, ...props }) =>
         <div style={{
             height: 240,
             padding: 16,
-            backgroundColor: "#EEE",
+            backgroundColor: "#F5F5F5",
         }}/>
         <Grid container spacing={16} style={{
             paddingLeft: 16,
