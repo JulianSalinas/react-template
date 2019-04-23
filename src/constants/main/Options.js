@@ -2,5 +2,5 @@ export default {
     colorSet: "flat",
     drawerWidth: 240,
     drawerAutoContrast: true,
-    drawerType: "material"
+    drawerType: "responsive"
 };

@@ -5,8 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { firstToUpper } from "../../../utils/Utils";
 
 import { TwitterPicker } from "react-color";
-import Flat from "../../../constants/colors/Flat";
-import Colors from "../../../constants/lists/Colors";
+import Palettes from "../../../constants/colors/Palettes";
 
 import Drawers from "../../../constants/lists/Drawers";
 import Clock from "../../components/clock/GenericClock";
@@ -130,7 +129,7 @@ const ViewManager = props =>
                                     onChange={props.handleColorSetChange}
                                     input={<FilledInput name="paletteType" />}>
                                     {
-                                        Colors.map((colorSet, key) => {
+                                        Object.keys(Palettes).map((colorSet, key) => {
                                             const capitalize = string => string[0].toUpperCase() + string.slice(1);
                                             return <MenuItem key={key} value={colorSet}>{capitalize(colorSet)}</MenuItem>
                                         })
