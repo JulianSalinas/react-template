@@ -76,7 +76,7 @@ const EventLocationLayout = ({ classes, ...props }) =>
 function getImageBasedInLocation(event){
 
     if (event.location === undefined || event.location === null)
-        return require(`../../../assets/img-material.png`);
+        return require("../../../assets/backgrounds/img-material.png");
 
     const normalized = latinise(event.location.toLowerCase());
     let selected = null;
@@ -88,7 +88,7 @@ function getImageBasedInLocation(event){
         return test !== null;
     });
 
-    return require(`../../../assets/${selected !== null ? `tec-buildings/tec_${selected}.jpg` : `img-material.png`}`);
+    return require(`../../../assets/${selected !== null ? `tec-buildings/tec_${selected}.jpg` : `backgrounds/img-material.png`}`);
 
 }
 

@@ -144,15 +144,15 @@ footer ul li a:hover {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: #afafaf;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #afafaf;
+    background: #383838;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #484848;
 }

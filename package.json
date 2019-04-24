@@ -13,6 +13,7 @@
         "firebase": "^5.8.2",
         "js-joda": "1.8.2",
         "js-joda-timezone": "2.0.0",
+        "lorem-ipsum": "^2.0.1",
         "material-ui-pickers": "^2.2.1",
         "moment": "^2.24.0",
         "mysql": "^2.16.0",
