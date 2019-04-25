@@ -12,20 +12,17 @@ import Button from "@material-ui/core/Button/Button";
 import SvgIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
 
+import { LoremIpsum } from "lorem-ipsum";
 
-function getBackgroundWithOpacity(background, opacity) {
-    const color = `rgba(0, 0, 0, ${opacity})`;
-    return `linear-gradient(${color}, ${color}), url(${background})`
-}
 
 const ExampleTitle = () =>
     <Typography variant={"h3"} paragraph>
-        {/*{ new LoremIpsum().generateWords(3) }*/}
+        { new LoremIpsum().generateWords(3) }
     </Typography>;
 
 const ExampleText = () => [1, 2, 3, 4].map(paragraph =>
     <Typography key={paragraph} paragraph style={{ fontSize: 18 }}>
-        {/*{ new LoremIpsum().generateParagraphs(7) }*/}
+        { new LoremIpsum().generateParagraphs(7) }
     </Typography>
 );
 
@@ -103,7 +100,7 @@ const HeroToolbar = props =>
         alignItems: "center",
         justifyContent: "space-between",
         padding: `16px ${16 * 8}px`,
-        backgroundColor: `rgba(0, 0, 0, ${0.6})`
+        backgroundColor: `rgba(0, 0, 0, ${props.heroOpacity + 0.2})`
     }}>
         <ToolbarTitle {...props}/>
         <ToolbarMenu {...props}/>
@@ -177,13 +174,25 @@ const HeroStatList = () =>
         <HeroStat title={"Views"} number={348} color={"#8e44ad"}/>
     </Grid>;
 
-const HeroImageList = props => props.images.map((image, index) =>
+const HeroImageList = props => props.backgrounds.map((image, index) =>
     <Grid item key={image}>
         <Avatar
             src={image}
             alt={`background-${index}`}
-            style={{ height: 48, width: 48 }}
-            onClick={() => props.changeBackground(image)}
+            style={ props.currentBackgroundIndex === index ? {
+                height: 60,
+                width: 60,
+                borderWidth: 2,
+                borderStyle: "solid",
+                borderColor: "#F50057",
+                borderSpacing: "15px",
+                transition: "all .4s ease-in-out"
+            } : {
+                height: 48,
+                width: 48,
+                transition: "all .4s ease-in-out"
+            }}
+            onClick={() => props.changeBackground(index)}
         />
     </Grid>
 );
@@ -218,7 +227,8 @@ const HeroContentLeft = props =>
 const HeroContent = props =>
     <div style={{
         flex: 1,
-        display: "flex"
+        display: "flex",
+        backgroundColor: `rgba(0, 0, 0, ${props.heroOpacity})`
     }}>
         <HeroContentLeft {...props}/>
         <HeroContentRight {...props}/>
@@ -231,7 +241,9 @@ const Hero = props =>
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundImage: getBackgroundWithOpacity(props.background, props.heroOpacity)
+        backgroundAttachment: "fixed", // Parallax effect
+        backgroundImage: `url(${props.background})`,
+        transition: "background-image 0.5s ease-in-out"
     }}>
         <HeroToolbar {...props}/>
         <HeroContent {...props}/>

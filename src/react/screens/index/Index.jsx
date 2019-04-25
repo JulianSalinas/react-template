@@ -13,33 +13,40 @@ import Image7 from "../../../assets/backgrounds/img-totoro.jpg";
 class Index extends Component {
 
     state = {
-        background: Image3,
-        images: [ Image1, Image2, Image3, Image4, Image5, Image6, Image7]
+        currentBackgroundIndex: 2,
+        backgrounds: [ Image1, Image2, Image3, Image4, Image5, Image6, Image7]
     };
 
     componentDidMount() {
-        // this.interval = setInterval(this.nextBackground, 10000);
+        this.interval = setInterval(this.nextBackground, 8000);
     };
 
     componentWillUnmount() {
-        // clearInterval(this.interval);
+        clearInterval(this.interval);
+    };
+
+    currentBackground = () => {
+        const index = this.state.currentBackgroundIndex;
+        return this.state.backgrounds[index];
     };
 
     nextBackground = () => {
-        const curretImage = this.state.background;
-        const currentIndex = this.state.images.indexOf(curretImage);
-
-        this.setState(({ images }) => ({
-            background: images[currentIndex === this.state.images.length - 1 ? 0 : currentIndex + 1]
+        const index = this.state.currentBackgroundIndex;
+        const nBackgrounds = this.state.backgrounds.length;
+        this.setState(() => ({
+            currentBackgroundIndex: index === nBackgrounds - 1 ? 0 : index + 1
         }))
     };
 
-    changeBackground = image => {
-        this.setState({ background: image });
+    changeBackground = index => {
+        this.setState({ currentBackgroundIndex: index });
     };
 
     render() {
-        return <Layout {...this.state} changeBackground={this.changeBackground}/>;
+        return <Layout {...this.state}
+                       background={this.currentBackground()}
+                       changeBackground={this.changeBackground}
+        />;
     }
 
 }
