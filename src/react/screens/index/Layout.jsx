@@ -12,6 +12,7 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import Button from "@material-ui/core/Button/Button";
 import SvgIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
+import PricesLayout from "./Prices";
 
 
 const ExampleTitle = props =>
@@ -286,8 +287,9 @@ const Content = props =>
     <div style={{
         padding: `${16 * 4}px ${16 * 8}px`,
     }}>
-        <ExampleTitle {...props}/>
-        <ExampleText {...props}/>
+        {/*<ExampleTitle {...props}/>*/}
+        {/*<ExampleText {...props}/>*/}
+        <PricesLayout/>
     </div>;
 
 const IndexLayout = props =>
