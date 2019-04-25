@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Layout from "./Layout";
-import Palettes from "../../../constants/colors/Palettes";
+import Palettes from "../../../constants/lists/Palettes";
 
 
 class Games extends Component {
@@ -12,7 +12,7 @@ class Games extends Component {
 
     getPalettes = () => {
         const palettes = this.state.palettes;
-        return Object.keys(palettes).map(key => palettes[key]);
+        return Object.keys(palettes).map(key => ({ key: key, ...palettes[key] }));
     };
 
     onDragEnd = item => {

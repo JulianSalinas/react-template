@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 import Layout from "./Layout";
-import Image1 from "../../../assets/backgrounds/img-hachikuchi.jpg";
-import Image2 from "../../../assets/backgrounds/img-spin.png";
-import Image3 from "../../../assets/backgrounds/img-kimono.jpg";
-import Image4 from "../../../assets/backgrounds/img-nobu.jpg";
-import Image5 from "../../../assets/backgrounds/img-reimu.jpg";
-import Image6 from "../../../assets/backgrounds/img-material.png";
-import Image7 from "../../../assets/backgrounds/img-totoro.jpg";
-
+import Image1 from "../../../assets/images/img-hachikuchi.jpg";
+import Image2 from "../../../assets/images/img-spin.png";
+import Image3 from "../../../assets/images/img-kimono.jpg";
+import Image4 from "../../../assets/images/img-nobu.jpg";
+import Image5 from "../../../assets/images/img-reimu.jpg";
+import Image6 from "../../../assets/images/img-material.png";
+import Image7 from "../../../assets/images/img-totoro.jpg";
+import { withRouter } from "react-router-dom";
 
 class Index extends Component {
 
@@ -81,6 +81,7 @@ class Index extends Component {
 
     render() {
         return <Layout {...this.state}
+                       match={this.props.match}
                        heroRef={this.heroRef}
                        toolbarRef={this.toolbarRef}
                        background={this.currentBackground()}
@@ -90,5 +91,5 @@ class Index extends Component {
 
 }
 
-export default Index;
+export default withRouter(Index);
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import withContext from "./Context";
-import DashboardTypes from "../../constants/types/DashboardTypes";
+import DashboardTypes from "../../constants/types/OptionsTypes";
 
 
 const Drawer = props => {

@@ -46,7 +46,7 @@ export default class CurtainExample extends Component {
             }}>
                 <div style={{
                     height: 200,
-                    backgroundColor: "#673AB7",
+                    backgroundColor: "#F5F5F5",
                 }}/>
                 <Grid container spacing={16} style={{
                     paddingLeft: 16,

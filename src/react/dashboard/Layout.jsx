@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Drawer from "./Drawer";
 import Provider from "./Provider";
 import MomentUtils from "@date-io/moment";
-import DashboardTypes from "../../constants/types/DashboardTypes";
+import DashboardTypes from "../../constants/types/OptionsTypes";
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import { MuiPickersUtilsProvider } from "material-ui-pickers";
 

@@ -7,11 +7,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { LoremIpsum } from "lorem-ipsum";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
-import Typography from "@material-ui/core/Typography/Typography";
 import Button from "@material-ui/core/Button/Button";
+import Typography from "@material-ui/core/Typography/Typography";
 
-const darkFilter = "invert(24%) sepia(1%) saturate(3892%) hue-rotate(15deg) brightness(90%) contrast(77%)";
-const lightFilter = "invert(100%) sepia(100%) saturate(0%) hue-rotate(317deg) brightness(105%) contrast(108%)";
+import Filters from "../../../constants/colors/Filters";
+import Gradients from "../../../constants/colors/Gradients";
 
 
 const PriceDollars = props =>
@@ -92,7 +92,9 @@ class PriceCard extends Component {
 
     render() {
 
-        const { filter, background } = this.props;
+        const { premium, filter, background } = this.props;
+        const icon = require(`../../../assets/icons/${premium ? "launch-1" : "launch-2"}.png`);
+
         const isSelected = this.state.isSelected;
 
         return (
@@ -117,11 +119,11 @@ class PriceCard extends Component {
                         color: isSelected ? "#FFF" : "#000"
                     }}>
 
-                        <img src={require("../../../assets/decorations/launch-2.png")} style={{
+                        <img src={icon} style={{
                             width: 16 * 5,
                             height: 16 * 5,
                             marginBottom: 16,
-                            filter: isSelected ? lightFilter : filter
+                            filter: premium ? null : isSelected ? Filters.white : filter
                         }}/>
 
                         <PriceTitle {...this.props}/>
@@ -151,22 +153,23 @@ const PricesLayout = props =>
             {...props}
             title={"Basic"}
             price={"11.99"}
-            background={"linear-gradient(to bottom right, #514A9D , #24C6DC)"}
-            filter={"invert(23%) sepia(90%) saturate(967%) hue-rotate(220deg) brightness(94%) contrast(81%)"}
+            filter={Filters.blue}
+            background={Gradients.blue}
         />
         <PriceCard
             {...props}
             title={"Unlimited"}
             price={"49.99"}
-            background={"linear-gradient(to bottom right, #11998e , #38ef7d)"}
-            filter={"invert(53%) sepia(38%) saturate(7142%) hue-rotate(147deg) brightness(90%) contrast(87%)"}
+            filter={Filters.green}
+            background={Gradients.green}
         />
         <PriceCard
             {...props}
+            premium
             title={"Premium"}
             price={"79.99"}
-            background={"linear-gradient(to bottom right, #FF5F6D , #FFC371)"}
-            filter={"invert(53%) sepia(55%) saturate(3879%) hue-rotate(322deg) brightness(109%) contrast(107%)"}
+            filter={Filters.orange}
+            background={Gradients.orange}
         />
     </Grid>;
 

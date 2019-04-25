@@ -10,8 +10,8 @@ const NotFound = () => {
 
 const AppRouter = () =>
     <Switch>
-        {/*<Redirect exact path={"/"} to={"/dashboard/welcome"}/>*/}
         <Redirect exact path={"/"} to={"/index"}/>
+        <Redirect exact path={"/dashboard"} to={"/dashboard/welcome"}/>
         <Route path={"/dashboard"} component={Dashboard}/>
         <Route path={"/index"} component={Index}/>
         <Route component={NotFound}/>

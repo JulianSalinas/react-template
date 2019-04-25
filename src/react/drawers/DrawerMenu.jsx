@@ -28,7 +28,7 @@ const MenuLink = props =>
 
 const DrawerMenu = props => Routes.map((route, index) => route.redirect ? null :
     <NavLink key={index}
-             to={`${props.match.url}${route.path}`}
+             to={route.path}
              className={props.classes !== undefined ? props.classes.item : null}
              activeClassName={props.classes !== undefined ? props.classes.itemActive : null}>
         <MenuLink

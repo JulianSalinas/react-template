@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button/Button";
 import SvgIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
 import PricesLayout from "./Prices";
+import {NavLink} from "react-router-dom";
 
 
 const ExampleTitle = props =>
@@ -87,10 +88,10 @@ const ToolbarMenu = props =>
         alignItems: "center",
         justifyContent: "flex-end",
     }}>
-        <IndexItem text={"Home"}/>
-        <IndexItem text={"Tools"}/>
-        <IndexItem text={"Features"}/>
-        <IndexItem text={"About"}/>
+        <IndexItem {...props} text={"Home"}/>
+        <IndexItem {...props} text={"Tools"}/>
+        <IndexItem {...props} text={"Features"}/>
+        <IndexItem {...props} text={"About"}/>
     </div>;
 
 const HeroToolbar = props => {
@@ -143,16 +144,19 @@ const HeroSubtitle = () =>
         <span style={{ fontWeight: "500" }}> platform </span>
     </Typography>;
 
-const HeroButton = () =>
-    <Button
-        variant={"contained"}
-        color={"secondary"}
-        style={{
-            marginTop: 8,
-            marginBottom: 16 * 4,
-        }}>
-        Access Dashboard
-    </Button>;
+const HeroButton = props =>
+    <NavLink
+        to={"/dashboard"}>
+        <Button
+            variant={"contained"}
+            color={"secondary"}
+            style={{
+                marginTop: 8,
+                marginBottom: 16 * 4,
+            }}>
+            Access Dashboard
+        </Button>
+    </NavLink>;
 
 const HeroStat = props =>
     <Grid item>

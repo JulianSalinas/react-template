@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { firstToUpper } from "../../../utils/Utils";
 
 import { TwitterPicker } from "react-color";
-import Palettes from "../../../constants/colors/Palettes";
+import Palettes from "../../../constants/lists/Palettes";
 
 import Drawers from "../../../constants/lists/Drawers";
 import Clock from "../../components/clock/GenericClock";
