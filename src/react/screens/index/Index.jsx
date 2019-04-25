@@ -13,16 +13,53 @@ import Image7 from "../../../assets/backgrounds/img-totoro.jpg";
 class Index extends Component {
 
     state = {
+        isToolbarFixed: false,
         currentBackgroundIndex: 2,
         backgrounds: [ Image1, Image2, Image3, Image4, Image5, Image6, Image7]
     };
 
+    constructor(props) {
+        super(props);
+        this.heroRef = React.createRef();
+        this.toolbarRef = React.createRef();
+    }
+
     componentDidMount() {
         this.interval = setInterval(this.nextBackground, 8000);
+        window.addEventListener('scroll', this.handleScroll);
     };
 
     componentWillUnmount() {
         clearInterval(this.interval);
+        window.removeEventListener('scroll', this.handleScroll);
+    };
+
+    handleScroll = () => {
+        const scrollOffset = window.pageYOffset;
+        const scrollPosition = Math.round(scrollOffset);
+        this.changeToolbarPosition(scrollPosition);
+    };
+
+    changeToolbarPosition = (scrollPosition) => {
+
+        if(!this.heroRef) return;
+
+        const component = this.heroRef.current;
+        const componentPosition = component.offsetTop + component.clientHeight;
+
+        // For some reason an "and" doesn't work as expected
+        if (scrollPosition >= componentPosition) {
+            if (!this.state.isToolbarFixed){
+                this.setState({isToolbarFixed: true});
+                console.log("Toolbar fixed");
+            }
+        }
+
+        else if (this.state.isToolbarFixed) {
+            this.setState({isToolbarFixed: false});
+            console.log("Toolbar free");
+        }
+
     };
 
     currentBackground = () => {
@@ -44,6 +81,8 @@ class Index extends Component {
 
     render() {
         return <Layout {...this.state}
+                       heroRef={this.heroRef}
+                       toolbarRef={this.toolbarRef}
                        background={this.currentBackground()}
                        changeBackground={this.changeBackground}
         />;

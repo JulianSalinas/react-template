@@ -5,6 +5,7 @@ import styles from "./Styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 
+import { LoremIpsum } from "lorem-ipsum";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 import Avatar from "@material-ui/core/Avatar/Avatar";
@@ -12,17 +13,15 @@ import Button from "@material-ui/core/Button/Button";
 import SvgIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
 
-import { LoremIpsum } from "lorem-ipsum";
 
-
-const ExampleTitle = () =>
+const ExampleTitle = props =>
     <Typography variant={"h3"} paragraph>
-        { new LoremIpsum().generateWords(3) }
+        { props.exampleTitle }
     </Typography>;
 
-const ExampleText = () => [1, 2, 3, 4].map(paragraph =>
+const ExampleText = props => [1, 2, 3, 4].map(paragraph =>
     <Typography key={paragraph} paragraph style={{ fontSize: 18 }}>
-        { new LoremIpsum().generateParagraphs(7) }
+        { props.exampleContent }
     </Typography>
 );
 
@@ -58,7 +57,7 @@ const TitleText = props =>
         marginLeft: 16,
         fontWeight: "bold"
     }}>
-        { props.heroName }
+        { props.toolbarTitle }
     </Typography>;
 
 const ToolbarTitle = props =>
@@ -93,18 +92,35 @@ const ToolbarMenu = props =>
         <IndexItem text={"About"}/>
     </div>;
 
-const HeroToolbar = props =>
-    <div style={{
+const HeroToolbar = props => {
+
+    const baseStyle = {
         height: 72,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         padding: `16px ${16 * 8}px`,
-        backgroundColor: `rgba(0, 0, 0, ${props.heroOpacity + 0.2})`
-    }}>
-        <ToolbarTitle {...props}/>
-        <ToolbarMenu {...props}/>
-    </div>;
+        backgroundColor: `rgba(0, 0, 0, ${props.heroOpacity + 0.2})`,
+        transition: "all 8s ease-in-out"
+    };
+
+    const stickyStyle = {
+        top: 0,
+        width: "100%",
+        position: "fixed",
+        ...baseStyle
+    };
+
+    return (
+        <div
+            ref={props.toolbarRef}
+            style={props.isToolbarFixed ? stickyStyle: baseStyle}>
+            <ToolbarTitle {...props}/>
+            <ToolbarMenu {...props}/>
+        </div>
+    );
+
+};
 
 const HeroTitle = () =>
     <Typography variant={"h2"} paragraph style={{
@@ -228,33 +244,50 @@ const HeroContent = props =>
     <div style={{
         flex: 1,
         display: "flex",
+        flexDirection: "column",
         backgroundColor: `rgba(0, 0, 0, ${props.heroOpacity})`
     }}>
-        <HeroContentLeft {...props}/>
-        <HeroContentRight {...props}/>
+
+        <div style={{
+            display: "flex",
+        }}>
+            <HeroContentLeft {...props}/>
+            <HeroContentRight {...props}/>
+        </div>
+
+        <div style={{
+            height: 75,
+            width: "100%",
+            backgroundPosition: "right",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: `url(${require("../../../assets/decorations/hero-bottom.png")})`,
+        }}/>
+
     </div>;
 
 const Hero = props =>
-    <div style={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed", // Parallax effect
-        backgroundImage: `url(${props.background})`,
-        transition: "background-image 0.5s ease-in-out"
-    }}>
+    <div
+        ref={props.heroRef}
+        style={{
+            display: "flex",
+            flexDirection: "column",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed", // Parallax effect
+            backgroundImage: `url(${props.background})`,
+            transition: "background-image 0.5s ease-in-out"
+        }}>
         <HeroToolbar {...props}/>
         <HeroContent {...props}/>
     </div>;
 
-const Content = () =>
+const Content = props =>
     <div style={{
         padding: `${16 * 4}px ${16 * 8}px`,
     }}>
-        <ExampleTitle/>
-        <ExampleText/>
+        <ExampleTitle {...props}/>
+        <ExampleText {...props}/>
     </div>;
 
 const IndexLayout = props =>
@@ -265,13 +298,17 @@ const IndexLayout = props =>
     </div>;
 
 IndexLayout.defaultProps = {
-    heroName: "YOU'RE (NOT) THE ADMIN",
-    heroOpacity: 0.7
+    heroOpacity: 0.7,
+    toolbarTitle: "YOU'RE (NOT) THE ADMIN",
+    exampleTitle: new LoremIpsum().generateWords(3),
+    exampleContent: new LoremIpsum().generateParagraphs(7)
 };
 
 IndexLayout.propTypes = {
-    heroName: PropTypes.string,
     heroOpacity: PropTypes.number,
+    toolbarTitle: PropTypes.string,
+    exampleTitle: PropTypes.string,
+    exampleContent: PropTypes.string,
     background: PropTypes.string.isRequired,
 };
 
