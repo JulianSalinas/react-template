@@ -148,7 +148,9 @@ class PriceCard extends Component {
 }
 
 const PricesLayout = props =>
-    <Grid container spacing={32}>
+    <Grid container spacing={32} style={{
+        marginBottom: 16 * 3
+    }}>
         <PriceCard
             {...props}
             title={"Basic"}

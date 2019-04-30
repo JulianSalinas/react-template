@@ -4,6 +4,7 @@ import ManagerView from "../screens/manager/Manager";
 import WelcomeView from "../screens/welcome/Welcome";
 import ScheduleView from "../screens/schedule/Schedule";
 import IndexView from "../screens/index/Index";
+import HighchartView from "../screens/highchart/Highchart";
 
 import GamesIcon from "@material-ui/icons/Gamepad";
 import PeopleIcon from "@material-ui/icons/People";
@@ -11,6 +12,7 @@ import ConfigIcon from "@material-ui/icons/Settings";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import WelcomeIcon from "@material-ui/icons/TimelineRounded";
 import ExitIcon from "@material-ui/icons/ExitToApp";
+import HighchartIcon from "@material-ui/icons/BarChart";
 
 
 export default [
@@ -43,6 +45,12 @@ export default [
         name: "Configuración",
         icon: ConfigIcon,
         component: ManagerView
+    },
+    {
+        path: "/dashboard/highchart",
+        name: "Highchart",
+        icon: HighchartIcon,
+        component: HighchartView
     },
     {
         path: "/index",

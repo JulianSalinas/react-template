@@ -294,6 +294,9 @@ const Content = props =>
         {/*<ExampleTitle {...props}/>*/}
         {/*<ExampleText {...props}/>*/}
         <PricesLayout/>
+        <iframe
+            src="https://www.socialprogress.org/index/california/map?fbclid=IwAR2-plO1Qx16GkJ1kFS728PWBRbs-IJc2NzNeaz0-Mbmc81qPToXAGb5CIg?embedded=true"
+            width="1060" height="1100" frameBorder="0" frameBorder="0"/>
     </div>;
 
 const IndexLayout = props =>
