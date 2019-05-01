@@ -14,18 +14,19 @@ import SvgIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Typography from "@material-ui/core/Typography/Typography";
 import PricesLayout from "./Prices";
 import {NavLink} from "react-router-dom";
+import SocialMedia from "../../components/social-media/SocialMedia";
 
 
-const ExampleTitle = props =>
-    <Typography variant={"h3"} paragraph>
-        { props.exampleTitle }
-    </Typography>;
+// const ExampleTitle = props =>
+//     <Typography variant={"h3"} paragraph>
+//         { props.exampleTitle }
+//     </Typography>;
 
-const ExampleText = props => [1, 2, 3, 4].map(paragraph =>
-    <Typography key={paragraph} paragraph style={{ fontSize: 18 }}>
-        { props.exampleContent }
-    </Typography>
-);
+// const ExampleText = props => [1, 2, 3, 4].map(paragraph =>
+//     <Typography key={paragraph} paragraph style={{ fontSize: 18 }}>
+//         { props.exampleContent }
+//     </Typography>
+// );
 
 const TitleSvgIcon = props =>
     <SvgIcon {...props}>
@@ -108,7 +109,9 @@ const HeroToolbar = props => {
 
     const stickyStyle = {
         top: 0,
-        width: "100%",
+        left: 0,
+        right: 0,
+        zIndex: 1024,
         position: "fixed",
         ...baseStyle
     };
@@ -294,9 +297,6 @@ const Content = props =>
         {/*<ExampleTitle {...props}/>*/}
         {/*<ExampleText {...props}/>*/}
         <PricesLayout/>
-        <iframe
-            src="https://www.socialprogress.org/index/california/map?fbclid=IwAR2-plO1Qx16GkJ1kFS728PWBRbs-IJc2NzNeaz0-Mbmc81qPToXAGb5CIg?embedded=true"
-            width="1060" height="1100" frameBorder="0" frameBorder="0"/>
     </div>;
 
 const IndexLayout = props =>
@@ -304,6 +304,7 @@ const IndexLayout = props =>
         <CssBaseline/>
         <Hero {...props}/>
         <Content {...props}/>
+        <SocialMedia position={"left"}/>
     </div>;
 
 IndexLayout.defaultProps = {

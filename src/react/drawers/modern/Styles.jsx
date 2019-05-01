@@ -1,6 +1,4 @@
 import drawerStyles from "../DrawerStyles";
-import gradients from "../../../constants/colors/Gradients";
-import { lighten } from "@material-ui/core/styles/colorManipulator";
 
 export default options => theme => ({
 
@@ -52,9 +50,6 @@ export default options => theme => ({
         width: "auto",
         display: "block",
         position: "relative",
-        marginRight: 16,
-        borderTopRightRadius: 24,
-        borderBottomRightRadius: 24,
         color: theme.palette.primary.contrastText,
         backgroundColor: theme.palette.primary.main,
         "&:hover": { backgroundColor: theme.palette.primary.main }

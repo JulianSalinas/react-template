@@ -119,7 +119,7 @@ class PriceCard extends Component {
                         color: isSelected ? "#FFF" : "#000"
                     }}>
 
-                        <img src={icon} style={{
+                        <img src={icon} alt={"plan decoration"} style={{
                             width: 16 * 5,
                             height: 16 * 5,
                             marginBottom: 16,

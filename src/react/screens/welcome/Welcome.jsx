@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import CurtainExample from "./CurtainExample";
+
+import SocialExample from "./SocialExample";
+// import CurtainExample from "./CurtainExample";
 import withContext from "../../dashboard/Context";
 
 
@@ -8,7 +10,7 @@ class Welcome extends Component {
     render() {
         return (
             <div>
-                <CurtainExample/>
+                <SocialExample/>
             </div>
         );
     }

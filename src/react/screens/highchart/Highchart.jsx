@@ -1,6 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
-// Import Highcharts
 import Highcharts from 'highcharts/highstock'
 
 // Import our highchart components
