@@ -42,12 +42,17 @@ const EventItemLayout = ({ classes, ...props }) =>
 class Item extends Component {
 
     state = {
-        isSelected: false
+        isSelected: false,
+        isQRVisible: false
     };
 
     toggleOpen = () => {
         if (this.props.isOpen) this.setSelected();
         this.props.setOpenItem(this.props.index)
+    };
+
+    toggleQRVisibility = () => {
+        this.setState({ isQRVisible: !this.state.isQRVisible });
     };
 
     updateEvent = (prop, value) => {
@@ -79,7 +84,10 @@ class Item extends Component {
             deleteEvent={this.deleteEvent}
             submitEvent={this.submitEvent}
             setSelected={this.setSelected}
-            isSelected={this.state.isSelected}/>;
+            isSelected={this.state.isSelected}
+            toggleQRVisibility={this.toggleQRVisibility}
+            isQRVisible={this.state.isQRVisible}
+        />;
     }
 
 }

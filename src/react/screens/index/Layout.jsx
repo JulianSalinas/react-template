@@ -95,7 +95,7 @@ const ToolbarMenu = props =>
         <IndexItem {...props} text={"About"}/>
     </div>;
 
-const HeroToolbar = props => {
+const Toolbar = props => {
 
     const baseStyle = {
         height: 72,
@@ -119,7 +119,7 @@ const HeroToolbar = props => {
     return (
         <div
             ref={props.toolbarRef}
-            style={props.isToolbarFixed ? stickyStyle: baseStyle}>
+            style={stickyStyle}>
             <ToolbarTitle {...props}/>
             <ToolbarMenu {...props}/>
         </div>
@@ -284,9 +284,9 @@ const Hero = props =>
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "fixed", // Parallax effect
             backgroundImage: `url(${props.background})`,
-            transition: "background-image 0.5s ease-in-out"
+            transition: "background-image 0.5s ease-in-out",
+            paddingTop: 72 // Toolbar size
         }}>
-        <HeroToolbar {...props}/>
         <HeroContent {...props}/>
     </div>;
 
@@ -303,6 +303,7 @@ const IndexLayout = props =>
     <div className={props.classes.root}>
         <CssBaseline/>
         <Hero {...props}/>
+        <Toolbar {...props}/>
         <Content {...props}/>
         <SocialMedia position={"left"}/>
     </div>;

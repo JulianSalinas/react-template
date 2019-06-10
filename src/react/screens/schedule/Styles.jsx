@@ -36,6 +36,9 @@ export default theme => ({
     eventActionsOpened: {
         width: theme.spacing.unit * 7,
     },
+    eventActionsQROpened: {
+        width: "100%"
+    },
     eventActionsIcon: {
         color: "#FFF",
         borderRadius: 0

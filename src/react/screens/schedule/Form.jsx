@@ -199,6 +199,7 @@ class Form extends Component {
 
 Form.PropsTypes = {
     event: EventTypes.isRequired,
+    eventKey: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     classes: PropTypes.object.isRequired,
     keepSynch: PropTypes.object.isRequired,

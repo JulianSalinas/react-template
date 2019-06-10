@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 
-import SocialExample from "./SocialExample";
+// import MapExample from "./MapExample";
 // import CurtainExample from "./CurtainExample";
 import withContext from "../../dashboard/Context";
+import { Button } from "@material-ui/core";
 
 
 class Welcome extends Component {
 
     render() {
         return (
-            <div>
-                <SocialExample/>
+            <div style={{
+                padding: 16
+            }}>
+                <Button variant="outlined" href="rommie://app/thefucxk">
+                    OPEN THE SHIT 
+                </Button>
             </div>
         );
     }

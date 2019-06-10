@@ -5,6 +5,7 @@ import WelcomeView from "../screens/welcome/Welcome";
 import ScheduleView from "../screens/schedule/Schedule";
 import IndexView from "../screens/index/Index";
 import HighchartView from "../screens/highchart/Highchart";
+import ArmorsView from "../screens/armors/Armors";
 
 import GamesIcon from "@material-ui/icons/Gamepad";
 import PeopleIcon from "@material-ui/icons/People";
@@ -13,6 +14,7 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import WelcomeIcon from "@material-ui/icons/TimelineRounded";
 import ExitIcon from "@material-ui/icons/ExitToApp";
 import HighchartIcon from "@material-ui/icons/BarChart";
+import ArmorsIcon from "@material-ui/icons/VideogameAsset";
 
 
 export default [
@@ -21,6 +23,12 @@ export default [
         name: "Bienvenido",
         icon: WelcomeIcon,
         component: WelcomeView
+    },
+    {
+        path: "/dashboard/armors",
+        name: "Armaduras",
+        icon: ArmorsIcon,
+        component: ArmorsView
     },
     {
         path: "/dashboard/games",
