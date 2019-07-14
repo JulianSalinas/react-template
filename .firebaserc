@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "rommie-91186"
+  },
+  "targets": {
+    "rommie-91186": {
+      "hosting": {
+        "app": [
+          "rommie-playground"
+        ]
+      }
+    }
   }
 }
