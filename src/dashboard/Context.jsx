@@ -1,18 +1,15 @@
+import DashboardTypes from "../models/OptionsTypes"
 import PropTypes from "prop-types";
 import React from "react";
-import StoreTypes from "../models/StoreTypes";
 
-const AppContext = Component => {
+export default Component => {
 
     const GetContext = (props, context) =>
         <Component { ...props } { ...context } />;
 
     GetContext.contextTypes = {
-        store: PropTypes.shape(StoreTypes)
+        dashboard: PropTypes.shape(DashboardTypes)
     };
 
     return GetContext;
-
 };
-
-export default AppContext;

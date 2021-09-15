@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
 import { Children, Component } from "react";
-import StoreTypes from "../constants/types/StoreTypes";
 
+import PropTypes from "prop-types";
+import StoreTypes from "../models/StoreTypes";
 
 class AppProvider extends Component {
 

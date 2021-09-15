@@ -1,10 +1,10 @@
 import {
-    ZoneId,
+    DateTimeFormatter,
     Instant,
     LocalDate,
-    ZoneOffset,
     LocalDateTime,
-    DateTimeFormatter
+    ZoneId,
+    ZoneOffset
 } from "js-joda";
 
 const moment = require("moment");
@@ -15,7 +15,7 @@ export function getCurrentDateString(){
 }
 
 export function getCurrentTimeString(){
-    return LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:m:ss"))
+    return LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))
 }
 
 export function getDateString(datetime){
